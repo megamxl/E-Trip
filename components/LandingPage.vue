@@ -1,19 +1,16 @@
 <template>
   <div class="background">
     <div class="left d-flex flex-column justify-space-around pillar">
-      <v-container class="landingContainer rounded-lg">
-        <h1> Create your own profile to get the most out of E-Trip </h1>
-        <v-btn block x-large to="#" outlined rounded> Sign Up / Login </v-btn>
+      <v-container>
+        <h1 class="mb-8"> Create your own profile to get the most out of E-Trip </h1>
+        <v-btn block x-large to="/ProfileCreation" outlined rounded> Sign Up / Login</v-btn>
       </v-container>
     </div>
     <div class="right d-flex flex-column justify-space-around pillar">
       <v-container class="landingContainer rounded-lg">
-        <v-card-title> Look for an optimal route now </v-card-title>
-        <v-text-field outlined label="From"> </v-text-field>
-        <v-container class="d-flex">
-          <v-text-field outlined label="To"> </v-text-field>
-          <v-btn > > </v-btn>
-        </v-container>
+        <h1 class="mb-8"> Look for an optimal route now </h1>
+        <v-text-field outlined label="From"></v-text-field>
+        <v-text-field outlined label="To" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field>
       </v-container>
     </div>
   </div>
@@ -22,10 +19,12 @@
 
 <script>
 
-import ProfileCreation from "@/components/ProfileCreation";
 export default {
-  components: {
-    ProfileCreation
+  methods: {
+    forwardSearch () {
+      console.log("I got clicked")
+      this.$router.push("/RoutePage")
+    },
   },
   name: "LandingPage"
 }
@@ -56,7 +55,7 @@ export default {
 }
 
 .landingContainer {
-  background: rgba(25, 25,25, 1);
+  background: rgba(25, 25, 25, 1);
 }
 
 

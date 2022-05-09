@@ -1,10 +1,10 @@
 <template>
-
+  <h1> AddCar </h1>
 </template>
 
 <script>
 export default {
-  name: "Route Page"
+  name: "AddCar"
 }
 </script>
 
