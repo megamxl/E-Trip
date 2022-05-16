@@ -1,10 +1,10 @@
 <template>
-  <h1> Login </h1>
+<h1>Log out</h1>
 </template>
 
 <script>
 export default {
-  name: "Login"
+  name: "LogOut"
 }
 </script>
 

@@ -76,11 +76,14 @@ export default {
     },
     services: {
       auth: {
-        onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
-        onAuthStateChangedAction: 'onAuthStateChangedAction',
-        subscribeManually: false
-      }
-    }
+        persistence: 'local', // default
+        initialize: {
+          onAuthStateChangedAction: 'onAuthStateChangedAction',
+          subscribeManually: false
+        },
+        ssr: true
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
