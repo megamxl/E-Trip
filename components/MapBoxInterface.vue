@@ -35,7 +35,6 @@ export default {
       });
 
       for (const station of this.stationList) {
-        console.log(station);
         const swapCords = [station.coordinates.longitude, station.coordinates.latitude];
         new mapboxgl.Marker({color: "#5E1224"})
           .setLngLat(swapCords)

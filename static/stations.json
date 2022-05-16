@@ -1,0 +1,2466 @@
+{
+  "data": {
+    "stationList": [
+      {
+        "id": "5ed1193db899ae7406981a31",
+        "external_id": "67fefc42-41ab-11e9-b67e-42010a840003",
+        "country_code": "DK",
+        "party_id": null,
+        "name": "Føtex Sønderborg",
+        "address": "Rønhavegade 14",
+        "city": "Sønderborg",
+        "postal_code": "6400",
+        "state": null,
+        "country": "DNK",
+        "coordinates": {
+          "latitude": "54.913956",
+          "longitude": "9.79349655"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "1115",
+            "evse_id": null,
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "1115_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-05-01T06:22:02Z",
+                "properties": null
+              },
+              {
+                "id": "1115_1",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-05-01T06:22:02Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-05-01T08:21:28Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11936b899ae2d8f9819f7",
+          "external_id": "a31a61e94f3799a9385dab9966c4c22c9f5790c4",
+          "name": "Clever",
+          "website": "https://clever.dk",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11936b899ae2d8f9819f7",
+          "name": "Clever"
+        },
+        "facilities": [
+          "NATURE",
+          "RESTAURANT",
+          "MUSEUM",
+          "CAFE",
+          "HOTEL",
+          "MALL",
+          "SUPERMARKET",
+          "RECREATION_AREA"
+        ],
+        "time_zone": "Europe/Copenhagen",
+        "opening_times": {
+          "twentyfourseven": true,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.79349655,
+            54.913956
+          ]
+        },
+        "elevation": 30,
+        "chargers": [
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "DK",
+          "county": null,
+          "city": "Sønderborg",
+          "street": "Rønhavegade",
+          "number": "14",
+          "postalCode": "6400",
+          "what3Words": "temporally.care.unimpeded",
+          "formattedAddress": [
+            "Rønhavegade, 14, 6400",
+            "Sønderborg",
+            "Denmark"
+          ]
+        },
+        "amenities": {
+          "park": 1,
+          "restaurant": 5,
+          "museum": 2,
+          "coffee": 5,
+          "hotel": 2,
+          "shopping": 1,
+          "bathroom": 0,
+          "supermarket": 3,
+          "playground": 5,
+          "pharmacy": 3
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 2,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "6185e90de002dec89817e5cd",
+        "external_id": "6b1d84a8-3c5c-11ec-aa68-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "c3753ed1-3934-4c6a-990b-83668f763b5b",
+        "address": "via Parini",
+        "city": "Lecco",
+        "postal_code": "23900",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "45.85800405",
+          "longitude": "9.39009915"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0172",
+            "evse_id": "IT*AEV*ED0172",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0172_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:07Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0173",
+            "evse_id": "IT*AEV*ED0173",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0173_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:08Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0171",
+            "evse_id": "IT*AEV*ED0171",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0171_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:08Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "RESTAURANT",
+          "MUSEUM",
+          "CAFE",
+          "HOTEL",
+          "MALL",
+          "SUPERMARKET",
+          "RECREATION_AREA"
+        ],
+        "time_zone": "Europe/Rome",
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.39009915,
+            45.85800405
+          ]
+        },
+        "elevation": 215,
+        "chargers": [
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Lecco",
+          "street": "via",
+          "number": "Parini",
+          "postalCode": "23900",
+          "what3Words": "harder.jacket.scramble",
+          "formattedAddress": [
+            "via, Parini, 23900",
+            "Lecco",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 2,
+          "museum": 3,
+          "coffee": 5,
+          "hotel": 1,
+          "shopping": 2,
+          "bathroom": 0,
+          "supermarket": 2,
+          "playground": 1,
+          "pharmacy": 4
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "61baa4eddd436f05e95e7553",
+        "external_id": "d3a68e6e-5a40-11ec-a0a3-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "42277718-ef4d-4a4a-befd-17002f25233a",
+        "address": "Via Carlo Amati",
+        "city": "Monza",
+        "postal_code": "20900",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "45.58258163",
+          "longitude": "9.29329435"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0211",
+            "evse_id": "IT*AEV*ED0211",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0211_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:08Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0212",
+            "evse_id": "IT*AEV*ED0212",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0212_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:09Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0213",
+            "evse_id": "IT*AEV*ED0213",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0213_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-19T07:39:32Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:09Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "RESTAURANT",
+          "CAFE",
+          "HOTEL",
+          "SUPERMARKET"
+        ],
+        "time_zone": "Europe/Rome",
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.29329435,
+            45.58258163
+          ]
+        },
+        "elevation": 164,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Monza",
+          "street": "Via Carlo",
+          "number": "Amati",
+          "postalCode": "20900",
+          "what3Words": "tweaked.elaborate.plugged",
+          "formattedAddress": [
+            "Via Carlo, Amati, 20900",
+            "Monza",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 1,
+          "museum": 0,
+          "coffee": 1,
+          "hotel": 1,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 3,
+          "playground": 0,
+          "pharmacy": 2
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "61de3d750d1b67f68de36ebc",
+        "external_id": "e9fd2484-63a0-11ec-b3c2-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "6199da2b-c427-4b6b-b054-a87ada838327",
+        "address": "Via Tonale",
+        "city": "Sondrio",
+        "postal_code": "23100",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "46.16601306",
+          "longitude": "9.87385591"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0251",
+            "evse_id": "IT*AEV*ED0251",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0251_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:09Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0252",
+            "evse_id": "IT*AEV*ED0252",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0252_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:09Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0253",
+            "evse_id": "IT*AEV*ED0253",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0253_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:09Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "RESTAURANT",
+          "MUSEUM",
+          "CAFE",
+          "HOTEL",
+          "SUPERMARKET"
+        ],
+        "time_zone": "Europe/Rome",
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.87385591,
+            46.16601306
+          ]
+        },
+        "elevation": 296,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Sondrio",
+          "street": "Via",
+          "number": "Tonale",
+          "postalCode": "23100",
+          "what3Words": "tawdry.query.scrawls",
+          "formattedAddress": [
+            "Via, Tonale, 23100",
+            "Sondrio",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 5,
+          "museum": 2,
+          "coffee": 5,
+          "hotel": 3,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 4,
+          "playground": 0,
+          "pharmacy": 1
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "61f5f9478d72929d62735c5c",
+        "external_id": "4fedf086-7de9-11ec-89d8-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "e86281d0-4ac3-4e2d-a0d6-e4bb421e0c33",
+        "address": "Via Cacciatori delle Alpi - fraz. Gaggiolo",
+        "city": "Gaggiolo",
+        "postal_code": "21050",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "45.83766271",
+          "longitude": "8.90906712"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0261",
+            "evse_id": "IT*AEV*ED0261",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0261_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:10Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0262",
+            "evse_id": "IT*AEV*ED0262",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0262_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:10Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*EA0661",
+            "evse_id": "IT*AEV*EA0661",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*EA0661_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:10Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*EA0662",
+            "evse_id": "IT*AEV*EA0662",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*EA0662_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-18T07:30:56Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:10Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*EA0671",
+            "evse_id": "IT*AEV*EA0671",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*EA0671_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:10Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*EA0672",
+            "evse_id": "IT*AEV*EA0672",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*EA0672_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:10Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "RESTAURANT",
+          "CAFE",
+          "HOTEL",
+          "SUPERMARKET"
+        ],
+        "time_zone": "Europe/Rome",
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            8.90906712,
+            45.83766271
+          ]
+        },
+        "elevation": 379,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 4,
+              "error": 0
+            },
+            "total": 4
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Gaggiolo",
+          "street": "Via Cacciatori delle Alpi - fraz.",
+          "number": "Gaggiolo",
+          "postalCode": "21050",
+          "what3Words": "sourcing.floods.offside",
+          "formattedAddress": [
+            "Via Cacciatori delle Alpi - fraz., Gaggiolo, 21050",
+            "Gaggiolo",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 1,
+          "museum": 0,
+          "coffee": 3,
+          "hotel": 3,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 2,
+          "playground": 0,
+          "pharmacy": 0
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "61f5f94b8d72929d62735dee",
+        "external_id": "330893a2-8034-11ec-845b-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "c0a4078a-59dc-4f01-93c1-d0de5cfc9f0c",
+        "address": "Via Pitagora",
+        "city": "Monza",
+        "postal_code": "20900",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "45.57547752",
+          "longitude": "9.25246052"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0321",
+            "evse_id": "IT*AEV*ED0321",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0321_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:12Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0322",
+            "evse_id": "IT*AEV*ED0322",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0322_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:12Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0323",
+            "evse_id": "IT*AEV*ED0323",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0323_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:12Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "NATURE",
+          "RESTAURANT",
+          "SUPERMARKET"
+        ],
+        "time_zone": "Europe/Rome",
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.25246052,
+            45.57547752
+          ]
+        },
+        "elevation": 163,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Monza",
+          "street": "Via",
+          "number": "Pitagora",
+          "postalCode": "20900",
+          "what3Words": "chills.sardine.sour",
+          "formattedAddress": [
+            "Via, Pitagora, 20900",
+            "Monza",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 1,
+          "restaurant": 2,
+          "museum": 0,
+          "coffee": 0,
+          "hotel": 0,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 3,
+          "playground": 0,
+          "pharmacy": 3
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "61f5f94b8d72929d62735dec",
+        "external_id": "327caacc-8034-11ec-9301-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "d261c2e8-2bbd-4bb9-b135-ae23faf8c03a",
+        "address": "Via Giulio Cesare Procaccini",
+        "city": "Monza",
+        "postal_code": "20900",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "45.57500005",
+          "longitude": "9.28073079"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0311",
+            "evse_id": "IT*AEV*ED0311",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0311_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:11Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0312",
+            "evse_id": "IT*AEV*ED0312",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0312_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:11Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0313",
+            "evse_id": "IT*AEV*ED0313",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0313_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-24T08:37:11Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "RESTAURANT",
+          "MUSEUM",
+          "CAFE",
+          "HOTEL",
+          "SUPERMARKET"
+        ],
+        "time_zone": "Europe/Rome",
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.28073079,
+            45.57500005
+          ]
+        },
+        "elevation": 155,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Monza",
+          "street": "Via Giulio Cesare",
+          "number": "Procaccini",
+          "postalCode": "20900",
+          "what3Words": "reporter.tensions.slides",
+          "formattedAddress": [
+            "Via Giulio Cesare, Procaccini, 20900",
+            "Monza",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 1,
+          "museum": 2,
+          "coffee": 1,
+          "hotel": 2,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 3,
+          "playground": 0,
+          "pharmacy": 2
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "625635a8dae6d00919384137",
+        "external_id": "a5b4efb8-a929-11ec-84ad-42010a840003",
+        "country_code": "IT",
+        "party_id": null,
+        "name": "83a656e4-06e1-490e-9f40-294873c17dfd",
+        "address": "Via Trieste",
+        "city": "Fino Mornasco",
+        "postal_code": "22073",
+        "state": null,
+        "country": "ITA",
+        "coordinates": {
+          "latitude": "45.74768973",
+          "longitude": "9.04927533"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "IT*AEV*ED0271",
+            "evse_id": "IT*AEV*ED0271",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0271_0",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-15T07:24:48Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-27T07:26:04Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0272",
+            "evse_id": "IT*AEV*ED0272",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0272_0",
+                "standard": "CHADEMO",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-27T07:26:04Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "IT*AEV*ED0273",
+            "evse_id": "IT*AEV*ED0273",
+            "status": "UNKNOWN",
+            "status_schedule": null,
+            "capabilities": [
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "IT*AEV*ED0273_0",
+                "standard": "IEC_62196_T2",
+                "format": "SOCKET",
+                "power_type": "AC_1_PHASE",
+                "max_voltage": 230,
+                "max_amperage": 10,
+                "max_electric_power": 2300,
+                "power": 2.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-18T07:30:56Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": null,
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-03-27T07:26:04Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "external_id": "51b11c7f3ae14b42c6debfe704172f51b3097b8b",
+          "name": "Route220",
+          "website": "http://www.evway.net",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "5ed11d25b899ae2e75983dd7",
+          "name": "Route220"
+        },
+        "facilities": [
+          "HOTEL"
+        ],
+        "time_zone": null,
+        "opening_times": {
+          "twentyfourseven": false,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": false,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.04927533,
+            45.74768973
+          ]
+        },
+        "elevation": 318,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2",
+            "power": 2.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 1,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "IT",
+          "county": null,
+          "city": "Fino Mornasco",
+          "street": "Via",
+          "number": "Trieste",
+          "postalCode": "22073",
+          "what3Words": "united.fattier.evolves",
+          "formattedAddress": [
+            "Via, Trieste, 22073",
+            "Fino Mornasco",
+            "Italy"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 0,
+          "museum": 0,
+          "coffee": 0,
+          "hotel": 1,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 0,
+          "playground": 0,
+          "pharmacy": 0
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "2": {
+            "total": 3,
+            "available": 0
+          }
+        },
+        "speed": "slow",
+        "status": "unknown",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "60d26e568c34f415da03efcf",
+        "external_id": "9a2dab5a-7575-11eb-b65d-42010a840033",
+        "country_code": "NO",
+        "party_id": null,
+        "name": "Fyresdal Kommune",
+        "address": "Molandsmoen 6",
+        "city": "Fyresdal",
+        "postal_code": "3870",
+        "state": null,
+        "country": "NOR",
+        "coordinates": {
+          "latitude": "59.20273078",
+          "longitude": "8.08430636"
+        },
+        "related_locations": [],
+        "parking_type": "ON_STREET",
+        "evses": [
+          {
+            "uid": "698261",
+            "evse_id": "NOSUPE0010*01*1",
+            "status": "AVAILABLE",
+            "status_schedule": null,
+            "capabilities": [
+              "REMOTE_START_STOP_CAPABLE",
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "1",
+                "standard": "CHADEMO",
+                "format": "CABLE",
+                "power_type": "DC",
+                "max_voltage": 230,
+                "max_amperage": 32,
+                "max_electric_power": 7360,
+                "power": 7.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2021-12-22T13:41:56Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": "NOSUPE0010*01*1",
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-05-02T11:51:08Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "698262",
+            "evse_id": "NOSUPE0010*01*2",
+            "status": "AVAILABLE",
+            "status_schedule": null,
+            "capabilities": [
+              "REMOTE_START_STOP_CAPABLE",
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "2",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "CABLE",
+                "power_type": "DC",
+                "max_voltage": 230,
+                "max_amperage": 32,
+                "max_electric_power": 7360,
+                "power": 7.3,
+                "tariff_ids": [],
+                "terms_and_conditions": null,
+                "last_updated": "2021-12-22T13:41:56Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": "NOSUPE0010*01*2",
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-05-02T07:32:20Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "600e88d9bab3277c00a743e9",
+          "external_id": "6be90a46175a0149d994ec26f3aeb7f8b8be2a90",
+          "name": "Supercharge",
+          "website": "https://supercharge.no/",
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "600e88d9bab3277c00a743e9",
+          "name": "Supercharge"
+        },
+        "facilities": [],
+        "time_zone": "Europe/Oslo",
+        "opening_times": {
+          "twentyfourseven": true,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": true,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            8.08430636,
+            59.20273078
+          ]
+        },
+        "elevation": 296,
+        "chargers": [
+          {
+            "standard": "CHADEMO",
+            "power": 7.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 1,
+              "busy": 0,
+              "unknown": 0,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 7.3,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 1,
+              "busy": 0,
+              "unknown": 0,
+              "error": 0
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "NO",
+          "county": null,
+          "city": "Fyresdal",
+          "street": "Molandsmoen",
+          "number": "6",
+          "postalCode": "3870",
+          "what3Words": "brothers.riot.pacifist",
+          "formattedAddress": [
+            "Molandsmoen, 6, 3870",
+            "Fyresdal",
+            "Norway"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 0,
+          "museum": 0,
+          "coffee": 0,
+          "hotel": 0,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 0,
+          "playground": 0,
+          "pharmacy": 0
+        },
+        "properties": {
+          "update": false
+        },
+        "realtime": false,
+        "power": {
+          "7": {
+            "total": 2,
+            "available": 2
+          }
+        },
+        "speed": "slow",
+        "status": "free",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      },
+      {
+        "id": "5efd28ec670eb043eaf1b086",
+        "external_id": "4f3006ee-a21b-11ea-888f-42010a840003",
+        "country_code": "AT",
+        "party_id": null,
+        "name": "da emobil - Schnelllader MPREIS - Hohenems",
+        "address": "Hellbrunnenstrasse 21",
+        "city": "Hohenems",
+        "postal_code": "6841",
+        "state": null,
+        "country": "AUT",
+        "coordinates": {
+          "latitude": "47.37414919",
+          "longitude": "9.69673479"
+        },
+        "related_locations": [],
+        "parking_type": null,
+        "evses": [
+          {
+            "uid": "cd0ff30d-8c34-4211-96ef-dde119f4cff6",
+            "evse_id": "AT*DAE*E0000100",
+            "status": "AVAILABLE",
+            "status_schedule": null,
+            "capabilities": [
+              "CREDIT_CARD_PAYABLE",
+              "REMOTE_START_STOP_CAPABLE",
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "cd0ff30d-8c34-4211-96ef-dde119f4cff6",
+                "standard": "IEC_62196_T2_COMBO",
+                "format": "CABLE",
+                "power_type": "DC",
+                "max_voltage": 400,
+                "max_amperage": 55,
+                "max_electric_power": 22000,
+                "power": 22,
+                "tariff_ids": [
+                  "614154421896a539b80b2500"
+                ],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": "AT*DAE*E0000100",
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-05-10T13:15:10Z",
+            "parking_cost": null,
+            "properties": null
+          },
+          {
+            "uid": "f6565180-e49c-4635-bfd6-661831875c67",
+            "evse_id": "AT*DAE*E0000099",
+            "status": "INOPERATIVE",
+            "status_schedule": null,
+            "capabilities": [
+              "CREDIT_CARD_PAYABLE",
+              "REMOTE_START_STOP_CAPABLE",
+              "RFID_READER"
+            ],
+            "connectors": [
+              {
+                "id": "f6565180-e49c-4635-bfd6-661831875c67",
+                "standard": "CHADEMO",
+                "format": "CABLE",
+                "power_type": "DC",
+                "max_voltage": 400,
+                "max_amperage": 50,
+                "max_electric_power": 20000,
+                "power": 20,
+                "tariff_ids": [
+                  "614154421896a539b80b2500"
+                ],
+                "terms_and_conditions": null,
+                "last_updated": "2022-04-16T07:35:34Z",
+                "properties": null
+              }
+            ],
+            "floor_level": null,
+            "coordinates": {
+              "latitude": null,
+              "longitude": null
+            },
+            "physical_reference": "AT*DAE*E0000099",
+            "parking_restrictions": null,
+            "images": null,
+            "last_updated": "2022-05-10T13:14:58Z",
+            "parking_cost": null,
+            "properties": null
+          }
+        ],
+        "directions": null,
+        "operator": {
+          "id": "60d26d7c8c34f4e8f703eb10",
+          "external_id": "acc49639af86af7130b46aa9947725fa7a94e8b3",
+          "name": "da emobil GmbH & Co KG",
+          "website": null,
+          "logo": null,
+          "country": null,
+          "contact": null
+        },
+        "suboperator": null,
+        "owner": {
+          "id": "60d26d7c8c34f4e8f703eb10",
+          "name": "da emobil GmbH & Co KG"
+        },
+        "facilities": [
+          "RESTAURANT"
+        ],
+        "time_zone": "Europe/Vienna",
+        "opening_times": {
+          "twentyfourseven": true,
+          "regular_hours": [],
+          "exceptional_openings": [],
+          "exceptional_closings": []
+        },
+        "charging_when_closed": true,
+        "images": [],
+        "last_updated": null,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            9.69673479,
+            47.37414919
+          ]
+        },
+        "elevation": 413,
+        "chargers": [
+          {
+            "standard": "IEC_62196_T2_COMBO",
+            "power": 22,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 1,
+              "busy": 0,
+              "unknown": 0,
+              "error": 0
+            },
+            "total": 1
+          },
+          {
+            "standard": "CHADEMO",
+            "power": 20,
+            "price": "",
+            "speed": "slow",
+            "status": {
+              "free": 0,
+              "busy": 0,
+              "unknown": 0,
+              "error": 1
+            },
+            "total": 1
+          }
+        ],
+        "physical_address": {
+          "continent": "EU",
+          "country": "AT",
+          "county": null,
+          "city": "Hohenems",
+          "street": "Hellbrunnenstrasse",
+          "number": "21",
+          "postalCode": "6841",
+          "what3Words": "flicks.lashed.giant",
+          "formattedAddress": [
+            "Hellbrunnenstrasse, 21, 6841",
+            "Hohenems",
+            "Austria"
+          ]
+        },
+        "amenities": {
+          "park": 0,
+          "restaurant": 4,
+          "museum": 0,
+          "coffee": 0,
+          "hotel": 0,
+          "shopping": 0,
+          "bathroom": 0,
+          "supermarket": 0,
+          "playground": 0,
+          "pharmacy": 1
+        },
+        "properties": {
+          "update": true
+        },
+        "realtime": false,
+        "power": {
+          "20": {
+            "total": 1,
+            "available": 0
+          },
+          "22": {
+            "total": 1,
+            "available": 1
+          }
+        },
+        "speed": "slow",
+        "status": "free",
+        "review": {
+          "rating": 0,
+          "count": 0
+        }
+      }
+    ]
+  }
+}

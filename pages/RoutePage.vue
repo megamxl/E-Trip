@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <RouteNavBar />
+    <RouteNavBar :cars="carList.cars" />
     <MapBoxInterface :station-list="stationList" />
   </v-app>
 </template>
@@ -12,7 +12,10 @@ import stations from 'static/stations.json';
 export default {
   data () {
     return {
-      stationList: stations.data.stationList
+      stationList: stations.data.stationList,
+      carList: {
+        cars: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
+      }
     }
   },
 
