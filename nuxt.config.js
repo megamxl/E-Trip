@@ -38,7 +38,9 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/firebase'
-  ],
+  ],router: {
+    middleware: ['auth']
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

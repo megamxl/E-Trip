@@ -1,17 +1,15 @@
-export default function ({ store, app, route, redirect }) {
-  const user = store.state.user;
-  console.log('from middleware', user)
-
-  if (route.path === '/auth/login' || route.path === '/auth/signup' || route.path === '/profilecreation') {
-    if (user) {
-      return redirect('/profilepage')
+export default function ({app, route, redirect}){
+  if (route.path === '/ProfilePage' || route.path === '/addcar' ) {
+    //we are on a protected route
+    if(!app.$fire.auth.currentUser) {
+      //take them to sign in page
+      return redirect('/auth/Login')
+    }
+  } else if (route.path === '/auth/Login' || route.path === '/auth/signup' ) {
+    if(!app.$fire.auth.currentUser) {
+      //leave them on the sign in page
+    } else {
+      return redirect('/routepage')
     }
   }
-
-  if (route.path !== '/auth/login' && route.path !== '/auth/signup') {
-    if (!user) {
-      return redirect('/auth/session')
-    }
-  }
-
 }
