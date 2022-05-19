@@ -3,13 +3,13 @@
 
     <v-form ref="form" lazy-validation>
 
-      <v-text-field label="Car brand" required></v-text-field>
+      <v-text-field label="Car brand" v-model="carbrand" required></v-text-field>
 
-      <v-text-field label="car model" required ></v-text-field>
+      <v-text-field label="car model" v-model="carmodel" required></v-text-field>
+      
+      <v-text-field label="real range" v-model="realrange" required></v-text-field>
 
-      <v-text-field label="real range" required></v-text-field>
-
-      <v-text-field label="usable-kwh" required></v-text-field>
+      <v-text-field label="usable-kwh" v-model="usableKwh" required></v-text-field>
 
       <v-btn color="success" class="mr-4" @click="submitData">Submit</v-btn>
 
@@ -19,32 +19,26 @@
 
 <script>
 export default {
-
   name: "ProfileCreation",
+
   data() {
     return {
-      carBrandArray: {
-        brands: ['BMW', 'Kia', 'Nissan', ' Tesla'],
-        car: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
-      }
+      carmodel: '',
+      carbrand: '',
+      realrange: 0,
+      usableKwh: 0
     }
-  },
-  mounted() {
   },
 
   methods: {
-
-    async logout() {
-      await this.$fire.auth.signOut();
-    },
-    async submitData(){
+    async submitData() {
 
       const ref = this.$fire.firestore.collection('users').doc(this.$fire.auth.currentUser.uid)
       const document = {
-        carbrand:  'Bmw',
-        carmodel: 'I30',
-        realrange:  '400',
-        usableKwh : '50'
+        carbrand: this.carbrand,
+        carmodel: this.carmodel,
+        realrange: this.realrange,
+        usableKwh: this.usableKwh
       }
 
       try {
@@ -53,9 +47,6 @@ export default {
         console.error(e)
       }
 
-      //(this.$fire.auth.currentUser.uid)
-      console.log(this.$fire);
-       return
     }
   }
 }

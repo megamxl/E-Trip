@@ -1,0 +1,94 @@
+{
+  "data": {
+    "car": {
+      "id": "5d161be5c9eef46132d9d20a",
+      "naming": {
+        "make": "Tesla",
+        "model": "Model S",
+        "version": "75D",
+        "edition": null,
+        "chargetrip_version": "75D (2016-2019)"
+      },
+      "connectors": [
+        {
+          "standard": "IEC_62196_T2",
+          "power": 16.5,
+          "time": 315,
+          "speed": 72
+        },
+        {
+          "standard": "TESLA_S",
+          "power": 120,
+          "time": 40,
+          "speed": 390
+        }
+      ],
+      "adapters": [
+        {
+          "standard": "IEC_62196_T2_COMBO",
+          "power": 80,
+          "time": 45,
+          "speed": 350
+        },
+        {
+          "standard": "CHADEMO",
+          "power": 80,
+          "time": 45,
+          "speed": 350
+        },
+        {
+          "standard": "IEC_62196_T2",
+          "power": 16.5,
+          "time": 315,
+          "speed": 55
+        }
+      ],
+      "battery": {
+        "usable_kwh": 72.5,
+        "full_kwh": 75
+      },
+      "body": {
+        "width": 2037,
+        "height": 1445,
+        "weight": 2183,
+        "seats": 5
+      },
+      "availability": {
+        "status": 0
+      },
+      "performance": {
+        "acceleration": 4.4,
+        "top_speed": 225
+      },
+      "range": {
+        "real": 380,
+        "real_is_estimated": false,
+        "worst": {
+          "highway": 275,
+          "city": 370,
+          "combined": 320
+        },
+        "best": {
+          "highway": 350,
+          "city": 540,
+          "combined": 435
+        },
+        "chargetrip_range": {
+          "worst": 334,
+          "best": 387
+        }
+      },
+      "media": {
+        "evdb_details_url": null,
+        "image": null,
+        "brand": null,
+        "image_list": null,
+        "video": null,
+        "video_list": null
+      },
+      "routing": {
+        "fast_charging_support": true
+      }
+    }
+  }
+}
