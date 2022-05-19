@@ -1,4 +1,5 @@
 <template>
+  <v-card>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="4">
       <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
@@ -20,11 +21,11 @@
           required
         ></v-text-field>
 
-        <v-btn :disabled="!valid" color="success" class="mr-4" @click="login">
+        <v-btn :disabled="!valid" class="mr-4" @click="login">
           Login
         </v-btn>
 
-        <v-btn color="success" class="mr-4" @click="forgetPassword">
+        <v-btn  class="mr-4" @click="forgetPassword">
           Forget Password
         </v-btn>
       </v-form>
@@ -34,6 +35,7 @@
       </v-snackbar>
     </v-col>
   </v-row>
+  </v-card>
 </template>
 
 <script>

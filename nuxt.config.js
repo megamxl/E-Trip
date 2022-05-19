@@ -77,6 +77,7 @@ export default {
       measurementId: 'G-BYT6BJF5MM'
     },
     services: {
+      firestore: true,
       auth: {
         persistence: 'local', // default
         initialize: {
@@ -85,7 +86,7 @@ export default {
         },
         ssr: true
       },
-    },
+     },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
