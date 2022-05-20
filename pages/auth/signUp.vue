@@ -1,49 +1,81 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="4">
-      <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
-        <v-text-field
-          v-model="name"
-          :rules="nameRules"
-          type="text"
-          label="Name"
-          autocomplete="name"
-          required
-        ></v-text-field>
+  <v-app>
+    <v-content>
+      <BasicNavBarLanding/>
+    </v-content>
 
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          type="email"
-          label="E-mail"
-          autocomplete="username"
-          required
-        ></v-text-field>
 
-        <v-text-field
-          v-model="password"
-          :rules="passwordRules"
-          type="password"
-          label="Password"
-          autocomplete="current-password"
-          required
-        ></v-text-field>
+    <v-container fill-height fluid justify-center>
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="4" align="center" width="700">
+          <v-card id="cardArea" outlined dark>
+            <v-card-title class="justify-center">
+              <h3 id="h3_">Sign up for E-Trip</h3>
+            </v-card-title>
+            <v-card-subtitle class="subtitle_">To start with E-Trip, fill out the form below.</v-card-subtitle>
 
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="createAccount"
-        >
-          Create Account
-        </v-btn>
-      </v-form>
+            <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
+              <v-text-field
+                v-model="name"
+                :rules="nameRules"
+                type="text"
+                label="Name"
+                autocomplete="name"
+                required
+                outlined
+              ></v-text-field>
 
-      <v-snackbar v-model="snackbar" color="error">
-        {{ errorMessage }}
-      </v-snackbar>
-    </v-col>
-  </v-row>
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                type="email"
+                label="E-mail"
+                autocomplete="username"
+                required
+                outlined
+              ></v-text-field>
+
+              <v-text-field
+                v-model="password"
+                :rules="passwordRules"
+                type="password"
+                label="Password"
+                :type="show ?'text': 'password'"
+                :append-icon="show ?'mdi-eye':'mdi-eye-off'"
+                @click:append="show=!show"
+                autocomplete="current-password"
+                required
+                outlined
+              ></v-text-field>
+
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                @click="createAccount"
+                id="createButton"
+                rounded
+              >
+                Create Account
+              </v-btn>
+
+
+              <v-card-subtitle class="subtitle_">Already have an account?
+                <v-spacer/>
+                <v-btn @click="toLogin">Login</v-btn>
+              </v-card-subtitle>
+
+            </v-form>
+
+            <v-snackbar v-model="snackbar" color="error">
+              {{ errorMessage }}
+            </v-snackbar>
+          </v-card>
+        </v-col>
+      </v-row>
+
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -68,6 +100,7 @@ export default {
     ],
     snackbar: false,
     errorMessage: "",
+    show: false,
   }),
 
   methods: {
@@ -127,6 +160,51 @@ export default {
           });
       }
     },
+    toLogin() {
+      this.$router.push('/auth/Login');
+    },
   },
 };
 </script>
+
+
+<style>
+html {
+  background: #121212;
+}
+#cardArea {
+  padding: 4rem 3rem 2rem 3rem;
+  border-radius: 20px;
+}
+
+form {
+  padding: 2rem 0rem;
+
+}
+
+.subtitle_ {
+  font-size: medium;
+  color: #fff;
+}
+
+span {
+  color: #B388FF;
+  font-weight: bold;
+}
+
+
+#createButton {
+  background: #B388FF !important;
+  color: #fff !important;
+  width: 15rem !important;
+  margin-bottom: 3rem;
+  position: center !important;
+}
+
+#h3_ {
+  font-weight: unset;
+  font-size: x-large;
+  margin-bottom: 2rem;
+}
+
+</style>

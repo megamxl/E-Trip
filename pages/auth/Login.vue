@@ -4,7 +4,7 @@
       <BasicNavBarLanding/>
     </v-content>
 
-    <v-container fill-height>
+    <v-container fill-height fluid justify-center>
       <v-row justify="center">
         <v-col cols="12" sm="8" md="4" align="center" width="700">
           <v-card id="cardArea" outlined dark>
@@ -12,9 +12,8 @@
               <h3 id="h3_">Login to E-Trip</h3>
             </v-card-title>
             <v-card-subtitle id="subtitle_">Don't have an account?
-              <!--<a href="" > <span>Sign up.</span></a> --->
-              <v-btn @click="toSignUp" >Sign up.</v-btn>
-            </v-card-subtitle>
+              <v-spacer/> <v-btn @click="toSignUp" >Sign up</v-btn></v-card-subtitle>
+
 
             <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
               <v-text-field
@@ -41,15 +40,10 @@
               >
               </v-text-field>
 
-              <div id="forgotPw">
-                <a class="mr-4" @click="forgetPassword" href>
-                  <span>Forgot your Password?</span>                                                                                                                                                                                                          </a>
-              </div>
+              <v-btn class="mr-4" @click="forgetPassword">Forgot your Password?</v-btn>
 
-
-              <v-btn id="loginButton" :disabled="!valid" class="mr-4" @click="login" rounded>
-                Login
-              </v-btn>
+              <br>
+              <v-btn id="loginButton" :disabled="!valid" class="mr-4" @click="login" rounded>Login</v-btn>
 
 
             </v-form>
@@ -141,7 +135,7 @@ html {
   background: #121212;
 }
 #cardArea {
-  padding: 5rem 3rem;
+  padding: 4rem 3rem;
   border-radius: 20px;
 }
 
@@ -151,7 +145,6 @@ form {
 }
 
 #subtitle_ {
-  margin-top: 0.5rem;
   font-size: medium;
   color: #fff;
 }
@@ -161,20 +154,19 @@ span {
   font-weight: bold;
 }
 
-#forgotPw {
-  margin-bottom: 3rem;
-  text-align: left;
-}
 
 #loginButton {
   background: #B388FF;
   color: #fff;
   width: 10rem;
+  margin-top: 3rem;
 }
 
 #h3_ {
   font-weight: unset;
   font-size: x-large;
+  margin-bottom: 2rem;
 }
+
 
 </style>
