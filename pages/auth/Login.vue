@@ -1,45 +1,77 @@
 <template>
-  <v-card>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="4">
-      <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          type="email"
-          label="E-mail"
-          autocomplete="username"
-          required
-        ></v-text-field>
+  <v-app>
+    <v-content>
+      <BasicNavBarLanding/>
+    </v-content>
 
-        <v-text-field
-          v-model="password"
-          :rules="passwordRules"
-          type="password"
-          label="Password"
-          autocomplete="current-password"
-          required
-        ></v-text-field>
+    <v-container fill-height>
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="4" align="center" width="700">
+          <v-card id="cardArea" outlined dark>
+            <v-card-title class="justify-center">
+              <h3 id="h3_">Login to E-Trip</h3>
+            </v-card-title>
+            <v-card-subtitle id="subtitle_">Don't have an account?
+              <a @click="toSignUp" href> <span>Sign up.</span></a>
+            </v-card-subtitle>
 
-        <v-btn :disabled="!valid" class="mr-4" @click="login">
-          Login
-        </v-btn>
+            <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                type="email"
+                label="E-mail"
+                autocomplete="username"
+                required
+                outlined
+              ></v-text-field>
 
-        <v-btn  class="mr-4" @click="forgetPassword">
-          Forget Password
-        </v-btn>
-      </v-form>
+              <v-text-field
+                v-model="password"
+                :rules="passwordRules"
+                type="password"
+                label="Password"
+                :type="show ?'text': 'password'"
+                :append-icon="show ?'mdi-eye':'mdi-eye-off'"
+                @click:append="show=!show"
+                outlined
+                autocomplete="current-password"
+                required
+              >
+              </v-text-field>
 
-      <v-snackbar v-model="snackbar" color="error">
-        {{ errorMessage }}
-      </v-snackbar>
-    </v-col>
-  </v-row>
-  </v-card>
+              <div id="forgotPw">
+                <a class="mr-4" @click="forgetPassword" href>
+                  <span>Forgot your Password?</span>                                                                                                                                                                                                          </a>
+              </div>
+
+
+              <v-btn id="loginButton" :disabled="!valid" class="mr-4" @click="login" rounded>
+                Login
+              </v-btn>
+
+
+            </v-form>
+
+            <v-snackbar v-model="snackbar" color="error">
+              {{ errorMessage }}
+            </v-snackbar>
+
+
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
+import BasicNavBarLanding from "~/components/BasicNavBarLanding";
+
 export default {
+  components: {
+    BasicNavBarLanding,
+  },
   layout: "plain",
   data: () => ({
     valid: true,
@@ -60,6 +92,8 @@ export default {
     ],
     snackbar: false,
     errorMessage: "",
+
+    show: false,
   }),
   methods: {
     login() {
@@ -94,6 +128,52 @@ export default {
       console.log("clicked on forget password");
       this.$router.push("/auth/resetpassword");
     },
+    toSignUp() {
+      this.$router.push('/auth/signup');
+    },
   },
 };
 </script>
+
+<style>
+html {
+  background: #121212;
+}
+#cardArea {
+  padding: 5rem 3rem;
+  border-radius: 20px;
+}
+
+form {
+  padding: 2rem 0rem;
+
+}
+
+#subtitle_ {
+  margin-top: 0.5rem;
+  font-size: medium;
+  color: #fff;
+}
+
+span {
+  color: #B388FF;
+  font-weight: bold;
+}
+
+#forgotPw {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+#loginButton {
+  background: #B388FF;
+  color: #fff;
+  width: 10rem;
+}
+
+#h3_ {
+  font-weight: unset;
+  font-size: x-large;
+}
+
+</style>

@@ -7,8 +7,8 @@
         label="Choose your car"
       />
       <v-spacer />
-      <h2> Profile </h2>
-      <v-btn fab small class="ml-4" @click="toProfile"> <v-icon> mdi-account </v-icon> </v-btn>
+      <v-btn id="profile_" @click="toProfile"> Profile
+        <v-icon> mdi-account </v-icon> </v-btn>
     </v-app-bar>
   </v-card>
 </template>
@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style scoped>
-
+  #profile_ {
+    color: #fff;
+  }
 </style>
