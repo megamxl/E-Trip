@@ -3,7 +3,7 @@
     <div class="left d-flex flex-column justify-space-around pillar">
       <v-container>
         <h1 class="mb-8"> Create your own profile to get the most out of E-Trip </h1>
-        <v-btn block x-large to="/ProfileCreation" outlined rounded> Sign Up / Login</v-btn>
+        <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
       </v-container>
     </div>
     <div class="right d-flex flex-column justify-space-around pillar">
