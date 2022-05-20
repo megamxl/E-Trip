@@ -12,7 +12,7 @@
               <h3 id="h3_">Login to E-Trip</h3>
             </v-card-title>
             <v-card-subtitle id="subtitle_">Don't have an account?
-              <v-spacer/> <v-btn @click="toSignUp" >Sign up</v-btn></v-card-subtitle>
+             <v-btn @click="toSignUp" >Sign up</v-btn></v-card-subtitle>
 
 
             <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
@@ -149,17 +149,13 @@ form {
   color: #fff;
 }
 
-span {
-  color: #B388FF;
-  font-weight: bold;
-}
-
 
 #loginButton {
-  background: #B388FF;
+  background: #7C4DFF;
   color: #fff;
   width: 10rem;
   margin-top: 3rem;
+  margin-left: 0.1%;
 }
 
 #h3_ {

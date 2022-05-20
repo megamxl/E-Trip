@@ -61,7 +61,6 @@
 
 
               <v-card-subtitle class="subtitle_">Already have an account?
-                <v-spacer/>
                 <v-btn @click="toLogin">Login</v-btn>
               </v-card-subtitle>
 
@@ -184,21 +183,16 @@ form {
 
 .subtitle_ {
   font-size: medium;
-  color: #fff;
-}
-
-span {
-  color: #B388FF;
-  font-weight: bold;
 }
 
 
 #createButton {
-  background: #B388FF !important;
+  background: #7C4DFF !important;
   color: #fff !important;
   width: 15rem !important;
-  margin-bottom: 3rem;
-  position: center !important;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: 2%;
 }
 
 #h3_ {
