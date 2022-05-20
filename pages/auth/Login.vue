@@ -12,7 +12,8 @@
               <h3 id="h3_">Login to E-Trip</h3>
             </v-card-title>
             <v-card-subtitle id="subtitle_">Don't have an account?
-              <a @click="toSignUp" href> <span>Sign up.</span></a>
+              <!--<a href="" > <span>Sign up.</span></a> --->
+              <v-btn @click="toSignUp" >Sign up.</v-btn>
             </v-card-subtitle>
 
             <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
@@ -129,7 +130,7 @@ export default {
       this.$router.push("/auth/resetpassword");
     },
     toSignUp() {
-      this.$router.push('/auth/signup');
+      this.$router.push('/auth/signUp');
     },
   },
 };
