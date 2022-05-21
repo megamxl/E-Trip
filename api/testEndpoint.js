@@ -5,11 +5,14 @@ app.use(express.json());
 
 
 
-app.get('/getCourses', async (req, res) => {
+app.post('/getCourses', async (req, res) => {
 
 
-  res.send("api")
+
   console.log("api")
+  res.send("api")
 });
 
+
 module.exports = app
+

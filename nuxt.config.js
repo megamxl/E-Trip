@@ -1,7 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  serverMiddleware: ['~/api/courseAPI.js'],
+  buildDir:'public',
+
+  serverMiddleware: ['~/api/testEndpoint.js'],
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -46,8 +48,11 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/firebase'
+    '@nuxtjs/firebase',
+    '@nuxtjs/apollo'
   ],
+
+
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -89,6 +94,19 @@ export default {
         ssr: true
       },
      },
+  },
+
+  apollo:{
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://api.chargetrip.io/graphql',
+        httpLinkOptions: {
+          headers: {
+            'x-client-id': process.env.VUE_APP_WS_API_KEY || '62335e76c351300738296e30',
+          },
+        },
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
