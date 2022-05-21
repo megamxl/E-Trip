@@ -1,35 +1,56 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="4">
-      <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          type="email"
-          label="E-mail"
-          autocomplete="username"
-          required
-        ></v-text-field>
+  <v-app>
+    <v-content>
+      <BasicNavBarLanding/>
+    </v-content>
 
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="resetPassword"
-        >
-          Reset Password
-        </v-btn>
-      </v-form>
+    <v-container fill-height fluid justify-center>
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="4" width="700">
+          <v-card id="cardArea" outlined dark class="mx-auto">
+            <v-card-title class="justify-center">
+              <h3 id="h3_">Reset Password</h3>
+            </v-card-title>
+            <v-card-subtitle id="subtitle_">We will email you instructions to reset your password.</v-card-subtitle>
+            <v-card-subtitle id="subtitle2_">Reset password link sent to</v-card-subtitle>
+            <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="">
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                type="email"
+                label="Your E-mail"
+                autocomplete="username"
+                required
+                outlined
+              ></v-text-field>
 
-      <v-snackbar v-model="snackbar" color="error">
-        {{ errorMessage }}
-      </v-snackbar>
+              <v-btn
+                :disabled="!valid"
+                class="mr-4"
+                @click="resetPassword"
+                id="resetButton"
+                block
+                x-large
+                rounded
+              >
+                Reset Password
+              </v-btn>
+            </v-form>
 
-      <v-snackbar v-model="snackbarSuccess" color="success">
-        {{ successMessage }}
-      </v-snackbar>
-    </v-col>
-  </v-row>
+            <v-btn id="backToLogin" class="mr-4" @click="toLogin">Return to Login</v-btn>
+
+            <v-snackbar v-model="snackbar" color="error">
+              {{ errorMessage }}
+            </v-snackbar>
+
+            <v-snackbar v-model="snackbarSuccess" color="success">
+              {{ successMessage }}
+            </v-snackbar>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -67,9 +88,55 @@ export default {
           });
       }
     },
+    toLogin() {
+      this.$router.push('/auth/Login');
+    },
   },
 };
 </script>
 
 <style>
+html {
+  background: #121212;
+}
+
+#cardArea {
+  padding: 3rem 3rem;
+  border-radius: 20px;
+}
+
+form {
+  padding: 0.5rem 0rem;
+
+}
+
+#subtitle_ {
+  font-size: medium;
+  padding-left: 0rem;
+  margin-top: 1rem;
+}
+#subtitle2_ {
+  padding-left: 0rem;
+  margin-bottom: 0rem;
+}
+
+
+#resetButton {
+  background: #7C4DFF !important;
+  color: #fff !important;
+  width: 10rem !important;
+  margin: 1rem 0 3rem 0.1%;
+}
+
+#backToLogin {
+  position: center;
+  margin-bottom: 2rem;
+}
+
+#h3_ {
+  font-weight: unset;
+  font-size: x-large;
+  margin-bottom: 1rem;
+}
+
 </style>

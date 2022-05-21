@@ -43,7 +43,7 @@
               <v-btn class="mr-4" @click="forgetPassword">Forgot your Password?</v-btn>
 
               <br>
-              <v-btn id="loginButton" :disabled="!valid" class="mr-4" @click="login" rounded>Login</v-btn>
+              <v-btn id="loginButton" block x-large :disabled="!valid" class="mr-4" @click="login" rounded>Login</v-btn>
 
 
             </v-form>
@@ -135,7 +135,7 @@ html {
   background: #121212;
 }
 #cardArea {
-  padding: 4rem 3rem;
+  padding: 3rem 2rem 3rem ;
   border-radius: 20px;
 }
 

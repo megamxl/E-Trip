@@ -50,11 +50,12 @@
 
               <v-btn
                 :disabled="!valid"
-                color="success"
                 class="mr-4"
                 @click="createAccount"
                 id="createButton"
                 rounded
+                block
+                x-large
               >
                 Create Account
               </v-btn>
@@ -172,7 +173,7 @@ html {
   background: #121212;
 }
 #cardArea {
-  padding: 4rem 3rem 2rem 3rem;
+  padding: 3rem 2rem 0rem;
   border-radius: 20px;
 }
 
