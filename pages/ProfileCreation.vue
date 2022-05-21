@@ -76,6 +76,10 @@ export default {
         console.error(e)
       }
 
+      //added by Christina - maybe incorrect
+      this.$router.replace("/routepage");
+      //end of added by Christina
+
     }
   }
 }

@@ -1,8 +1,9 @@
 <template>
   <v-card class="overflow-hidden">
     <v-app-bar>
-      <v-btn @click="toLanding"> E-Trip </v-btn>
-      <v-spacer />
+      <v-content>
+        <BasicNavBarLanding/>
+      </v-content>
       <v-autocomplete :items="cars" outlined class="col mt-7"
         label="Choose your car"
       />
