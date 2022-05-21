@@ -9,15 +9,12 @@
     <v-container fill-height fluid justify-center>
       <v-row justify="center">
         <v-col cols="12" sm="8" md="4" width="700">
-          <v-card id="cardArea" outlined dark>
+          <v-card id="cardArea" outlined dark class="mx-auto">
 
-            <nuxt-img id="carImg"
-                      sizes="sm:100vw md:50vw lg:400px"
-              src="/car.jpg"
-            >
+              <v-img src="https://cdn.pixabay.com/photo/2022/01/16/23/15/car-6943487_960_720.jpg" height="200px"></v-img>
+
               <v-card-title class="justify-center">
                 <h3 id="h3_">Enter car details</h3></v-card-title>
-            </nuxt-img>
             <v-card-subtitle id="subtitle_">You can add further cars after the registration is completed.
             </v-card-subtitle>
 
