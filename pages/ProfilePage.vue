@@ -18,6 +18,13 @@
                 <p>Your e-mail is {{ user ? user.email : "" }}</p>
 
               </v-card-text>
+              <v-card-text>
+                <p>Your Car Data</p>
+                <p>{{message}}</p>
+                <p>Your Car Brand: {{carData.carbrand}}</p>
+                <p>Your Car model: {{carData.carmodel}} </p>
+                <p>Your Maximum range: {{carData.realrange}} </p>
+              </v-card-text>
               <v-card-subtitle class="headline"> Edit your Profile</v-card-subtitle>
               <v-card-text>
                 <v-btn @click="addACar">Add a Car</v-btn>
@@ -33,10 +40,38 @@
 
 <script>
 import {mapState} from "vuex";
+import { doc, getDoc } from "firebase/firestore";
+
+
 
 export default {
   computed: {
     ...mapState(["user"]),
+  },
+  data() {
+    return {
+      carData: []
+    }
+  },
+  async fetch(){
+
+    this.message =""
+    const docRef = doc(this.$fire.firestore, "users", this.$fire.auth.currentUser.uid);
+    try{
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        this.carData = docSnap.data()
+        console.log("Document data:", docSnap.data());
+      }else {
+        this.message = "No data connected to your user"
+        this.carData ={
+          carcarbrand: "",
+          carmodel:"",
+          realrange: ""
+        }
+      }
+    }catch(e){
+    }
   },
   methods: {
     async logout() {
