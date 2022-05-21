@@ -72,14 +72,12 @@ export default {
 
       try {
         await ref.set(document)
+        //added by Christina - maybe incorrect
+        this.$router.replace("ProfilePage");
+        //end of added by Christina
       } catch (e) {
         console.error(e)
       }
-
-      //added by Christina - maybe incorrect
-      this.$router.replace("/routepage");
-      //end of added by Christina
-
     }
   }
 }
