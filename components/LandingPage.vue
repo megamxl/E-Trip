@@ -6,6 +6,11 @@
         <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
       </v-container>
     </div>
+    <div class="left d-flex flex-column justify-space-around">
+      <v-container>
+        <img id="logo" src="../static/LogoVNew.svg" alt="Logo E-Trip"/>
+      </v-container>
+    </div>
     <div class="right d-flex flex-column justify-space-around pillar">
       <v-container class="landingContainer rounded-lg">
         <h1 class="mb-8"> Look for an optimal route now </h1>
@@ -58,5 +63,10 @@ export default {
   background: rgba(25, 25, 25, 1);
 }
 
+#logo {
+  height: 500px;
+  margin-left: 3rem;
+  margin-top: -7rem;
+}
 
 </style>
