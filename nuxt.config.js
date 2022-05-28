@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   buildDir:'public',
 
-  serverMiddleware: ['~/api/testEndpoint.js'],
+  serverMiddleware: ['~/api/routeEndpoint.js', "~/api/carDataEnpoint.js" ,"~/api/chargerEndpoint.js"],
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,

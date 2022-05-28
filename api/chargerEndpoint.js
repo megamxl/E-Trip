@@ -20,49 +20,11 @@ function fetch(qeury){
     .then(r => r.json()).then(data => console.log(data) );
 }
 
-app.post('/get', async (req, res) => {
-
-
-
-
-});
-
-
-
-
-app.post('/createRoute', async (req,res) =>{
-
-
-
-});
-
-
-app.get('/getRoute', async (req,res) =>{
-
-
-
-});
-
 app.get('/getChargerNearby', async (req,res) =>{
 
 
 
 });
-
-
-app.delete('/removeRoute' , async (req,res) =>{
-
-
-
-});
-
-
-app.put('/mutateRoute', async (req,res) =>{
-
-
-
-});
-
 
 module.exports = app
 
