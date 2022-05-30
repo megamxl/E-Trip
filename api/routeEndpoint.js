@@ -149,20 +149,17 @@ async function graphQLRequest(ourBody, ourVariables) {
 }
 
 app.get('/getRoute', async (req,res) =>{
-  res.send(await graphQLRequest(routeId(req.body),carId(req.body.carID)))
+  res.send(await graphQLRequest(planRoute(req.body),carId(req.body.carID)))
 });
 
 
 app.post('/createRoute', async (req,res) =>{
-  res.send(await graphQLRequest(planRoute(req.body),carId(req.body.carID)))
-
+  res.send(await graphQLRequest(routeId(req.body),carId(req.body.carID)))
 
 });
 
 
 app.delete('/removeRoute' , async (req,res) =>{
-
-
 
 });
 

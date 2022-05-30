@@ -5,13 +5,13 @@ import fetch from 'node-fetch';
 const app = express();
 app.use(express.json());
 
-
-let chargingPoints ='query stationAround {\n'+
+function chargingPoints(body){
+return 'query stationAround {\n'+
   '  stationAround(\n'+
   '    query: {\n'+
-  '      location: { type: Point, coordinates: [16.38, 48.15] }\n'+
-  '      distance: 10000\n'+
-  '      power: 22\n'+
+  '      location: { type: Point, coordinates: ['+body.longitudeStart+', '+body.latitudeStart+'] }\n'+
+  '      distance: '+body.distance+'\n'+
+  '      power: '+body.power+'\n'+
   '    }\n'+
   '  ) \n'+
   '  {name\n'+
@@ -22,6 +22,7 @@ let chargingPoints ='query stationAround {\n'+
   '    speed\n'+
   '  }\n'+
   '}';
+}
 
 async function graphQLRequest(ourBody, ourVariables) {
   return await fetch('https://api.chargetrip.io/graphql', {
@@ -38,9 +39,7 @@ async function graphQLRequest(ourBody, ourVariables) {
 }
 
 app.get('/getChargerNearby', async (req,res) =>{
-  res.send(await graphQLRequest(chargingPoints))
-
-
+  res.send(await graphQLRequest(chargingPoints(req.body),))
 });
 
 module.exports = app

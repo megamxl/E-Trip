@@ -25,10 +25,9 @@ const carID ='query car($carId: ID!) {\n'+
   '    }\n'+
   '  }\n'+
   '}';
-let ID = '"5d161be5c9eef46132d9d20a"'
-
-let carIDVariable = '{"carId":'+ID+'}';
-let carListVariables = null
+function generateCarID(body){
+  return '{"carId":"'+body.id+'"}';
+}
 async function graphQLRequest(ourBody, ourVariables) {
   return await fetch('https://api.chargetrip.io/graphql', {
     method: 'POST',
@@ -44,11 +43,11 @@ async function graphQLRequest(ourBody, ourVariables) {
 }
 
 app.get('/getAllCars', async (req, res) => {
-  res.send(await graphQLRequest(carListAll,carListVariables))
+  res.send(await graphQLRequest(carListAll))
 });
 
 app.get('/getCarById', async (req, res) => {
-  res.send(await graphQLRequest(carID,carIDVariable))
+  res.send(await graphQLRequest(carID,generateCarID(req.body)))
 
 });
 
