@@ -42,13 +42,24 @@ async function graphQLRequest(ourBody, ourVariables) {
   }).then(r => r.json())
 }
 
+function checkcarid(body){
+  if(typeof body.id   === 'number' && !Number.isNaN(body.id) && Number.isInteger(body.id)){
+    return true
+  }else {
+    return false
+  }
+}
+
 app.get('/getAllCars', async (req, res) => {
   res.send(await graphQLRequest(carListAll))
 });
 
 app.get('/getCarById', async (req, res) => {
-  res.send(await graphQLRequest(carID,generateCarID(req.body)))
-
+  if(checkcarid(req.body.id)){
+    res.send(await graphQLRequest(carID,generateCarID(req.body)))
+  }else {
+    res.sendStatus(400)
+  }
 });
 
 
