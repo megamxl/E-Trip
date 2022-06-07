@@ -1,21 +1,21 @@
 <template>
   <v-app>
-    <RouteNavBar :cars="carList.cars" />
-    <MapBoxInterface :station-list="stationList" />
+    <RouteNavBar :cars="carList.cars"/>
+    <MapBoxInterface :route-data="routeData" />
   </v-app>
 </template>
 
 <script>
 
-import stations from 'static/stations.json';
+import route from 'static/postmanRouteData.json';
 
 export default {
-  data () {
+  data() {
     return {
-      stationList: stations.data.stationList,
       carList: {
         cars: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
-      }
+      },
+      routeData: route.data.route.route
     }
   },
 

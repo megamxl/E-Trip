@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "@mapbox/polyline": "^1.1.1",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
     "@nuxtjs/firebase": "^8.2.2",
     "core-js": "^3.19.3",

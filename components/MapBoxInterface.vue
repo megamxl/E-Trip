@@ -1,73 +1,194 @@
 <template>
-  <div id="map"></div>
+  <v-app>
+    <div id="map"></div>
+    <RoutePageTripInfo :trip-data="routeData" />
+  </v-app>
 </template>
 
 <script>
 import mapboxgl from 'mapbox-gl';
-import "mapbox-gl/dist/mapbox-gl.css"
+import "mapbox-gl/dist/mapbox-gl.css";
+
+import * as mapboxPolyline from '@mapbox/polyline';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNibG53dWp5bmFkcCJ9.wGzMNfIT8zp8FcO-YfpzYQ';
 
 export default {
   name: "MapBoxInterface",
   data() {
     return {
-      access_token: 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNibG53dWp5bmFkcCJ9.wGzMNfIT8zp8FcO-YfpzYQ',
       map: {},
     }
   },
   props: {
-    stationList: {
-      type: Array,
+    routeData: {
+      type: Object,
       required: true
     }
   },
   mounted() {
-    this.getLocation();
+    this.createMap();
+    this.drawRouteFromPolyline(this.routeData);
   },
   methods: {
-    createMap(coords) {
 
-      mapboxgl.accessToken = this.access_token;
+    createMap() {
+
       this.map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/thomasmeier/cl1er04hz002m14o0opiop21k',
-        center: coords,
-        zoom: 13
+        style: 'mapbox://styles/chargetrip/ckgcbf3kz0h8819qki8uwhe0k',
+        // style: 'mapbox://styles/thomasmeier/cl44io3hz008614p773hh7h8g',
+        zoom: 6,
+        center: [16.3731, 48.2083]
       });
+    },
 
-      for (const station of this.stationList) {
-        const swapCords = [station.coordinates.longitude, station.coordinates.latitude];
-        new mapboxgl.Marker({color: "#5E1224"})
-          .setLngLat(swapCords)
-          .setPopup(new mapboxgl.Popup({ offset: 25})
-            .setHTML(`<div class="mapboxgl-popup-content"><h2> ${station.name}</h2> <br>
-            <h3>Amount: ${station.chargers.length} charger</h3></div>`))
-          .addTo(this.map)
+    drawRouteFromPolyline(routeData) {
+      const decoded = mapboxPolyline.decode(routeData.polyline); // Turns Polyline into thousands of Long, Lat Coords
+      const reversed = decoded.map(item => item.reverse()); // Reverses them cause mapbox stoopid
+      // console.log(reversed)
+
+      this.drawRoute(reversed, routeData.legs);
+    },
+
+    drawRoute(wayPoints, legs) {
+      if (this.map.loaded()) {
+        // this.drawPolyline(wayPoints);
+        this.showLegs(legs);
+        this.drawChargingTimes(legs);
+      } else {
+        this.map.on('load', () => {
+          this.drawPolyline(wayPoints);
+          this.showLegs(legs);
+          this.drawChargingTimes(legs);
+        })
       }
     },
 
-    getLocation() {
-      navigator.geolocation.getCurrentPosition(this.successLocation, this.errorLocation, {enableHighAccuracy: true});
+    drawChargingTimes(legs) {
+      legs.forEach((leg, index) => {
+        if (index === legs.length - 1) return;
+
+        const chargeTime = this.formatTime(leg.chargeTime);
+
+        new mapboxgl.Popup({ closeButton: false, offset: [15, -15], closeOnClick: false })
+        .setLngLat(leg.destination.geometry.coordinates)
+        .setHTML(`<small>${chargeTime.hours}:${chargeTime.minutes} </small>`)
+        .addTo(this.map);
+      })
     },
 
-    successLocation(position) {
-      console.log(position);
-      this.createMap([position.coords.longitude, position.coords.latitude]);
+
+    drawPolyline(wayPoints) {
+      const geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'LineString',
+              properties: {},
+              coordinates: wayPoints,
+            },
+          },
+        ],
+      };
+
+      this.map.addSource('polyline-source', {
+        type: 'geojson',
+        lineMetrics: true,
+        data: geojson,
+      });
+
+      this.map.addLayer({
+        id: 'polyline',
+        type: 'line',
+        options: 'beforeLayer',
+        source: 'polyline-source',
+        layout: { 'line-join': 'round', 'line-cap': 'round', 'visibility': 'visible' },
+        paint: { 'line-color': '#0078ff', 'line-width': 3 },
+      });
     },
 
-    errorLocation() {
-      this.createMap([16.363449, 48.210033]);
+    showLegs(legs) {
+      if (legs.length === 0) return;
+
+      let points = [];
+
+      points.push({
+        type: 'Feature',
+        properties: {
+          icon: 'location_big',
+        },
+        geometry: legs[0].origin?.geometry,
+      });
+
+      legs.map((leg, index) => {
+        // add charging stations
+        if (index !== legs.length - 1) {
+          points.push({
+            type: 'Feature',
+            properties: {
+              description: `${this.formatTime(leg.chargeTime)}`,
+              icon: 'unknown-turbo',
+            },
+            geometry: leg.destination?.geometry,
+          });
+        } else {
+          // add destination point (last leg)
+          points.push({
+            type: 'Feature',
+            properties: {
+              icon: 'arrival',
+            },
+            geometry: leg.destination?.geometry,
+          });
+        }
+      });
+
+      this.map.addLayer({
+        id: 'legs',
+        type: 'symbol',
+        layout: {
+          'icon-image': '{icon}',
+          'icon-allow-overlap': true,
+          'icon-offset': ['case', ['==', ['get', 'icon'], 'location_big'], ['literal', [0, 0]], ['literal', [0, -15]]],
+        },
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: points,
+          },
+        },
+      });
     },
-  }
+
+    /**
+     * Turns an amount of seconds into minutes and hours
+     *
+     * @param seconds Time in seconds
+     * @returns {{hours: number, minutes: number}} Object with hours and minutes
+     */
+    formatTime(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      return { hours: hours, minutes: minutes};
+    }
+  },
 }
 </script>
 
 <style>
 
-@import url("https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css");
-@import url("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css");
-
 #map {
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+.mapboxgl-popup * {
+  border-radius: 25px;
+  height: 20px;
 }
 
 .mapboxgl-popup-content * {

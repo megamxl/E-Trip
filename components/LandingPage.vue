@@ -27,7 +27,6 @@
 export default {
   methods: {
     forwardSearch () {
-      console.log("I got clicked")
       this.$router.push("/RoutePage")
     },
   },

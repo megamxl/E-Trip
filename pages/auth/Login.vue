@@ -51,8 +51,6 @@
             <v-snackbar v-model="snackbar" color="error">
               {{ errorMessage }}
             </v-snackbar>
-
-
           </v-card>
         </v-col>
       </v-row>
@@ -140,7 +138,7 @@ html {
 }
 
 form {
-  padding: 2rem 0rem;
+  padding: 2rem 0;
 
 }
 
