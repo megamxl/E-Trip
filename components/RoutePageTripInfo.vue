@@ -66,6 +66,7 @@ export default {
 
     //Stolen From https://github.com/chargetrip/examples/blob/6e61cc22b9da33299bda652bd0a885703fa4e5c6/route/interface.js#L92
     routeToGoogleMaps(legs) {
+      //TODO: Make it work more than once => Only reverse once or something
       if (legs.length === 0) return;
 
       let googleDirURL = `https://www.google.com/maps/dir/?api=1`;
@@ -87,7 +88,7 @@ export default {
       }
 
       googleDirURL += `&dir_action=navigate&travelmode=driving`;
-      console.log(encodeURI(googleDirURL));
+      window.open(googleDirURL, '_blank').focus();
       return encodeURI(googleDirURL);
     }
   },

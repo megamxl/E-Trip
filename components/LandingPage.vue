@@ -14,8 +14,8 @@
     <div class="right d-flex flex-column justify-space-around pillar">
       <v-container class="landingContainer rounded-lg">
         <h1 class="mb-8"> Look for an optimal route now </h1>
-        <v-text-field outlined label="From"></v-text-field>
-        <v-text-field outlined label="To" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field>
+        <v-text-field outlined label="From" v-model="from" ></v-text-field>
+        <v-text-field outlined label="To" v-model="to" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field>
       </v-container>
     </div>
   </div>
@@ -25,9 +25,16 @@
 <script>
 
 export default {
+  data() {
+    return {
+      to: '',
+      from: ''
+    }
+  },
   methods: {
     forwardSearch () {
-      this.$router.push("/RoutePage")
+
+      this.$router.push("/RoutePage", {})
     },
   },
   name: "LandingPage"
