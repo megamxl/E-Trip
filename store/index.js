@@ -27,6 +27,9 @@ const actions = {
     }
   }
 }
+const state = () => ({
+  user: null,
+})
 
 const mutations = {
   SET_USER(state, user) {
@@ -34,8 +37,8 @@ const mutations = {
   },
 }
 
-const state = () => ({
-  user: null,
+export const routeStore = () => ({
+   routes: new Array(),
 })
 
 const getters = {
@@ -48,6 +51,9 @@ const getters = {
       userLoggedIn = true
     }
     return userLoggedIn
+  },
+  getRoutes(){
+    return routeStore()
   }
 }
 

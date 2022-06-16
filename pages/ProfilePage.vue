@@ -4,7 +4,7 @@
       <v-app-bar>
         <BasicNavBarLanding/>
         <v-spacer/>
-        <v-btn @click="logout">Logout</v-btn>
+          <v-btn @click="logout">Logout</v-btn>
       </v-app-bar>
 
 

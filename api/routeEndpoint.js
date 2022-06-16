@@ -11,7 +11,7 @@ function routeId(body){
 return 'mutation newRoute($carId: ID!) {\n'+
   '  newRoute(\n'+
   '    input: {\n'+
-  '      ev: { id: $carId, battery: { stateOfCharge: { value: '+body.chargeValue+', type: '+body.chargeValueType+' } }, climate: true, occupants: '+body.occupants+' }\n'+
+  '      ev: { id: $carId, battery: { stateOfCharge: { value: '+body.chargeValue+', type: '+body.chargeValueType+' } }, climate: true, occupants: 1 }\n'+
   '      routeRequest: {\n'+
   '        origin: {\n'+
   '          type: Feature\n'+

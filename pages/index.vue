@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import {routeStore} from "@/store";
+
 export default {
-  name: "App"
+  name: "App",
+
 }
 </script>
 
