@@ -12,17 +12,23 @@
       </v-container>
     </div>
     <div class="right d-flex flex-column justify-space-around pillar">
-      <v-container class="landingContainer rounded-lg">
+
+      <v-container class="landingContainer rounded-lg d-flex flex-column">
         <h1 class="mb-8"> Look for an optimal route now </h1>
 
         <h2> From: </h2>
         <div id="geocoderFrom" v-model="fromField"></div>
         <pre id="resultFrom"></pre>
 
+        <br>
+
         <h2> To: </h2>
         <div id="geocoderTo" v-model="toField"></div>
         <pre id="resultTo"></pre>
-        <v-icon class="mt-4" @click="forwardSearch">mdi-magnify</v-icon>
+
+        <br>
+
+        <v-btn class="mt-4" @click="forwardSearch"> Plan your route <v-icon right>mdi-magnify</v-icon> </v-btn>
         <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
         <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
       </v-container>
