@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <RouteNavBar :cars="carList.cars"/>
-    <MapBoxInterface v-if="routeData.saving !== undefined" :route-data="routeData"/>
+    <MapBoxInterface v-if="routeData.saving !== undefined" :route-data="routeData" />
   </v-app>
 </template>
 
@@ -14,24 +14,7 @@ export default {
     }
   },
   methods: {
-    async createRouteMethod() {
-      const requestOptions = {
-        method: "POST",
-        body: JSON.stringify({
-          chargeValue: 60,
-          chargeValueType: "kwh",
-          occupants: 2,
-          longitudeStart: 16.382402799632196,
-          latitudeStart: 48.157929182082086,
-          cityStart: "Vienna",
-          countryStart: "Austria",
-          longitudeEnd: 16.683711150332908,
-          latitudeEnd: 48.40290439081926,
-          cityEnd: "Matzen",
-          countryEnd: "Austria",
-          carID: "5d161be5c9eef46132d9d20a"
-        })
-      }
+    async createRouteMethod(carId, longStart, latStart, longEnd, latEnd ) {
 
       let id = await fetch("/createRoute", {
         method: "POST",
@@ -42,15 +25,15 @@ export default {
           chargeValue: 60,
           chargeValueType: "kwh",
           occupants: 2,
-          longitudeStart: 16.382402799632196,
-          latitudeStart: 48.157929182082086,
+          longitudeStart: longStart,
+          latitudeStart: latStart,
           cityStart: "Vienna",
           countryStart: "Austria",
-          longitudeEnd: 16.683711150332908,
-          latitudeEnd: 48.40290439081926,
+          longitudeEnd: longEnd,
+          latitudeEnd: latEnd,
           cityEnd: "Matzen",
           countryEnd: "Austria",
-          carID: "5d161be5c9eef46132d9d20a"
+          carID: carId
         }),
       }).then(res => res.json());
 
@@ -59,19 +42,20 @@ export default {
 
       // delete
 
-      let myRoutes = this.$store.getters.getRoutes
-      myRoutes.routes.push("test")
-      console.log(myRoutes.routes)
-      console.log("now comes id")
-      console.log(id)
-    },
+        //let myRoutes =  this.$store.getters.getRoutes
+         // myRoutes.routes.push("test")
+        //console.log(myRoutes.routes)
 
-    async getRoute() {
+         console.log("now comes id")
+        return id;
+      },
+
+    async getRoute(routeID) {
       // http post
       const getRouting = {
         method: "GET",
         headers: {
-          routeID: "62ab131a816563cd0b750096",
+          routeID: routeID,
           carID: "5d161be5c9eef46132d9d20a"
         }
       }
@@ -91,8 +75,20 @@ export default {
 
   async created() {
     //console.log(this.passedRouteData);
-    await this.createRouteMethod();
-    this.routeData = (await this.getRoute()).data.route.route;
+    console.log("now Creating")
+    let data =await this.createRouteMethod(
+      "5d161be5c9eef46132d9d20a",
+      19.5057541,
+      47.1611615,
+      13.3999984,
+      52.5166646
+  ).then( async  datar=>{
+    console.log(datar)
+      //this.routeData = ( await this.getRoute(datar.data.newRoute)).data.route.route;
+    });
+    //console.log(data.data.newRoute)
+    this.routeData = (await this.getRoute("62ab6f455f85736782ab25c4")).data.route.route;
+
     // await console.log("Routedata: ", this.routeData); For Testing
   },
   name: "RoutePage.vue",
