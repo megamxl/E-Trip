@@ -11,7 +11,7 @@ function routeId(body){
 return 'mutation newRoute($carId: ID!) {\n'+
   '  newRoute(\n'+
   '    input: {\n'+
-  '      ev: { id: $carId, battery: { stateOfCharge: { value: '+body.chargeValue+', type: '+body.chargeValueType+' } }, climate: true, occupants: 1 }\n'+
+  '      ev: { id: $carId, battery: { stateOfCharge: { value: '+body.chargeValue+', type: '+body.chargeValueType+' } }, climate: true, occupants: '+body.occupants+' }\n'+
   '      routeRequest: {\n'+
   '        origin: {\n'+
   '          type: Feature\n'+
@@ -28,9 +28,9 @@ return 'mutation newRoute($carId: ID!) {\n'+
   '  )\n'+
   '}';
 }
-function planRoute(body){
+function planRoute(routeID){
 return 'query getRoute {\n'+
-  '  route(id: "'+body.routeID+'") {\n'+
+  '  route(id: "'+ routeID+'") {\n'+
   '    route {\n'+
   '      id\n'+
   '      type\n'+
@@ -149,7 +149,7 @@ async function graphQLRequest(ourBody, ourVariables) {
 }
 
 app.get('/getRoute', async (req,res) =>{
-  res.send(await graphQLRequest(planRoute(req.body),carId(req.body.carID)))
+  res.send(await graphQLRequest(planRoute(req.headers.routeid),carId(req.headers.carid)))
 });
 
 
