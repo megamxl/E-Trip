@@ -1,22 +1,20 @@
 <template>
   <v-app>
     <RouteNavBar :cars="carList.cars"/>
-    <MapBoxInterface :route-data="routeData" />
+    <MapBoxInterface v-if="routeData.saving !== undefined" :route-data="routeData" />
   </v-app>
 </template>
 
 <script>
 
-import route from 'static/postmanRouteData.json';
-
 export default {
   computed: {
     passedRouteData() {
-      return this.$store.state.to_from;
+      return this.$store.state.to_from; //TODO: Implement this in createRoute()
     }
   },
     methods: {
-       async createRouteMethod(){
+       async createRouteMethod() {
         // http post
         const requestOptions = {
           method: "POST",
@@ -50,18 +48,16 @@ export default {
         console.log(id)
       },
 
-       async getRoute(){
+       async getRoute() {
         // http post
-        const getRouteing = {
+        const getRouting = {
           method: "GET",
           headers : ({
             routeID: "62ab131a816563cd0b750096",
             carID: "5d161be5c9eef46132d9d20a"
           })
         }
-         await fetch("/getRoute", getRouteing).then(r => r.json()).then(vla => {
-           return vla;
-         })
+        return fetch("/getRoute", getRouting).then(r => r.json())
       },
     },
 
@@ -71,19 +67,15 @@ export default {
       carList: {
         cars: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
       },
-      routeData: route.data.route.route
-      //routeData:
+      routeData: {}
     }
   },
 
-  mounted() {
+  async created() {
     //console.log(this.passedRouteData);
-     //this.createRouteMethod();
-
-   this.getRoute()
-
-
-
+    //this.createRouteMethod();
+    this.routeData = (await this.getRoute()).data.route.route;
+    // await console.log("Routedata: ", this.routeData); For Testing
   },
   name: "RoutePage.vue",
 }

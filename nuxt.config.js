@@ -97,7 +97,7 @@ export default {
      },
   },
 
-  apollo:{
+  apollo: {
     clientConfigs: {
       default: {
         httpEndpoint: 'https://api.chargetrip.io/graphql',
