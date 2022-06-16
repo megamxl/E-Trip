@@ -10,38 +10,79 @@
 import route from 'static/postmanRouteData.json';
 
 export default {
-  data() {
-    return {
-      // here we need to fetch and delete routes
-      test(){
-          // http post
+    methods: {
+       async createRoute(){
+        // http post
         const requestOptions = {
-            method: "POST",
-            body : JSON.stringify({"carId":"5d161be5c9eef46132d9d20a",
-              "chargeValue:": 60,
-              "chargeValueType": "kwh" ,
-              "longitudeStart": 2,
-              "latitudeStart":2,
-              "cityStart": "beginCity",
-              "countryStart" : "begin-country",
-              "longitudeEnd": 3,
-              "latitudeEnd" :3,
-              "cityEnd": "endCity",
-              "countryEnd" : "endcity"
-            })
+          method: "POST",
+          body : JSON.stringify({"carId":"5d161be5c9eef46132d9d20a",
+            "chargeValue:": 60,
+            "chargeValueType": "kwh" ,
+            "longitudeStart": 16.370498518,
+            "latitudeStart": 48.20499918,
+            "cityStart": "beginCity",
+            "countryStart" : "begin-country",
+            "longitudeEnd": 19.5057541,
+            "latitudeEnd" : 47.1611615 ,
+            "cityEnd": "endCity",
+            "countryEnd" : "endcity"
+          })
         }
         fetch("/createRoute", requestOptions);
 
 
-          // http get
+        // http get
 
-          // delete
+        // delete
 
 
-          let myRoutes =  this.$store.getters.getRoutes
-          myRoutes.routes.push("test")
+        let myRoutes =  this.$store.getters.getRoutes
+        myRoutes.routes.push("test")
 
-          console.log(myRoutes.routes)
+        console.log(myRoutes.routes)
+
+      },
+    },
+
+
+   data() {
+    return {
+      // here we need to fetch and delete routes
+      async createRoute() {
+
+        // http post
+        const requestOptions = {
+          method: "POST",
+          body: JSON.stringify({
+            "carId": "5d161be5c9eef46132d9d20a",
+            "chargeValue:": 60,
+            "chargeValueType": "kwh",
+            "longitudeStart": 16.370498518,
+            "latitudeStart": 48.20499918,
+            "cityStart": "beginCity",
+            "countryStart": "begin-country",
+            "longitudeEnd": 19.5057541,
+            "latitudeEnd": 47.1611615,
+            "cityEnd": "endCity",
+            "countryEnd": "endcity"
+          })
+        }
+
+        let id =  await fetch("/createRoute", requestOptions).then(res =>res.json());
+
+        console.log(id)
+
+        // http get
+
+        // delete
+
+
+        /*
+        let myRoutes = this.$store.getters.getRoutes
+        myRoutes.routes.push("test")
+
+        console.log(myRoutes.routes)
+        */
       },
 
       carList: {
@@ -52,6 +93,7 @@ export default {
   },
 
   mounted() {
+
   },
   name: "RoutePage.vue",
 }
