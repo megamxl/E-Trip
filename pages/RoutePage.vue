@@ -10,8 +10,13 @@
 import route from 'static/postmanRouteData.json';
 
 export default {
+  computed: {
+    passedRouteData() {
+      return this.$store.getters.getRouteInfo;
+    }
+  },
     methods: {
-       async createRoute(){
+       async createRouteMethod(){
         // http post
         const requestOptions = {
           method: "POST",
@@ -35,12 +40,9 @@ export default {
 
         // delete
 
-
         let myRoutes =  this.$store.getters.getRoutes
         myRoutes.routes.push("test")
-
         console.log(myRoutes.routes)
-
       },
     },
 
@@ -93,7 +95,7 @@ export default {
   },
 
   mounted() {
-
+    console.log(this.passedRouteData);
   },
   name: "RoutePage.vue",
 }
