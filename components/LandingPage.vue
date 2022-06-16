@@ -14,8 +14,17 @@
     <div class="right d-flex flex-column justify-space-around pillar">
       <v-container class="landingContainer rounded-lg">
         <h1 class="mb-8"> Look for an optimal route now </h1>
-        <v-text-field outlined label="From" v-model="fromField" ></v-text-field>
-        <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field>
+
+        <h2> From: </h2>
+        <div id="geocoderFrom" v-model="fromField"></div>
+        <pre id="resultFrom"></pre>
+
+        <h2> To: </h2>
+        <div id="geocoderTo" v-model="toField"></div>
+        <pre id="resultTo"></pre>
+        <v-icon class="mt-4" @click="forwardSearch">mdi-magnify</v-icon>
+        <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
+        <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
       </v-container>
     </div>
   </div>
@@ -24,7 +33,13 @@
 
 <script>
 
+import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+
+mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNibG53dWp5bmFkcCJ9.wGzMNfIT8zp8FcO-YfpzYQ';
+
 export default {
+
   data() {
     return {
       toField: '',
@@ -32,10 +47,52 @@ export default {
     }
   },
   methods: {
-    forwardSearch () {
-      this.$store.commit('SET_TO_FROM', [this.toField, this.fromField]);
+    forwardSearch() {
+      console.log("###", {to: this.toField, from: this.fromField})
+      this.$store.commit('SET_TO_FROM', {to: this.toField, from: this.fromField});
       this.$router.push("/RoutePage");
     },
+
+    createSearchFields() {
+      const geocoderTo = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        types: 'address'
+      });
+
+      geocoderTo.addTo('#geocoderTo');
+      const resultsTo = document.getElementById('#resultTo');
+      geocoderTo.on('result', (e) => {
+        this.toField = { coords: e.result.center, name: e.result.place_name };
+        resultsTo.innerText = JSON.stringify(e.result, null, 2);
+      });
+
+      geocoderTo.on('clear', () => {
+        resultsTo.innerText = '';
+      })
+
+      /* ----------------------------------------------------------------------------------- */
+
+      const geocoderFrom = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        types: 'address'
+      });
+
+      geocoderFrom.addTo('#geocoderFrom');
+      const resultsFrom = document.getElementById('#resultFrom');
+      geocoderFrom.on('result', (e) => {
+        this.fromField = { coords: e.result.center, name: e.result.place_name};
+        resultsFrom.innerText = JSON.stringify(e.result, null, 2);
+      });
+
+      geocoderFrom.on('clear', () => {
+        resultsFrom.innerText = '';
+      })
+
+
+    }
+  },
+  mounted() {
+    this.createSearchFields();
   },
   name: "LandingPage"
 }

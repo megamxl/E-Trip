@@ -27,27 +27,24 @@ const actions = {
     }
   }
 }
+
 const state = () => ({
   user: null,
+  to_from: {to: null, from: null}
 })
 
-const mutations = {
+export const mutations = {
   SET_USER(state, user) {
     state.user = user
   },
-  SET_TO_FROM(route, to_from) {
-    route.to = to_from[0];
-    route.from = to_from[1];
+  SET_TO_FROM(state, sentData) {
+    state.to_from.to = sentData.to;
+    state.to_from.from = sentData.from;
   }
 }
 
 export const routeStore = () => ({
    routes: new Array(),
-})
-
-export const route = () => ({
-  to: null,
-  from: null
 })
 
 const getters = {
@@ -64,16 +61,12 @@ const getters = {
   getRoutes(){
     return routeStore()
   },
-  getRouteInfo() {
-    return route();
-  }
 }
 
 export default {
   state,
   actions,
   mutations,
-  getters,
-  route,
+  getters
 }
 

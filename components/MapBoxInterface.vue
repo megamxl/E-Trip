@@ -10,6 +10,7 @@ import mapboxgl from 'mapbox-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import * as mapboxPolyline from '@mapbox/polyline';
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNibG53dWp5bmFkcCJ9.wGzMNfIT8zp8FcO-YfpzYQ';
 
@@ -41,6 +42,12 @@ export default {
         zoom: 6,
         center: [16.3731, 48.2083]
       });
+      this.map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl
+        })
+      )
     },
 
     drawRouteFromPolyline(routeData) {

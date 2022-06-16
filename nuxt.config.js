@@ -22,7 +22,8 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/tab-icon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: '/tab-icon.png' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css'}
     ]
   },
 

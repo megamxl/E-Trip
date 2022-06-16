@@ -11,7 +11,7 @@
     <hr />
 
     <h3 class="ml-4 mt-4"> Trip Information </h3>
-    <SpaceAroundText text-left="Charge Duration" :text-right="tripData.chargeTime / 3600 + ' h'" /> <!-- TODO: Make Function -->
+    <SpaceAroundText text-left="Charge Duration" :text-right="(this.tripData.chargeTime / 3600).toFixed(2) + ' h'" /> <!-- TODO: Make Function -->
     <SpaceAroundText text-left="Savings on Fule" :text-right="tripData.saving.money + tripData.saving.currency" />
     <SpaceAroundText text-left="Total consumption" :text-right="tripData.consumption.toFixed(2) + ' kWh'"  />
     <SpaceAroundText text-left="CO2 spared" :text-right="tripData.saving.co2 / 1000 + ' kg'" />

@@ -12,7 +12,7 @@ import route from 'static/postmanRouteData.json';
 export default {
   computed: {
     passedRouteData() {
-      return this.$store.getters.getRouteInfo;
+      return this.$store.state.to_from;
     }
   },
     methods: {
@@ -33,7 +33,7 @@ export default {
             "countryEnd" : "endcity"
           })
         }
-        fetch("/createRoute", requestOptions);
+        await fetch("/createRoute", requestOptions);
 
 
         // http get
@@ -95,7 +95,8 @@ export default {
   },
 
   mounted() {
-    console.log(this.passedRouteData);
+    console.log(this.passedRouteData)
+
   },
   name: "RoutePage.vue",
 }
