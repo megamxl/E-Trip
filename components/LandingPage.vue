@@ -99,7 +99,7 @@ export default {
   mounted() {
     this.createSearchFields();
   },
-  name: "LandingPage",
+  name: "LandingPage"
 }
 </script>
 

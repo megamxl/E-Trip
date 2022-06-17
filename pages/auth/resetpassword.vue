@@ -152,7 +152,7 @@ form {
 
 
 #resetButton {
-  background: #7C4DFF !important;
+  background: #398A0B !important;
   color: #fff !important;
   width: 10rem !important;
   margin: 1rem 0 3rem 0.1%;
