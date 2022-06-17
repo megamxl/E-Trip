@@ -28,7 +28,7 @@
 
         <br>
 
-        <v-btn class="mt-4" @click="forwardSearch"> Plan your route <v-icon right>mdi-magnify</v-icon> </v-btn>
+        <v-btn :disabled="buttonDisable" class="mt-4" @click="forwardSearch"> Plan your route <v-icon right>mdi-magnify</v-icon> </v-btn>
         <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
         <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
       </v-container>
@@ -46,6 +46,19 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNib
 
 export default {
 
+  computed: {
+    buttonDisable() {
+      const toCoords = this.toField.coords;
+      const fromCoords = this.fromField.coords;
+      try {
+        toCoords.length;
+        fromCoords.length;
+        return false;
+      } catch (e) {
+        return true
+      }
+    }
+  },
   data() {
     return {
       toField: '',
@@ -72,6 +85,7 @@ export default {
       });
 
       geocoderTo.on('clear', () => {
+        this.toField.coords = null;
         resultsTo.innerText = '';
       })
 
@@ -90,6 +104,7 @@ export default {
       });
 
       geocoderFrom.on('clear', () => {
+        this.fromField.coords = null;
         resultsFrom.innerText = '';
       })
 
