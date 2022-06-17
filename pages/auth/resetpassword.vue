@@ -6,7 +6,7 @@
 
     <v-container fill-height fluid justify-center>
       <v-row justify="center">
-        <v-col cols="12" sm="8" md="4" width="700">
+        <v-col cols="12" sm="10" md="6" lg="6" xl="4" width="700">
           <v-card id="cardArea" outlined dark class="mx-auto">
             <v-card-title class="justify-center">
               <h3 id="h3_">Reset Password</h3>
@@ -91,8 +91,38 @@ export default {
     toLogin() {
       this.$router.push('/auth/Login');
     },
+    //responsive - breakpoints
+    height () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'md': return 500
+        case 'lg': return 600
+        case 'xl': return 800
+      }
+    },
+
+    //responsive
+    onResize () {
+      this.isMobile = window.innerWidth < 600
+    },
+
   },
+
+
+  //responsive
+  beforeDestroy () {
+    if (typeof window === 'undefined') return
+
+    window.removeEventListener('resize', this.onResize, { passive: true })
+  },
+  mounted () {
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
 };
+
+
 </script>
 
 <style>

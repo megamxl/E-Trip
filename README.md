@@ -1,4 +1,4 @@
-# E-Trip
+npm r# E-Trip
 
 ## Build Setup
 
