@@ -135,28 +135,42 @@ function planRoute(routeID) {
 function carId(carID) {
   return '{"carId":"' + carID + '"}';
 }
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
-  let answer = await fetch('https://api.chargetrip.io/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-client-id': '62335e76c351300738296e30',
-    },
-    body: JSON.stringify({
-      query: ourBody,
-      variables: ourVariables,
-    })
-  }).then(r => r.json())
-  if (xmlHeader === "true") {
-    return xml.json2xml(answer, options)
-  } else {
-    return answer
-  }
+
+    await sleep(4000) //TODO: Make this work in another way - We did fucky wucky but Bernhard said no forever box :^) - Great success
+    const answer = await fetch('https://api.chargetrip.io/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-client-id': '62335e76c351300738296e30',
+      },
+      body: JSON.stringify({
+        query: ourBody,
+        variables: ourVariables,
+      })
+    }).then(r => r.json());
+    // console.log("Answer: ", answer);
+  //  if(answer.data.route.status === 'processing') {
+      if (xmlHeader === "true") {
+        return xml.json2xml(answer, options)
+      } else {
+        return answer
+      }
+  //  }
+
 }
 
 app.get('/getRoute', async (req, res) => {
-  res.send(await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid)))
+  // console.log("Passed values: ", await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid)))
+  const test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
+  // console.log("test: ", test.data.route.status)
+  res.send(test)
 });
 
 

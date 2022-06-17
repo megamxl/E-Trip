@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     forwardSearch() {
-      console.log("###", {to: this.toField, from: this.fromField})
       this.$store.commit('SET_TO_FROM', {to: this.toField, from: this.fromField});
       this.$router.push("/RoutePage");
     },

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <RouteNavBar :cars="carList.cars"/>
-    <MapBoxInterface v-if="routeData.saving !== undefined" :route-data="routeData" />
+    <MapBoxInterface v-if="dataReady" :route-data="routeData" />
   </v-app>
 </template>
 
@@ -16,7 +16,9 @@ export default {
   methods: {
     async createRouteMethod(carId, longStart, latStart, longEnd, latEnd ) {
 
-      let id = await fetch("/createRoute", {
+      // console.log("%f longStart - %f latStart - %f longEnd - %f latEnd", longStart, latStart, longEnd, latEnd);
+
+      const id = await fetch("/createRoute", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -45,8 +47,6 @@ export default {
         //let myRoutes =  this.$store.getters.getRoutes
          // myRoutes.routes.push("test")
         //console.log(myRoutes.routes)
-
-         console.log("now comes id")
         return id;
       },
 
@@ -59,7 +59,12 @@ export default {
           carID: "5d161be5c9eef46132d9d20a"
         }
       }
-      return fetch("/getRoute", getRouting).then(r => r.json())
+      // console.log("getRouting: ", getRouting);
+      const response = await fetch("/getRoute", getRouting);
+      const data = await response.json();
+
+      console.log("ResponseData: ", data.data);
+      return data;
     },
   },
 
@@ -69,27 +74,32 @@ export default {
       carList: {
         cars: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
       },
-      routeData: {}
+      routeData: {},
+      dataReady: false
     }
   },
 
   async created() {
-    //console.log(this.passedRouteData);
-    console.log("now Creating")
-    let data =await this.createRouteMethod(
+    console.log("RoutePage/PassedRouteData: ", this.passedRouteData);
+    const to = this.passedRouteData.to;
+    const from = this.passedRouteData.from;
+    const routeIdObject = await this.createRouteMethod(
       "5d161be5c9eef46132d9d20a",
-      19.5057541,
-      47.1611615,
-      13.3999984,
-      52.5166646
-  ).then( async  datar=>{
-    console.log(datar)
-      //this.routeData = ( await this.getRoute(datar.data.newRoute)).data.route.route;
-    });
-    //console.log(data.data.newRoute)
-    this.routeData = (await this.getRoute("62ab6f455f85736782ab25c4")).data.route.route;
+      from.coords[0],
+      from.coords[1],
+      to.coords[0],
+      to.coords[1],
+      // 19.5057541,
+      // 47.1611615,
+      // 13.3999984,
+      // 52.5166646
+    );
 
-    // await console.log("Routedata: ", this.routeData); For Testing
+    const routeID = routeIdObject.data.newRoute.toString();
+    this.routeData = (await this.getRoute(routeID)).data.route.route;
+
+    await console.log("Routedata: ", this.routeData); //For Testing
+    this.dataReady = true;
   },
   name: "RoutePage.vue",
 }

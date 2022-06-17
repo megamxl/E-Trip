@@ -92,9 +92,6 @@ export default {
       return encodeURI(googleDirURL);
     }
   },
-  mounted() {
-    console.log(this.tripData);
-  }
 }
 </script>
 
