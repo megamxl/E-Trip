@@ -143,7 +143,7 @@ function sleep(ms) {
 
 async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
 
-    await sleep(4000) //TODO: Make this work in another way - We did fucky wucky but Bernhard said no forever box :^) - Great success
+    await sleep(2) //TODO: Make this work in another way - We did fucky wucky but Bernhard said no forever box :^) - Great success
     const answer = await fetch('https://api.chargetrip.io/graphql', {
       method: 'POST',
       headers: {
@@ -168,8 +168,12 @@ async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
 
 app.get('/getRoute', async (req, res) => {
   // console.log("Passed values: ", await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid)))
-  const test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
-  // console.log("test: ", test.data.route.status)
+  let test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
+  while (test.data.route.status === 'processing'){
+    await sleep(500);
+    test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
+  }
+   console.log("test: ", test.data.route.status)
   res.send(test)
 });
 
