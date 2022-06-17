@@ -80,6 +80,7 @@ export default {
   },
 
   async created() {
+    if (this.passedRouteData.from == null || this.passedRouteData.to == null) this.$router.push("/");
     console.log("RoutePage/PassedRouteData: ", this.passedRouteData);
     const to = this.passedRouteData.to;
     const from = this.passedRouteData.from;
@@ -89,16 +90,12 @@ export default {
       from.coords[1],
       to.coords[0],
       to.coords[1],
-      // 19.5057541,
-      // 47.1611615,
-      // 13.3999984,
-      // 52.5166646
     );
 
     const routeID = routeIdObject.data.newRoute.toString();
     this.routeData = (await this.getRoute(routeID)).data.route.route;
 
-    await console.log("Routedata: ", this.routeData); //For Testing
+    // await console.log("Routedata: ", this.routeData); //For Testing
     this.dataReady = true;
   },
   name: "RoutePage.vue",

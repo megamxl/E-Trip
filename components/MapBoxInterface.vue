@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <div id="map"></div>
-    <RoutePageTripInfo :trip-data="routeData" />
+    <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" />
+    <v-card id="errorMsg" v-if="routeData == null">
+      <v-card-title> Your route is not reachable with provided configuration </v-card-title>
+    </v-card>
   </v-app>
 </template>
 
@@ -23,13 +26,12 @@ export default {
   },
   props: {
     routeData: {
-      type: Object,
       required: true
     }
   },
   mounted() {
     this.createMap();
-    this.drawRouteFromPolyline(this.routeData);
+    if (this.routeData != null) this.drawRouteFromPolyline(this.routeData);
   },
   methods: {
 
@@ -181,7 +183,7 @@ export default {
       const hours = Math.floor(seconds / 3600);
       const minutes = Math.floor((seconds % 3600) / 60);
       return { hours: hours, minutes: minutes};
-    }
+    },
   },
 }
 </script>
@@ -200,6 +202,13 @@ export default {
 
 .mapboxgl-popup-content * {
   color: black;
+}
+
+#errorMsg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 </style>
