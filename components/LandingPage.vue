@@ -8,7 +8,7 @@
     </div>
     <div class="left d-flex flex-column justify-space-around">
       <v-container>
-        <img id="logo" src="../static/LogoVNew.svg" alt="Logo E-Trip"/>
+        <!-- Logo -->
       </v-container>
     </div>
     <div class="right d-flex flex-column justify-space-around pillar">
@@ -99,7 +99,7 @@ export default {
   mounted() {
     this.createSearchFields();
   },
-  name: "LandingPage"
+  name: "LandingPage",
 }
 </script>
 

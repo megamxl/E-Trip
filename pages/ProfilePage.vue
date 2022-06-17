@@ -10,7 +10,7 @@
 
       <v-container fill-width fluid>
         <v-row justify="center" align="center">
-          <v-col cols="12" sm="8" md="6">
+          <v-col cols="12" sm="10" md="6" lg="6" xl="4">
             <v-card>
               <v-card-title class="headline"> Your Profile</v-card-title>
               <v-card-text>
@@ -81,8 +81,39 @@ export default {
     addACar() {
       this.$router.push('ProfileCreation');
     },
+    //responsive - breakpoints
+    height () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'md': return 500
+        case 'lg': return 600
+        case 'xl': return 800
+      }
+    },
+
+    //responsive
+    onResize () {
+      this.isMobile = window.innerWidth < 600
+    },
+
   },
+
+
+  //responsive
+  beforeDestroy () {
+    if (typeof window === 'undefined') return
+
+    window.removeEventListener('resize', this.onResize, { passive: true })
+  },
+  mounted () {
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
 };
+
+
+
 </script>
 
 <style>
