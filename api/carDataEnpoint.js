@@ -34,14 +34,107 @@ const carListAllBrands = 'query carListAll {\n' +
   '  }}';
 
 
-const carID = 'query car($carId: ID!) {\n' +
-  '  car(id: $carId) {\n' +
-  '    naming{\n' +
-  '      make\n' +
-  '    	model\n' +
-  '    }\n' +
-  '  }\n' +
-  '}';
+const carID = 'query car($carId: ID!) {\n'+
+  '  car(id: $carId) {\n'+
+  '    id\n'+
+  '    naming {\n'+
+  '      make\n'+
+  '      model\n'+
+  '      version\n'+
+  '      edition\n'+
+  '      chargetrip_version\n'+
+  '    }\n'+
+  '    connectors {\n'+
+  '      standard\n'+
+  '      power\n'+
+  '      time\n'+
+  '      speed\n'+
+  '    }\n'+
+  '    adapters {\n'+
+  '      standard\n'+
+  '      power\n'+
+  '      time\n'+
+  '      speed\n'+
+  '    }\n'+
+  '    battery {\n'+
+  '      usable_kwh\n'+
+  '      full_kwh\n'+
+  '    }\n'+
+  '    body {\n'+
+  '      seats\n'+
+  '      weight\n'+
+  '      width\n'+
+  '      height\n'+
+  '    }\n'+
+  '    performance {\n'+
+  '      acceleration\n'+
+  '      top_speed\n'+
+  '    }\n'+
+  '    range {\n'+
+  '      real\n'+
+  '      real_is_estimated\n'+
+  '      worst{\n'+
+  '        highway\n'+
+  '        city\n'+
+  '        combined\n'+
+  '      }\n'+
+  '      best {\n'+
+  '        highway\n'+
+  '        city\n'+
+  '        combined\n'+
+  '      }\n'+
+  '      chargetrip_range {\n'+
+  '        best\n'+
+  '        worst\n'+
+  '      }\n'+
+  '    }\n'+
+  '    media {\n'+
+  '      evdb_detail_url\n'+
+  '      image {\n'+
+  '        id\n'+
+  '        type\n'+
+  '        url\n'+
+  '        height\n'+
+  '        width\n'+
+  '        thumbnail_url\n'+
+  '        thumbnail_height\n'+
+  '        thumbnail_width\n'+
+  '      }\n'+
+  '      brand {\n'+
+  '        id\n'+
+  '        type\n'+
+  '        url\n'+
+  '        height\n'+
+  '        width\n'+
+  '        thumbnail_url\n'+
+  '        thumbnail_height\n'+
+  '        thumbnail_width\n'+
+  '      }\n'+
+  '      image_list {\n'+
+  '        id\n'+
+  '        type\n'+
+  '        url\n'+
+  '        height\n'+
+  '        width\n'+
+  '        thumbnail_url\n'+
+  '        thumbnail_height\n'+
+  '        thumbnail_width\n'+
+  '      }\n'+
+  '      video {\n'+
+  '        id\n'+
+  '        url\n'+
+  '      }\n'+
+  '      video_list {\n'+
+  '        id\n'+
+  '        url\n'+
+  '      }\n'+
+  '    }\n'+
+  '    routing {\n'+
+  '      fast_charging_support\n'+
+  '    }\n'+
+  '  }\n'+
+  '}\n'+
+  '';
 
 function brandquery(brandName) {
   return 'query carListSearch {\n' +

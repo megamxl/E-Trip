@@ -87,6 +87,7 @@ export default {
       this.selectedCarModels = this.getCarIdFromModelName();
 
       const ref = this.$fire.firestore.collection('users').doc(this.$fire.auth.currentUser.uid)
+      console.log("probally id", this.selectedCarModels)
       const document = {
         carbrand: this.carbrand,
         carmodel: this.carmodel,
@@ -94,6 +95,8 @@ export default {
         usableKwh: this.usableKwh,
         carID: this.selectedCarModels
       }
+
+      console.log(document.carID);
 
       try {
         await ref.set(document)
