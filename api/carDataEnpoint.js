@@ -132,7 +132,7 @@ app.put('/getCarByBrand', async (req, res) => {
 
       }
       const collection = [models]
-
+      models.shift()
       //console.log("answer:", answer.data)
       res.send(models)
     }

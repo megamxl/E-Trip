@@ -4,9 +4,7 @@
       <v-content>
         <BasicNavBarLanding/>
       </v-content>
-<!--      <v-autocomplete :items="cars" outlined class="col mt-7"-->
-<!--        label="Choose your car"-->
-<!--      />-->
+
       <v-spacer />
       <v-btn id="profile_" @click="toProfile"> Profile
         <v-icon> mdi-account </v-icon> </v-btn>

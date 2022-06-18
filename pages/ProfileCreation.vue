@@ -28,8 +28,6 @@
 
                 <v-autocomplete label="Car model" :items="brandModels" v-model="carmodel" required outlined></v-autocomplete>
 
-                <v-autocomplete label="Model Version" :items="modelVersion" v-model="carversion" required outlined></v-autocomplete>
-
                 <v-text-field label="Real range" v-model="realrange" required outlined></v-text-field>
 
                 <v-text-field label="Usable-kwh" v-model="usableKwh" required outlined></v-text-field>
@@ -47,13 +45,33 @@
 </template>
 
 <script>
+
+import AsyncComputed from 'vue-async-computed'
+import Vue from "vue";
+
+Vue.use(AsyncComputed)
+
 export default {
   name: "ProfileCreation",
 
+  asyncComputed: {
+    async brandModels() {
+      let response = [];
+      let modelNames = [];
+      if (this.allCarBrandsData.includes(this.carbrand)) response = await this.carsViaBrand(this.carbrand);
+      for (const carModel of response) {
+        if (carModel[1][0] == null) carModel[1][0] = ''
+        modelNames.push(`${carModel[0]} ${carModel[1][0]}`);
+      }
+      // console.log("response: ", response);
+      return modelNames;
+    }
+  },
+
   computed: {
-    brandModels() {
-      return [this.carbrand];
-    },
+    // brandModels() {
+    //   return [this.carbrand];
+    // },
 
     modelVersion() {
       return [this.carmodel]
@@ -64,7 +82,6 @@ export default {
     return {
       carmodel: '',
       carbrand: '',
-      carversion: '',
       realrange: 0,
       usableKwh: 0,
       allCarBrandsData: []
@@ -139,7 +156,7 @@ export default {
     //const all= await this.getAllCarData();
     //console.log("all.data: ", all.data)
     this.allCarBrandsData = await this.allCarBrands();
-    console.log("Car info:", await this.carsViaBrand("MG"));
+    console.log("Car info:", this.allCarBrandsData);
   },
 
   //responsive

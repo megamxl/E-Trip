@@ -37,7 +37,7 @@
   padding: 6px 45px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .mapboxgl-ctrl-geocoder--input::-ms-clear {
@@ -85,7 +85,7 @@
   top: 110%; /* fallback */
   top: calc(100% + 6px);
   z-index: 1000;
-  overflow: hidden;
+  overflow: visible;
   font-size: 15px;
 }
 
@@ -117,7 +117,7 @@
 .mapboxgl-ctrl-geocoder--suggestion-title,
 .mapboxgl-ctrl-geocoder--suggestion-address {
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: visible;
   white-space: nowrap;
 }
 

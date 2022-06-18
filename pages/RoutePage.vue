@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <RouteNavBar :cars="carList.cars"/>
-    <MapBoxInterface v-if="dataReady" :route-data="routeData" />
+      <RouteNavBar :cars="carList.cars"/>
+      <MapBoxInterface v-if="dataReady" :route-data="routeData" />
   </v-app>
 </template>
 
@@ -10,14 +10,11 @@
 export default {
   computed: {
     passedRouteData() {
-      return this.$store.state.to_from; //TODO: Implement this in createRoute()
+      return this.$store.state.to_from;
     }
   },
   methods: {
     async createRouteMethod(carId, longStart, latStart, longEnd, latEnd ) {
-
-      // console.log("%f longStart - %f latStart - %f longEnd - %f latEnd", longStart, latStart, longEnd, latEnd);
-
       const id = await fetch("/createRoute", {
         method: "POST",
         headers: {
@@ -75,7 +72,7 @@ export default {
         cars: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
       },
       routeData: {},
-      dataReady: false
+      dataReady: false,
     }
   },
 
