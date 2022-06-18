@@ -121,16 +121,14 @@ app.put('/getCarByBrand', async (req, res) => {
       for(let x in answer.data.carList){
         //console.log("models[count] : ", models[count][0])
         let version = []
-        if(models[models.length-1][0] === answer.data.carList[x].naming.model){
 
-        }else {
-          version.length = 0
-          version.push(answer.data.carList[x].naming.version)
+        version.length = 0
+        version.push(answer.data.carList[x].naming.version)
           version.push(answer.data.carList[x].id)
           let test = [answer.data.carList[x].naming.model, version]
           models.push(test)
           count +=1
-        }
+
 
       }
       const collection = [models]
