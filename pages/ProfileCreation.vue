@@ -14,15 +14,13 @@
             <v-img id="imgCar"
                    src="https://cdn.pixabay.com/photo/2022/01/16/23/15/car-6943487_960_720.jpg"
                    class="white--text align-end"
-                   gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+                   gradient="to top right, rgba(255,255,255,.33), rgba(5,5,5,.33)"
                    height="250px"
                    ></v-img>
             <v-card-title >
               <h2 id="h2_">Enter car details</h2></v-card-title>
 
             <div id="cardText">
-              <v-card-subtitle id="subtitle_">You can add further cars after the registration is completed.
-              </v-card-subtitle>
 
               <v-form ref="form" lazy-validation>
 
@@ -151,7 +149,7 @@ html {
 }
 
 #cardText {
-  padding: 0rem 2rem 3rem;
+  padding: 0rem 1rem 3rem;
 }
 
 form {
