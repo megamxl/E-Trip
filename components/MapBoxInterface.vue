@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div id="map"></div>
-    <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" />
+    <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData"/>
     <v-card id="errorMsg" v-if="routeData == null">
       <v-card-title> Your route is not reachable with provided configuration </v-card-title>
     </v-card>

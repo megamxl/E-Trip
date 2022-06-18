@@ -30,6 +30,8 @@
 
                 <v-autocomplete label="Car model" :items="brandModels" v-model="carmodel" required outlined></v-autocomplete>
 
+                <v-autocomplete label="Model Version" :items="modelVersion" v-model="carversion" required outlined></v-autocomplete>
+
                 <v-text-field label="Real range" v-model="realrange" required outlined></v-text-field>
 
                 <v-text-field label="Usable-kwh" v-model="usableKwh" required outlined></v-text-field>
@@ -53,6 +55,10 @@ export default {
   computed: {
     brandModels() {
       return [this.carbrand];
+    },
+
+    modelVersion() {
+      return [this.carmodel]
     }
   },
 
@@ -60,6 +66,7 @@ export default {
     return {
       carmodel: '',
       carbrand: '',
+      carversion: '',
       realrange: 0,
       usableKwh: 0,
       allCarBrandsData: []
