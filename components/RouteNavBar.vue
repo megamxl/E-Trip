@@ -15,12 +15,6 @@
 <script>
 export default {
   name: "NavBar",
-  props: {
-    cars: {
-      type: Array,
-      required: true
-    }
-  },
   methods: {
     toProfile() {
       this.$router.push("/ProfilePage");

@@ -1,9 +1,9 @@
 <template>
-  <v-card id="tripInfoCard">
+  <v-card v-if="carInfoReady" id="tripInfoCard">
     <v-card-title> Duration: {{ formatTime() }}</v-card-title>
     <v-card-subtitle> {{ subtitleContext() }}</v-card-subtitle>
-    <h3 class="ml-4"> {{this.carInfos.naming.make}} {{this.carInfos.naming.model}} </h3>
-    <v-img class="ml-4 mr-4 mt-2 mb-2" max-height="150" :src="carInfos.image" style="border-radius: 5px"/>
+    <h3 class="ml-4"> {{this.carInfos.naming.model}} {{this.carInfos.naming.make}} </h3>
+    <v-img class="ml-4 mr-4 mt-2 mb-2" max-height="150" :src="carInfos.media.image.url" style="border-radius: 5px"/>
 
     <hr/>
 
@@ -40,33 +40,8 @@ export default {
   data: function () {
     return {
       testImage: testImage,
-      carInfos: {
-        "naming": {
-          "make": "Tesla",
-          "model": "Model 3",
-        },
-        "connectors": [
-          {
-            "standard": "IEC_62196_T2",
-            "power": 11,
-            "time": 495,
-            "speed": 57
-          },
-          {
-            "standard": "TESLA_S",
-            "power": 135,
-            "time": 25,
-            "speed": 790
-          },
-          {
-            "standard": "IEC_62196_T2_COMBO",
-            "power": 135,
-            "time": 25,
-            "speed": 790
-          }
-        ],
-        "image": "https://cars.chargetrip.io/5fa3ff3c8de02aab81e8443e.png"
-      }
+      carInfos: {},
+      carInfoReady: false
     }
   },
   props: {
@@ -74,6 +49,9 @@ export default {
       type: Object,
       required: true
     },
+    carData: {
+      required: true
+    }
   },
   methods: {
     formatTime() {
@@ -116,8 +94,27 @@ export default {
       googleDirURL += `&dir_action=navigate&travelmode=driving`;
       window.open(googleDirURL, '_blank').focus();
       return encodeURI(googleDirURL);
+    },
+
+    async fetchCarInfo() {
+      const header = {
+        method : "GET",
+        headers : {
+          'Content-Type': 'application/json',
+          id: this.carData.carID
+        },
+      }
+
+      const response = await fetch("/getCarById", header).then(r => r.json());
+      console.log("Response: ", response);
+      return response;
     }
   },
+
+  async created() {
+    this.carInfos = (await this.fetchCarInfo()).data.car;
+    this.carInfoReady = true;
+  }
 }
 </script>
 

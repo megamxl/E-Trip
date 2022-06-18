@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <div id="map"></div>
-    <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData"/>
+    <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
     <v-card id="errorMsg" v-if="routeData == null">
-      <v-card-title> Your route is not reachable with provided configuration </v-card-title>
+      <v-card-title> Your route is not reachable with provided configuration</v-card-title>
     </v-card>
   </v-app>
 </template>
@@ -27,10 +27,14 @@ export default {
   props: {
     routeData: {
       required: true
+    },
+    carData: {
+      required: true,
     }
   },
   mounted() {
     this.createMap();
+    console.log(this.carData);
     if (this.routeData != null) this.drawRouteFromPolyline(this.routeData);
   },
   methods: {
@@ -80,10 +84,10 @@ export default {
 
         const chargeTime = this.formatTime(leg.chargeTime);
 
-        new mapboxgl.Popup({ closeButton: false, offset: [15, -15], closeOnClick: false })
-        .setLngLat(leg.destination.geometry.coordinates)
-        .setHTML(`<small>${chargeTime.hours}:${chargeTime.minutes} </small>`)
-        .addTo(this.map);
+        new mapboxgl.Popup({closeButton: false, offset: [15, -15], closeOnClick: false})
+          .setLngLat(leg.destination.geometry.coordinates)
+          .setHTML(`<small>${chargeTime.hours}:${chargeTime.minutes} </small>`)
+          .addTo(this.map);
       })
     },
 
@@ -114,8 +118,8 @@ export default {
         type: 'line',
         options: 'beforeLayer',
         source: 'polyline-source',
-        layout: { 'line-join': 'round', 'line-cap': 'round', 'visibility': 'visible' },
-        paint: { 'line-color': '#0078ff', 'line-width': 3 },
+        layout: {'line-join': 'round', 'line-cap': 'round', 'visibility': 'visible'},
+        paint: {'line-color': '#0078ff', 'line-width': 3},
       });
     },
 
@@ -182,7 +186,7 @@ export default {
     formatTime(seconds) {
       const hours = Math.floor(seconds / 3600);
       const minutes = Math.floor((seconds % 3600) / 60);
-      return { hours: hours, minutes: minutes};
+      return {hours: hours, minutes: minutes};
     },
   },
 }

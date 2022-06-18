@@ -1,11 +1,13 @@
 <template>
   <v-app>
-      <RouteNavBar :cars="carList.cars"/>
-      <MapBoxInterface v-if="dataReady" :route-data="routeData" />
+    <RouteNavBar />
+    <MapBoxInterface v-if="dataReady" :route-data="routeData" :carData="carData"/>
   </v-app>
 </template>
 
 <script>
+
+import {doc, getDoc} from "firebase/firestore";
 
 export default {
   computed: {
@@ -14,14 +16,14 @@ export default {
     }
   },
   methods: {
-    async createRouteMethod(carId, longStart, latStart, longEnd, latEnd ) {
+    async createRouteMethod(carId, longStart, latStart, longEnd, latEnd) {
       const id = await fetch("/createRoute", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          chargeValue: 60,
+          chargeValue: 20, //TODO: Change this to max of car
           chargeValueType: "kwh",
           occupants: 2,
           longitudeStart: longStart,
@@ -41,11 +43,11 @@ export default {
 
       // delete
 
-        //let myRoutes =  this.$store.getters.getRoutes
-         // myRoutes.routes.push("test")
-        //console.log(myRoutes.routes)
-        return id;
-      },
+      //let myRoutes =  this.$store.getters.getRoutes
+      // myRoutes.routes.push("test")
+      //console.log(myRoutes.routes)
+      return id;
+    },
 
     async getRoute(routeID) {
       // http post
@@ -53,7 +55,7 @@ export default {
         method: "GET",
         headers: {
           routeID: routeID,
-          carID: "5d161be5c9eef46132d9d20a"
+          carID: this.carID
         }
       }
       // console.log("getRouting: ", getRouting);
@@ -63,26 +65,53 @@ export default {
       console.log("ResponseData: ", data.data);
       return data;
     },
+
+    async getCarData() {
+      this.message = ""
+      const docRef = doc(this.$fire.firestore, "users", this.$fire.auth.currentUser.uid);
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          this.carData = docSnap.data()
+        } else {
+          this.message = "No data connected to your user"
+          this.carData = {
+            carcarbrand: "",
+            carmodel: "",
+            realrange: "",
+            carid: ""
+          }
+        }
+        return this.carData;
+      } catch (e) {
+      }
+    }
   },
 
 
   data() {
     return {
-      carList: {
-        cars: ['Tesla Model 3', "Audi E-Tron", "BMW I3S", "Citroen E-SpaceTourer"]
-      },
+      carID: "",
+      carData: "",
       routeData: {},
       dataReady: false,
     }
   },
 
   async created() {
+
+    this.carData = (await this.getCarData());
+    // console.log("CarData: ", this.carData);
+    this.carID = this.carData.carID;
+    if (this.carID === null || this.carID === undefined) this.carID = "5f98238a7473fe6a4cbb813f"
+
+    /* If no Data is given, redirect back to StartPage */
     if (this.passedRouteData.from == null || this.passedRouteData.to == null) this.$router.push("/");
-    console.log("RoutePage/PassedRouteData: ", this.passedRouteData);
+
     const to = this.passedRouteData.to;
     const from = this.passedRouteData.from;
     const routeIdObject = await this.createRouteMethod(
-      "5d161be5c9eef46132d9d20a",
+      this.carID,
       from.coords[0],
       from.coords[1],
       to.coords[0],
@@ -92,8 +121,8 @@ export default {
     const routeID = routeIdObject.data.newRoute.toString();
     this.routeData = (await this.getRoute(routeID)).data.route.route;
 
-    // await console.log("Routedata: ", this.routeData); //For Testing
     this.dataReady = true;
+
   },
   name: "RoutePage.vue",
 }

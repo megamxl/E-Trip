@@ -61,7 +61,6 @@ export default {
         this.selectedCarModels = response;
       }
 
-      console.log("Response: ", response);
       for (const carModel of response) {
         if (carModel[1][0] == null) carModel[1][0] = ''
         modelNames.push(`${carModel[0]} ${carModel[1][0]}`);
@@ -147,14 +146,8 @@ export default {
     },
 
     getCarIdFromModelName() {
-      const carModelSplit = {
-          model: this.carmodel.split(" ")[0],
-          version: this.carmodel.split(" ").slice(1)
-      }
-
       for (const car of this.selectedCarModels) {
-        console.log(`SModel: ${car[0]} = ${carModelSplit.model} \n SVersion: ${car[1][0]} = ${carModelSplit.version}`);
-        if (car[0] == carModelSplit.model && car[1][0] == carModelSplit.version) {
+        if (this.carmodel === `${car[0]} ${car[1][0]}`) {
           return car[1][1]
         }
       }
@@ -167,7 +160,6 @@ export default {
     //const all= await this.getAllCarData();
     //console.log("all.data: ", all.data)
     this.allCarBrandsData = await this.allCarBrands();
-    console.log("Car info:", this.allCarBrandsData);
   },
 
   //responsive

@@ -21,8 +21,9 @@
               <v-card-text>
                 <p>Your Car Data</p>
                 <p>{{message}}</p>
-                <p>Your Car Brand: {{carData.carbrand}}</p>
+                <p>Your Car brand: {{carData.carbrand}}</p>
                 <p>Your Car model: {{carData.carmodel}} </p>
+                <p>Your Car ID: {{carData.carID}} </p>
                 <p>Your Maximum range: {{carData.realrange}} </p>
               </v-card-text>
               <v-card-subtitle class="headline"> Edit your Profile</v-card-subtitle>
@@ -67,7 +68,8 @@ export default {
         this.carData ={
           carcarbrand: "",
           carmodel:"",
-          realrange: ""
+          realrange: "",
+          carid: ""
         }
       }
     }catch(e){
