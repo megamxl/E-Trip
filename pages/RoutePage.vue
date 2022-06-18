@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <RouteNavBar />
-    <MapBoxInterface v-if="dataReady" :route-data="routeData" :carData="carData"/>
+    <MapBoxInterface v-if="dataReady" :route-data="routeData" :carData="carID"/>
   </v-app>
 </template>
 
@@ -100,10 +100,12 @@ export default {
 
   async created() {
 
-    this.carData = (await this.getCarData());
-    // console.log("CarData: ", this.carData);
-    this.carID = this.carData.carID;
-    if (this.carID === null || this.carID === undefined) this.carID = "5f98238a7473fe6a4cbb813f"
+    try {
+      this.carData = (await this.getCarData());
+      this.carID = this.carData.carID;
+    } catch (e) {
+      this.carID = "5f98238a7473fe6a4cbb813f"
+    }
 
     /* If no Data is given, redirect back to StartPage */
     if (this.passedRouteData.from == null || this.passedRouteData.to == null) this.$router.push("/");
