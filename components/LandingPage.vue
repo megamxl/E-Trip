@@ -4,7 +4,7 @@
     <div class="background">
 
           <div class="left d-inline-flex flex-column justify-space-around pillar">
-            <v-container>
+            <v-container no-warp>
               <h1 class="mb-8
             text-sm-h6
             text-md-h5
@@ -14,7 +14,7 @@
             </v-container>
           </div>
 
-        <div class="left d-flex flex-column justify-space-around">
+        <div id="containerMiddleEmpty" class="left d-flex flex-column justify-space-around">
           <v-container>
             <!-- Logo -->
           </v-container>
@@ -44,8 +44,8 @@
 
             <br>
 
-            <v-btn :disabled="buttonDisable" class="mt-6 d-none d-sm-flex text-sm-body-2 text-xl-body-1"
-                   @click="forwardSearch" x-large outlined rounded> Plan your route
+            <v-btn :disabled="buttonDisable" class="mt-6 d-sm-flex text-sm-body-2 text-xl-body-1"
+                   @click="forwardSearch" block x-large outlined rounded> Plan your route
               <v-icon right>mdi-magnify</v-icon>
             </v-btn>
             <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
@@ -134,10 +134,12 @@ export default {
     //responsive - breakpoints
     height() {
       switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          return 0
         case 'sm':
-          return 400
+          return 300
         case 'md':
-          return 500
+          return 400
         case 'lg':
           return 600
         case 'xl':
@@ -145,29 +147,9 @@ export default {
 
       }
     },
-
-    //responsive
-    onResize() {
-      this.isMobile = window.innerWidth < 800
-    },
-
-  },
-
-
-  //responsive
-  beforeDestroy() {
-    if (typeof window === 'undefined') return
-
-    window.removeEventListener('resize', this.onResize, {passive: true})
   },
   mounted() {
     this.createSearchFields();
-
-
-    //responsive
-    this.onResize()
-
-    window.addEventListener('resize', this.onResize, {passive: true})
   },
   name: "LandingPage"
 }
@@ -207,4 +189,46 @@ h4 {
   margin-bottom: 10px;
 }
 
+@media screen and (max-width:801px) {
+  #containerMiddleEmpty {
+    width: 30%;
+  }
+}
+
+
+@media screen and (max-width:801px) {
+
+  h1 {
+    font-size: large;
+    font-weight: initial;
+  }
+  .left {
+    height: 30%;
+    padding: 10rem 0;
+  }
+  #containerMiddleEmpty {
+    height: 0;
+    padding: 0;
+  }
+  .right {
+    height: 70%;
+    padding: 10rem 0;
+  }
+
+  .left, .right {
+    padding: 0 3rem;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .background {
+    background-attachment: fixed;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .left, .right {
+    padding: 0 1.5rem;
+  }
+}
 </style>
