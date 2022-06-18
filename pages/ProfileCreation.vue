@@ -124,7 +124,7 @@ export default {
       return await fetch('/getCarByBrand', {
         method : "PUT",
         headers : {
-          brand : carBrand,
+          //brand : carBrand,
           'Content-Type': 'application/json'
         },
         //body: body
