@@ -9,7 +9,7 @@ export default function ({app, route, redirect}){
     if(!app.$fire.auth.currentUser) {
       //leave them on the sign in page
     } else {
-      return redirect('/routepage')
+      return redirect('/ProfilePage')
     }
   }
 }

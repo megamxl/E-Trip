@@ -26,9 +26,9 @@
 
               <v-form ref="form" lazy-validation>
 
-                <v-text-field label="Car brand" v-model="carbrand" required outlined></v-text-field>
+                <v-autocomplete label="Car brand" :items="allCarBrandsData" v-model="carbrand" required outlined></v-autocomplete>
 
-                <v-text-field label="Car model" v-model="carmodel" required outlined></v-text-field>
+                <v-autocomplete label="Car model" :items="brandModels" v-model="carmodel" required outlined></v-autocomplete>
 
                 <v-text-field label="Real range" v-model="realrange" required outlined></v-text-field>
 
@@ -50,13 +50,19 @@
 export default {
   name: "ProfileCreation",
 
+  computed: {
+    brandModels() {
+      return [this.carbrand];
+    }
+  },
 
   data() {
     return {
       carmodel: '',
       carbrand: '',
       realrange: 0,
-      usableKwh: 0
+      usableKwh: 0,
+      allCarBrandsData: []
     }
   },
 
@@ -115,7 +121,7 @@ export default {
   async created(){
     //const all= await this.getAllCarData();
     //console.log("all.data: ", all.data)
-    console.log("only Make: ", await this.allCarBrands());
+    this.allCarBrandsData = await this.allCarBrands();
   },
 
   //responsive
