@@ -1,54 +1,58 @@
 <template>
+
   <v-app :height="height">
     <div class="background">
-      <div class="left d-flex flex-column justify-space-around pillar">
-        <v-container>
-          <h1 class="mb-8
-            text-sm-h5
-            text-md-h4
-            text-lg-h3
-            text-xl-h2"> Create your own profile to get the most out of E-Trip </h1>
-          <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
-        </v-container>
-      </div>
-      <div class="left d-flex flex-column justify-space-around">
-        <v-container>
-          <!-- Logo -->
-        </v-container>
-      </div>
-      <div class="right d-flex flex-column justify-space-around pillar">
 
-        <v-container class="landingContainer rounded-lg d-flex flex-column">
-          <h1 class="mb-8
-            text-sm-h5
-            text-md-h4
-            text-lg-h3
-            text-xl-h2"> Look for an optimal route now </h1>
+          <div class="left d-inline-flex flex-column justify-space-around pillar">
+            <v-container>
+              <h1 class="mb-8
+            text-sm-h6
+            text-md-h5
+            text-lg-h4
+            text-xl-h3"> Create your own profile to get the most out of E-Trip </h1>
+              <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
+            </v-container>
+          </div>
 
-          <h4 class="
-            text-md-h6
-            text-lg-h5"> From: </h4>
-          <div id="geocoderFrom" v-model="fromField"></div>
-          <pre id="resultFrom"></pre>
+        <div class="left d-flex flex-column justify-space-around">
+          <v-container>
+            <!-- Logo -->
+          </v-container>
+        </div>
 
-          <br>
+        <div class="right d-flex flex-column justify-space-around pillar">
+          <v-container class="landingContainer rounded-lg d-flex flex-column">
+            <h1 class="mb-8
+            text-sm-h6
+            text-md-h5
+            text-lg-h4
+            text-xl-h3"> Look for an optimal route now </h1>
 
-          <h4 class="
-            text-md-h6
-            text-lg-h5"> To: </h4>
-          <div id="geocoderTo" v-model="toField"></div>
-          <pre id="resultTo"></pre>
+            <h4 class="
+            text-sm-h7
+            text-md-h6"> From: </h4>
+            <div id="geocoderFrom" v-model="fromField"></div>
+            <pre id="resultFrom"></pre>
 
-          <br>
+            <br>
 
-          <v-btn :disabled="buttonDisable" class="mt-6 d-none d-sm-flex text-sm-body-2 text-xl-body-1"
-                 @click="forwardSearch" x-large outlined rounded> Plan your route
-            <v-icon right>mdi-magnify</v-icon>
-          </v-btn>
-          <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
-          <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
-        </v-container>
-      </div>
+            <h4 class="
+            text-sm-h7
+            text-md-h6"> To: </h4>
+            <div id="geocoderTo" v-model="toField"></div>
+            <pre id="resultTo"></pre>
+
+            <br>
+
+            <v-btn :disabled="buttonDisable" class="mt-6 d-none d-sm-flex text-sm-body-2 text-xl-body-1"
+                   @click="forwardSearch" x-large outlined rounded> Plan your route
+              <v-icon right>mdi-magnify</v-icon>
+            </v-btn>
+            <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
+            <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
+          </v-container>
+        </div>
+
     </div>
   </v-app>
 </template>
