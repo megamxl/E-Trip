@@ -143,7 +143,6 @@ function sleep(ms) {
 
 async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
 
-    await sleep(2) //TODO: Make this work in another way - We did fucky wucky but Bernhard said no forever box :^) - Great success
     const answer = await fetch('https://api.chargetrip.io/graphql', {
       method: 'POST',
       headers: {

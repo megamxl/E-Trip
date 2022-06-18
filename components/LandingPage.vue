@@ -42,6 +42,7 @@
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNibG53dWp5bmFkcCJ9.wGzMNfIT8zp8FcO-YfpzYQ';
 
 export default {
@@ -118,7 +119,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+@import "../style/mapbox-geocoder.css";
 
 .background {
   width: 100%;
@@ -146,10 +149,8 @@ export default {
   background: rgba(25, 25, 25, 1);
 }
 
-#logo {
-  height: 500px;
-  margin-left: 3rem;
-  margin-top: -7rem;
+h2 {
+  margin-bottom: 10px;
 }
 
 </style>
