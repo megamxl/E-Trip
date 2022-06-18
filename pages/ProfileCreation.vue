@@ -50,6 +50,7 @@
 export default {
   name: "ProfileCreation",
 
+
   data() {
     return {
       carmodel: '',
@@ -93,8 +94,29 @@ export default {
       this.isMobile = window.innerWidth < 600
     },
 
+    async getAllCarData(){
+      return await fetch("/getAllCars").then(r => r.json())
+    },
+
+    async allCarBrands (body) {
+      return  await fetch("/getCarBrands", {
+        method : "DELETE",
+        headers : {
+          'Content-Type': 'application/json'
+        },
+        //body: body
+
+      }).then(res => res.json())
+      //return brands
+    }
+
   },
 
+  async created(){
+    //const all= await this.getAllCarData();
+    //console.log("all.data: ", all.data)
+    console.log("only Make: ", await this.allCarBrands());
+  },
 
   //responsive
   beforeDestroy () {
