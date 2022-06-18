@@ -1,40 +1,56 @@
 <template>
-  <div class="background">
-    <div class="left d-flex flex-column justify-space-around pillar">
-      <v-container>
-        <h1 class="mb-8"> Create your own profile to get the most out of E-Trip </h1>
-        <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
-      </v-container>
+  <v-app :height="height">
+    <div class="background">
+      <div class="left d-flex flex-column justify-space-around pillar">
+        <v-container>
+          <h1 class="mb-8
+            text-sm-h5
+            text-md-h4
+            text-lg-h3
+            text-xl-h2"> Create your own profile to get the most out of E-Trip </h1>
+          <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
+        </v-container>
+      </div>
+      <div class="left d-flex flex-column justify-space-around">
+        <v-container>
+          <!-- Logo -->
+        </v-container>
+      </div>
+      <div class="right d-flex flex-column justify-space-around pillar">
+
+        <v-container class="landingContainer rounded-lg d-flex flex-column">
+          <h1 class="mb-8
+            text-sm-h5
+            text-md-h4
+            text-lg-h3
+            text-xl-h2"> Look for an optimal route now </h1>
+
+          <h4 class="
+            text-md-h6
+            text-lg-h5"> From: </h4>
+          <div id="geocoderFrom" v-model="fromField"></div>
+          <pre id="resultFrom"></pre>
+
+          <br>
+
+          <h4 class="
+            text-md-h6
+            text-lg-h5"> To: </h4>
+          <div id="geocoderTo" v-model="toField"></div>
+          <pre id="resultTo"></pre>
+
+          <br>
+
+          <v-btn :disabled="buttonDisable" class="mt-6 d-none d-sm-flex text-sm-body-2 text-xl-body-1"
+                 @click="forwardSearch" x-large outlined rounded> Plan your route
+            <v-icon right>mdi-magnify</v-icon>
+          </v-btn>
+          <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
+          <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
+        </v-container>
+      </div>
     </div>
-    <div class="left d-flex flex-column justify-space-around">
-      <v-container>
-        <!-- Logo -->
-      </v-container>
-    </div>
-    <div class="right d-flex flex-column justify-space-around pillar">
-
-      <v-container class="landingContainer rounded-lg d-flex flex-column">
-        <h1 class="mb-8"> Look for an optimal route now </h1>
-
-        <h2> From: </h2>
-        <div id="geocoderFrom" v-model="fromField"></div>
-        <pre id="resultFrom"></pre>
-
-        <br>
-
-        <h2> To: </h2>
-        <div id="geocoderTo" v-model="toField"></div>
-        <pre id="resultTo"></pre>
-
-        <br>
-
-        <v-btn :disabled="buttonDisable" class="mt-4" @click="forwardSearch"> Plan your route <v-icon right>mdi-magnify</v-icon> </v-btn>
-        <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
-        <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
-      </v-container>
-    </div>
-  </div>
-
+  </v-app>
 </template>
 
 <script>
@@ -81,7 +97,7 @@ export default {
       geocoderTo.addTo('#geocoderTo');
       const resultsTo = document.getElementById('#resultTo');
       geocoderTo.on('result', (e) => {
-        this.toField = { coords: e.result.center, name: e.result.place_name };
+        this.toField = {coords: e.result.center, name: e.result.place_name};
         resultsTo.innerText = JSON.stringify(e.result, null, 2);
       });
 
@@ -100,7 +116,7 @@ export default {
       geocoderFrom.addTo('#geocoderFrom');
       const resultsFrom = document.getElementById('#resultFrom');
       geocoderFrom.on('result', (e) => {
-        this.fromField = { coords: e.result.center, name: e.result.place_name};
+        this.fromField = {coords: e.result.center, name: e.result.place_name};
         resultsFrom.innerText = JSON.stringify(e.result, null, 2);
       });
 
@@ -110,10 +126,44 @@ export default {
       })
 
 
-    }
+    },
+    //responsive - breakpoints
+    height() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'sm':
+          return 400
+        case 'md':
+          return 500
+        case 'lg':
+          return 600
+        case 'xl':
+          return 800
+
+      }
+    },
+
+    //responsive
+    onResize() {
+      this.isMobile = window.innerWidth < 800
+    },
+
+  },
+
+
+  //responsive
+  beforeDestroy() {
+    if (typeof window === 'undefined') return
+
+    window.removeEventListener('resize', this.onResize, {passive: true})
   },
   mounted() {
     this.createSearchFields();
+
+
+    //responsive
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, {passive: true})
   },
   name: "LandingPage"
 }
