@@ -199,7 +199,7 @@ export default {
   background: rgba(25, 25, 25, 1);
 }
 
-h2 {
+h4 {
   margin-bottom: 10px;
 }
 

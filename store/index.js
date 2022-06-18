@@ -30,17 +30,17 @@ const actions = {
 
 const state = () => ({
   user: null,
-  //to_from: {to: null, from: null}
-   to_from: {
-    to: {
-       coords: [9.593093, 54.311226],
-       name: "Timmerloh 1, 24787 Fockbek, Deutschland"
-     },
-    from: {
-       coords: [16.41564515, 48.18108595],
-       name: "Lorenz-Reiter-Straße, 1110 Simmering, Österreich"
-     }
-   }
+  to_from: {to: null, from: null}
+   // to_from: {
+   //  to: {
+   //     coords: [9.593093, 54.311226],
+   //     name: "Timmerloh 1, 24787 Fockbek, Deutschland"
+   //   },
+   //  from: {
+   //     coords: [16.41564515, 48.18108595],
+   //     name: "Lorenz-Reiter-Straße, 1110 Simmering, Österreich"
+   //   }
+   // }
 })
 
 export const mutations = {
@@ -48,8 +48,8 @@ export const mutations = {
     state.user = user
   },
   SET_TO_FROM(state, sentData) {
-    //state.to_from.to = sentData.to;
-    //state.to_from.from = sentData.from;
+    state.to_from.to = sentData.to;
+    state.to_from.from = sentData.from;
   }
 }
 
