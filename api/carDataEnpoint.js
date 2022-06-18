@@ -22,6 +22,7 @@ const carListAll = 'query carListAll {\n' +
   '    naming{\n' +
   '      model\n' +
   '      make\n' +
+  '      version\n' +
   '    }\n' +
   '  }}';
 
@@ -101,6 +102,7 @@ app.get('/getCarById', async (req, res) => {
   function checkBrand(brandString) {
   return (typeof brandString === "string")
 }
+
 
 app.put('/getCarByBrand', async (req, res) => {
   if (req.headers.xml === "true") {
