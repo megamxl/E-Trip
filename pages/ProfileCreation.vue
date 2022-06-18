@@ -5,7 +5,6 @@
       <BasicNavBarLanding/>
     </v-content>
 
-
     <v-container fill-height fluid justify-center>
       <v-row justify="center">
         <v-col cols="12" sm="10" md="10" lg="6" xl="4" width="700">
@@ -56,25 +55,18 @@ export default {
 
   asyncComputed: {
     async brandModels() {
-      let response = [];
-      let modelNames = [];
-      if (this.allCarBrandsData.includes(this.carbrand)) response = await this.carsViaBrand(this.carbrand);
+      let response = []; let modelNames = [];
+      if (this.allCarBrandsData.includes(this.carbrand)) {
+        response = await this.carsViaBrand(this.carbrand);
+        this.selectedCarModels = response;
+      }
+
+      console.log("Response: ", response);
       for (const carModel of response) {
         if (carModel[1][0] == null) carModel[1][0] = ''
         modelNames.push(`${carModel[0]} ${carModel[1][0]}`);
       }
-      // console.log("response: ", response);
       return modelNames;
-    }
-  },
-
-  computed: {
-    // brandModels() {
-    //   return [this.carbrand];
-    // },
-
-    modelVersion() {
-      return [this.carmodel]
     }
   },
 
@@ -84,6 +76,7 @@ export default {
       carbrand: '',
       realrange: 0,
       usableKwh: 0,
+      selectedCarModels: '',
       allCarBrandsData: []
     }
   },
@@ -91,12 +84,15 @@ export default {
   methods: {
     async submitData() {
 
+      this.selectedCarModels = this.getCarIdFromModelName();
+
       const ref = this.$fire.firestore.collection('users').doc(this.$fire.auth.currentUser.uid)
       const document = {
         carbrand: this.carbrand,
         carmodel: this.carmodel,
         realrange: this.realrange,
-        usableKwh: this.usableKwh
+        usableKwh: this.usableKwh,
+        carID: this.selectedCarModels
       }
 
       try {
@@ -148,6 +144,21 @@ export default {
 
       }).then(res => res.json())
       //return brands
+    },
+
+    getCarIdFromModelName() {
+      const carModelSplit = {
+          model: this.carmodel.split(" ")[0],
+          version: this.carmodel.split(" ").slice(1)
+      }
+
+      for (const car of this.selectedCarModels) {
+        console.log(`SModel: ${car[0]} = ${carModelSplit.model} \n SVersion: ${car[1][0]} = ${carModelSplit.version}`);
+        if (car[0] == carModelSplit.model && car[1][0] == carModelSplit.version) {
+          return car[1][1]
+        }
+      }
+
     }
 
   },
@@ -165,6 +176,7 @@ export default {
 
     window.removeEventListener('resize', this.onResize, { passive: true })
   },
+
   mounted () {
     this.onResize()
 

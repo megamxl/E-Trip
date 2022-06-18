@@ -2,7 +2,8 @@
   <v-card id="tripInfoCard">
     <v-card-title> Duration: {{ formatTime() }}</v-card-title>
     <v-card-subtitle> {{ subtitleContext() }}</v-card-subtitle>
-    <v-img class="ma-4" max-height="150" :src="carInfos.image" style="border-radius: 5px"/>
+    <h3 class="ml-4"> {{this.carInfos.naming.make}} {{this.carInfos.naming.model}} </h3>
+    <v-img class="ml-4 mr-4 mt-2 mb-2" max-height="150" :src="carInfos.image" style="border-radius: 5px"/>
 
     <hr/>
 
