@@ -5,6 +5,7 @@ const https = require("https");
 const {response} = require("express");
 const xml = require('xml-js');
 import fetch from 'node-fetch';
+import {config} from "@vue/test-utils";
 
 const options = {compact: true, ignoreComment: true, spaces: 4}
 const app = express();
@@ -52,8 +53,6 @@ function brandquery(brandName) {
     '      make\n' +
     '      model\n' +
     '      version\n' +
-    '      edition\n' +
-    '      chargetrip_version\n' +
     '    }\n' +
     '  }\n' +
     '}\n' +
@@ -103,15 +102,39 @@ app.get('/getCarById', async (req, res) => {
   return (typeof brandString === "string")
 }
 
-app.get('/getCarByBrand', async (req, res) => {
+app.put('/getCarByBrand', async (req, res) => {
   if (req.headers.xml === "true") {
+    console.log("headers:", req.headers)
     res.send(await graphQLRequest(brandquery(req.headers.brand), req.headers.xml))
   } else if (checkBrand(req.headers.brand)) {
-    let answer = await graphQLRequest(brandquery(req.headers.brand), req.headers.xml)
+    const answer = await graphQLRequest(brandquery(req.headers.brand), req.headers.xml)
     if (isEmpty(answer) === true) {
       res.send("Sorry there were no matching results")
     } else {
-      res.send(answer)
+      let models =  [""], count = 1
+
+      //console.log("answer : " , answer.data.carList)
+
+      count = 0;
+      for(let x in answer.data.carList){
+        //console.log("models[count] : ", models[count][0])
+        let version = []
+        if(models[models.length-1][0] === answer.data.carList[x].naming.model){
+
+        }else {
+          version.length = 0
+          version.push(answer.data.carList[x].naming.version)
+          version.push(answer.data.carList[x].id)
+          let test = [answer.data.carList[x].naming.model, version]
+          models.push(test)
+          count +=1
+        }
+
+      }
+      const collection = [models]
+
+      //console.log("answer:", answer.data)
+      res.send(models)
     }
   }
 })
@@ -128,6 +151,7 @@ app.delete('/getCarBrands', async (req, res) => {
   //console.log(JSON.stringify( noDuplicates))
    await res.send(( noDuplicates));
 })
+
 
 module.exports = app
 

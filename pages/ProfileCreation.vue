@@ -119,6 +119,18 @@ export default {
 
       }).then(res => res.json())
       //return brands
+    },
+    async carsViaBrand(carBrand){
+      return await fetch('/getCarByBrand', {
+        method : "PUT",
+        headers : {
+          brand : carBrand,
+          'Content-Type': 'application/json'
+        },
+        //body: body
+
+      }).then(res => res.json())
+      //return brands
     }
 
   },
@@ -127,6 +139,7 @@ export default {
     //const all= await this.getAllCarData();
     //console.log("all.data: ", all.data)
     this.allCarBrandsData = await this.allCarBrands();
+    console.log("Car info:", await this.carsViaBrand("MG"));
   },
 
   //responsive
