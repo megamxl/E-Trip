@@ -1,3 +1,5 @@
+import * as Console from "console";
+
 const express = require('express');
 const https = require("https");
 const {response} = require("express");
@@ -21,6 +23,14 @@ const carListAll = 'query carListAll {\n' +
   '      make\n' +
   '    }\n' +
   '  }}';
+
+const carListAllBrands = 'query carListAll {\n' +
+  '  carList(size:407) {\n' +
+  '   naming {\n' +
+  '      make\n' +
+  '    }\n' +
+  '  }}';
+
 
 const carID = 'query car($carId: ID!) {\n' +
   '  car(id: $carId) {\n' +
@@ -89,7 +99,7 @@ app.get('/getCarById', async (req, res) => {
   }
 });
 
-function checkBrand(brandString) {
+  function checkBrand(brandString) {
   return (typeof brandString === "string")
 }
 
@@ -105,5 +115,19 @@ app.get('/getCarByBrand', async (req, res) => {
     }
   }
 })
+
+app.delete('/getCarBrands', async (req, res) => {
+  const duplicateModels = await graphQLRequest(carListAllBrands, req.headers.xml);
+  //console.log("duplicate Models.data: ", duplicateModels.data)
+  let noDuplicates = ["Aiways"]
+  for(let currentModel in duplicateModels.data.carList ){
+    if(noDuplicates[noDuplicates.length-1] ===(duplicateModels.data.carList[currentModel].naming.make) ===false){
+      noDuplicates.push(duplicateModels.data.carList[currentModel].naming.make)
+    }
+  }
+  //console.log(JSON.stringify( noDuplicates))
+   await res.send(( noDuplicates));
+})
+
 module.exports = app
 

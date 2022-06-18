@@ -169,10 +169,9 @@ app.get('/getRoute', async (req, res) => {
   // console.log("Passed values: ", await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid)))
   let test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
   while (test.data.route.status === 'processing'){
-    await sleep(500);
+    await sleep(50);
     test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
   }
-   console.log("test: ", test.data.route.status)
   res.send(test)
 });
 
