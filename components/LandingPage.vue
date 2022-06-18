@@ -3,7 +3,11 @@
     <div class="background">
       <div class="left d-flex flex-column justify-space-around pillar">
         <v-container>
-          <h1 class="mb-8"> Create your own profile to get the most out of E-Trip </h1>
+          <h1 class="mb-8
+            text-sm-h5
+            text-md-h4
+            text-lg-h3
+            text-xl-h2"> Create your own profile to get the most out of E-Trip </h1>
           <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
         </v-container>
       </div>
@@ -15,21 +19,30 @@
       <div class="right d-flex flex-column justify-space-around pillar">
 
         <v-container class="landingContainer rounded-lg d-flex flex-column">
-          <h1 class="mb-8"> Look for an optimal route now </h1>
+          <h1 class="mb-8
+            text-sm-h5
+            text-md-h4
+            text-lg-h3
+            text-xl-h2"> Look for an optimal route now </h1>
 
-          <h2> From: </h2>
+          <h4 class="
+            text-md-h6
+            text-lg-h5"> From: </h4>
           <div id="geocoderFrom" v-model="fromField"></div>
           <pre id="resultFrom"></pre>
 
           <br>
 
-          <h2> To: </h2>
+          <h4 class="
+            text-md-h6
+            text-lg-h5"> To: </h4>
           <div id="geocoderTo" v-model="toField"></div>
           <pre id="resultTo"></pre>
 
           <br>
 
-          <v-btn :disabled="buttonDisable" class="mt-4" @click="forwardSearch"> Plan your route
+          <v-btn :disabled="buttonDisable" class="mt-6 d-none d-sm-flex text-sm-body-2 text-xl-body-1"
+                 @click="forwardSearch" x-large outlined rounded> Plan your route
             <v-icon right>mdi-magnify</v-icon>
           </v-btn>
           <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
@@ -118,15 +131,20 @@ export default {
     height() {
       switch (this.$vuetify.breakpoint.name) {
         case 'sm':
-          return 0
+          return 400
+        case 'md':
+          return 500
+        case 'lg':
+          return 600
         case 'xl':
-          return 1000
+          return 800
+
       }
     },
 
     //responsive
     onResize() {
-      this.isMobile = window.innerWidth < 1000
+      this.isMobile = window.innerWidth < 800
     },
 
   },
