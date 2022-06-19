@@ -180,6 +180,15 @@ function checkcarid(id) {
   return typeof id === 'string';
 }
 
+/*
+The HTTP GET method is used to **read** (or retrieve) a representation of a resource. In the “happy” (or non-error) path, GET returns a representation in XML or JSON and an HTTP response code of 200 (OK).
+In an error case, it most often returns a 404 (NOT FOUND) or 400 (BAD REQUEST).
+According to the design of the HTTP specification, GET (along with HEAD) requests are used only to read data and not change it. Therefore, when used this way, they are considered safe.
+That is, they can be called without risk of data modification or corruption—calling it once has the same effect as calling it 10 times, or none at all.
+Additionally, GET (and HEAD) is idempotent, which means that making multiple identical requests ends up having the same result as a single request.
+Do not expose unsafe operations via GET—it should never modify any resources on the server.
+*/
+
 app.get('/getAllCars', async (req, res) => {
   res.send(await graphQLRequest(carListAll, req.headers.xml))
 });
@@ -192,7 +201,7 @@ app.get('/getCarById', async (req, res) => {
   }
 });
 
-  function checkBrand(brandString) {
+function checkBrand(brandString) {
   return (typeof brandString === "string")
 }
 
@@ -206,21 +215,22 @@ app.put('/getCarByBrand', async (req, res) => {
     if (isEmpty(answer) === true) {
       res.send("Sorry there were no matching results")
     } else {
-      let models =  [""], count = 1
+      let models = [""], count = 1
 
       //console.log("answer : " , answer.data.carList)
 
       count = 0;
-      for(let x in answer.data.carList){
+      for (let x in answer.data.carList) {
         //console.log("models[count] : ", models[count][0])
         let version = []
 
+
         version.length = 0
         version.push(answer.data.carList[x].naming.version)
-          version.push(answer.data.carList[x].id)
-          let test = [answer.data.carList[x].naming.model, version]
-          models.push(test)
-          count +=1
+        version.push(answer.data.carList[x].id)
+        let test = [answer.data.carList[x].naming.model, version]
+        models.push(test)
+        count += 1
 
 
       }
@@ -236,13 +246,13 @@ app.delete('/getCarBrands', async (req, res) => {
   const duplicateModels = await graphQLRequest(carListAllBrands, req.headers.xml);
   //console.log("duplicate Models.data: ", duplicateModels.data)
   let noDuplicates = ["Aiways"]
-  for(let currentModel in duplicateModels.data.carList ){
-    if(noDuplicates[noDuplicates.length-1] ===(duplicateModels.data.carList[currentModel].naming.make) ===false){
+  for (let currentModel in duplicateModels.data.carList) {
+    if (noDuplicates[noDuplicates.length - 1] === (duplicateModels.data.carList[currentModel].naming.make) === false) {
       noDuplicates.push(duplicateModels.data.carList[currentModel].naming.make)
     }
   }
   //console.log(JSON.stringify( noDuplicates))
-   await res.send(( noDuplicates));
+  await res.send((noDuplicates));
 })
 
 
