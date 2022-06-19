@@ -20,17 +20,13 @@
                 <h3 id="h3_"> Look for a new optimal route now </h3>
               </v-card-title>
 
-              <h4 class="
-                 text-sm-h7
-                 text-md-h6"> From: </h4>
+              <h3> From: </h3>
               <div id="geocoderFrom" v-model="fromField"></div>
               <pre id="resultFrom"></pre>
 
               <br>
 
-              <h4 class="
-            text-sm-h7
-            text-md-h6"> To: </h4>
+              <h3> To: </h3>
               <div id="geocoderTo" v-model="toField"></div>
               <pre id="resultTo"></pre>
 
@@ -82,6 +78,9 @@ export default {
     }
   },
   methods: {
+    toProfile() {
+      this.$router.push("/ProfilePage");
+    },
     forwardSearch() {
       this.$store.commit('SET_TO_FROM', {to: this.toField, from: this.fromField});
       this.$router.push("/RoutePage");

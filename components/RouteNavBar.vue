@@ -57,24 +57,14 @@ export default {
         return;
       }
       this.mobile = false;
-      this.mobileNav = false;
     },
-    updateScroll() {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 50) {
-        this.scrolledNav = true;
-        return;
-      }
-      this.scrolledNav = false;
-    }
   },
   data() {
     return {
-      scrolledNav: null,
       mobile: true,
-      mobileNav: null,
       windowWidth: null,
-      collapseOnScroll: true
+      collapseOnScroll: true,
+      updateScroll: null
     }
   },
   created() {
