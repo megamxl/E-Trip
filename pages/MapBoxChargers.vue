@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <div id="map"></div>
-
   </v-app>
 </template>
 
@@ -21,12 +20,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNib
 
 export default {
   name: "MapBoxInterface",
-
-  asyncComputed: {
-    async currentCords() {
-    }
-
-  },
 
   data() {
     return {
@@ -70,6 +63,38 @@ export default {
       });
     },
 
+    loopThroughChargers(chargers) {
+      for (const chargePoint of chargers) {
+        console.log("ChargePoint: ", chargePoint)
+        const coords = chargePoint.location.coordinates;
+        let availablePower = `<ul>`;
+
+        for (const chargeSpeed in chargePoint.power) {
+          availablePower += `<li class="pt-0 pb-0" style="list-style: circle ">${chargeSpeed} kWh</li>`
+        }
+        availablePower += `</ul>`
+
+        const marker = new mapboxgl.Marker({
+          color: "#32a852",
+        })
+          .setLngLat(coords)
+          .setPopup(new mapboxgl.Popup().setHTML(
+            `
+              <h1 class="pa-2"> ${chargePoint.physical_address.formattedAddress[0]} </h1>
+              <h3 class="pb-0"> Available Chargers: </h3>
+              ${availablePower}
+              <button onclick='this.toMaps(this.chargerCoords)'> To Google Maps </button>
+            `
+          ))
+          .addTo(this.map)
+      }
+    },
+
+    toMaps(coords) {
+      const googleDirURL = `https://www.google.com/?q=${coords[0]}.${coords[1]}`;
+      window.open(googleDirURL, '_blank').focus();
+    },
+
      makeOnLoadEvent() {
       const geocoder = new MapboxGeocoder({
         // Initialize the geocoder
@@ -84,7 +109,7 @@ export default {
       )
 
       this.map.on('load', () => {
-        this.map.addSource('single-point', {
+        this.map.addSource('syngle-point', {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
@@ -95,7 +120,9 @@ export default {
         geocoder.on('result',  async (event) => {
           console.log("event", event.result.center)
            this.chargers = await this.getNearByCharegers( event.result.center)
-          console.log(this.chargers.data.stationAround)
+          this.loopThroughChargers(this.chargers.data.stationAround);
+          // console.log(this.chargers.data.stationAround)
+
           //map.getSource('single-point').setData(event.result.geometry);
         });
       });
@@ -115,8 +142,9 @@ export default {
 }
 
 .mapboxgl-popup * {
+  padding: 5px;
   border-radius: 25px;
-  height: 20px;
+  height: auto;
 }
 
 .mapboxgl-popup-content * {

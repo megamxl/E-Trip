@@ -92,7 +92,7 @@ export default {
 
         const chargeTime = this.formatTime(leg.chargeTime);
 
-        new mapboxgl.Popup({closeButton: false, offset: [15, -15], closeOnClick: false})
+        new mapboxgl.Popup({closeButton: false, offset: [23, -23], closeOnClick: false})
           .setLngLat(leg.destination.geometry.coordinates)
           .setHTML(`<small>${chargeTime.hours}:${chargeTime.minutes} </small>`)
           .addTo(this.map);
@@ -209,12 +209,27 @@ export default {
 
 .mapboxgl-popup * {
   border-radius: 25px;
-  height: 20px;
+  padding: 5px;
+  height: auto;
 }
 
 .mapboxgl-popup-content * {
   color: black;
 }
+
+/* Mapbox did a big fucky wucky styling and we nono accept that */
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-center .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip{
+  display:none !important;
+}
+/* The anchor is now in the forever box <3 */
 
 #errorMsg {
   position: absolute;
