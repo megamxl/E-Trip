@@ -14,15 +14,15 @@
 
       <v-container fill-height fluid justify-center>
         <v-row justify="center">
-          <v-col cols="12" sm="10" md="6" lg="6" xl="4" align="center" width="700">
+          <v-col cols="12" sm="10" md="8" lg="6" xl="4" width="700">
             <v-card id="cardArea" outlined dark fill-height>
-              <v-card-title class="justify-center">
+              <v-card-title class="justify-start">
                 <h3 id="h3_"> Look for a new optimal route now </h3>
               </v-card-title>
 
               <h4 class="
-            text-sm-h7
-            text-md-h6"> From: </h4>
+                 text-sm-h7
+                 text-md-h6"> From: </h4>
               <div id="geocoderFrom" v-model="fromField"></div>
               <pre id="resultFrom"></pre>
 
@@ -176,7 +176,9 @@ export default {
 }
 
 h4 {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  text-align: left;
+  padding-left: 1rem;
 }
 
 #h3_ {
@@ -184,4 +186,15 @@ h4 {
   font-size: x-large;
   margin-bottom: 2rem;
 }
+
+#geocoderTo {
+  position: relative;
+  z-index: 9;
+}
+
+#geocoderFrom {
+  position: relative;
+  z-index: 99;
+}
+
 </style>

@@ -5,7 +5,7 @@
 
           <div class="left d-inline-flex flex-column justify-space-around pillar">
             <v-container no-warp>
-              <h1 class="mb-8
+              <h1 id="h1Create" class="mb-8
             text-sm-h6
             text-md-h5
             text-lg-h4
@@ -44,7 +44,7 @@
 
             <br>
 
-            <v-btn :disabled="buttonDisable" class="mt-6 d-sm-flex text-sm-body-2 text-xl-body-1"
+            <v-btn :disabled="buttonDisable" class="mt-8 d-sm-flex text-sm-body-2 text-xl-body-1"
                    @click="forwardSearch" block x-large outlined rounded> Plan your route
               <v-icon right>mdi-magnify</v-icon>
             </v-btn>
@@ -189,13 +189,15 @@ h4 {
   margin-bottom: 10px;
 }
 
-/*
-@media screen and (max-width:801px) {
-  #containerMiddleEmpty {
-    width: 30%;
-  }
+#geocoderTo {
+  position: relative;
+  z-index: 9;
 }
-*/
+
+#geocoderFrom {
+  position: relative;
+  z-index: 99;
+}
 
 @media screen and (max-width:801px) {
 
@@ -228,8 +230,17 @@ h4 {
 }
 
 @media screen and (max-width:500px) {
+
   .left, .right {
     padding: 0 1.5rem;
   }
 }
+
+@media screen and (max-width:600px) {
+  #h1Create {
+    font-size: larger;
+  }
+}
+
+
 </style>
