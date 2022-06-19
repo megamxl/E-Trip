@@ -101,7 +101,7 @@ export default {
         method : "GET",
         headers : {
           'Content-Type': 'application/json',
-          id: this.carData
+          id: this.carData.id
         },
       }
 

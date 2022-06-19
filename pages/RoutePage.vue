@@ -33,7 +33,7 @@ export default {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          chargeValue: 20, //TODO: Change this to max of car
+          chargeValue: this.carID.battery,
           chargeValueType: "kwh",
           occupants: 2,
           longitudeStart: longStart,
@@ -112,9 +112,20 @@ export default {
 
     try {
       this.carData = (await this.getCarData());
-      this.carID = this.carData.carID;
+      const header = {
+        method : "GET",
+        headers : {
+          'Content-Type': 'application/json',
+          id: this.carData.carID
+        },
+      }
+
+      const allCarInfos = (await fetch("/getCarById", header).then(r => r.json())).data.car;
+      console.log("Battery: ", allCarInfos);
+
+      this.carID = {id: this.carData.carID, battery: allCarInfos.battery.usable_kwh};
     } catch (e) {
-      this.carID = "5f98238a7473fe6a4cbb813f"
+      this.carID = {id: "5f98238a7473fe6a4cbb813f", battery: 20}
     }
 
     /* If no Data is given, redirect back to StartPage */
@@ -123,7 +134,7 @@ export default {
     const to = this.passedRouteData.to;
     const from = this.passedRouteData.from;
     const routeIdObject = await this.createRouteMethod(
-      this.carID,
+      this.carID.id,
       from.coords[0],
       from.coords[1],
       to.coords[0],

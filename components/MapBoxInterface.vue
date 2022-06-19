@@ -34,7 +34,6 @@ export default {
   },
   mounted() {
     this.createMap();
-    console.log(this.carData);
     if (this.routeData != null) this.drawRouteFromPolyline(this.routeData);
   },
   methods: {
