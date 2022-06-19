@@ -2,6 +2,15 @@
   <v-app>
     <RouteNavBar />
     <MapBoxInterface v-if="dataReady" :route-data="routeData" :carData="carID"/>
+    <v-col justify="center">
+      <v-row
+        justify="center">
+    <v-img
+      max-height="600"
+      max-width="800"
+      src="https://cdn.dribbble.com/users/629695/screenshots/6650472/wolfspeed_anim5_charge_loop1.gif">test</v-img>
+      </v-row>
+    </v-col>
   </v-app>
 </template>
 
