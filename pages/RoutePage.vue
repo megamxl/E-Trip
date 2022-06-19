@@ -108,6 +108,7 @@ export default {
     }
   },
 
+
   async created() {
 
     try {
@@ -122,7 +123,6 @@ export default {
 
       const allCarInfos = (await fetch("/getCarById", header).then(r => r.json())).data.car;
       console.log("Battery: ", allCarInfos);
-
       this.carID = {id: this.carData.carID, battery: allCarInfos.battery.usable_kwh};
     } catch (e) {
       this.carID = {id: "5f98238a7473fe6a4cbb813f", battery: 20}

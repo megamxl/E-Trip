@@ -10,7 +10,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - E-Trip',
+    titleTemplate: '%s-E-Trip',
     title: 'E-Trip',
     htmlAttrs: {
       lang: 'en'
@@ -50,7 +50,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/firebase',
-    '@nuxtjs/apollo',
+    //'@nuxtjs/apollo',
     //'@nuxtjs/html-validator',
   ],
 
@@ -112,7 +112,7 @@ export default {
   },
   htmlValidator: {
     usePrettier: false,
-    failOnError: false,
+    failOnError: true,
     options: {
       extends: [
         'html-validate:document',
@@ -130,7 +130,8 @@ export default {
         'attribute-boolean-style': 'off',
         'doctype-style': 'off',
         // Unreasonable rule
-        'no-inline-style': 'off'
+        'no-inline-style': 'off',
+        'element-permitted-content': 'off'
       }
     }
   },
