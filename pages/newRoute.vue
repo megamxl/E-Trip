@@ -1,52 +1,54 @@
 <template>
 
-
   <v-app :height="height">
-    <basic-nav-bar-landing></basic-nav-bar-landing>
+    <v-app-bar>
+      <v-content>
+        <BasicNavBarLanding/>
+      </v-content>
+      <v-btn id="profile_" @click="toProfile"> Profile
+        <v-icon> mdi-account</v-icon>
+      </v-btn>
+    </v-app-bar>
+
     <div class="background">
 
-      <div class="left d-inline-flex flex-column justify-space-around pillar">
+      <v-container fill-height fluid justify-center>
+        <v-row justify="center">
+          <v-col cols="12" sm="10" md="6" lg="6" xl="4" align="center" width="700">
+            <v-card id="cardArea" outlined dark fill-height>
+              <v-card-title class="justify-center">
+                <h3 id="h3_"> Look for a new optimal route now </h3>
+              </v-card-title>
 
-      </div>
-
-      <div id="containerMiddleEmpty" class="left d-flex flex-column justify-space-around">
-        <v-container class="middlecontainer rounded-lg d-flex flex-column">
-          <h1 class="mb-8
-            text-sm-h6
-            text-md-h5
-            text-lg-h4
-            text-xl-h3"> Look for an optimal route now </h1>
-
-          <h4 class="
+              <h4 class="
             text-sm-h7
             text-md-h6"> From: </h4>
-          <div id="geocoderFrom" v-model="fromField"></div>
-          <pre id="resultFrom"></pre>
+              <div id="geocoderFrom" v-model="fromField"></div>
+              <pre id="resultFrom"></pre>
 
-          <br>
+              <br>
 
-          <h4 class="
+              <h4 class="
             text-sm-h7
             text-md-h6"> To: </h4>
-          <div id="geocoderTo" v-model="toField"></div>
-          <pre id="resultTo"></pre>
+              <div id="geocoderTo" v-model="toField"></div>
+              <pre id="resultTo"></pre>
 
-          <br>
+              <br>
 
-          <v-btn :disabled="buttonDisable" class="mt-6 d-sm-flex text-sm-body-2 text-xl-body-1"
-                 @click="forwardSearch" block x-large outlined rounded> Plan your route
-            <v-icon right>mdi-magnify</v-icon>
-          </v-btn>
-          <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
-          <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
-        </v-container>
-      </div>
+              <v-btn :disabled="buttonDisable" class="mt-6 d-sm-flex text-sm-body-2 text-xl-body-1"
+                     @click="forwardSearch" block x-large outlined rounded> Plan your route
+                <v-icon right>mdi-magnify</v-icon>
+              </v-btn>
+              <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
+              <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
 
-      <div class="right d-flex flex-column justify-space-around pillar">
-
-      </div>
-
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
+
   </v-app>
 </template>
 
@@ -125,24 +127,31 @@ export default {
 
     },
     //responsive - breakpoints
-    height() {
+    height () {
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 0
-        case 'sm':
-          return 300
-        case 'md':
-          return 400
-        case 'lg':
-          return 600
-        case 'xl':
-          return 800
-
+        case 'md': return 500
+        case 'lg': return 600
+        case 'xl': return 800
       }
     },
+
+    //responsive
+    onResize () {
+      this.isMobile = window.innerWidth < 600
+    },
+  },
+  //responsive
+  beforeDestroy () {
+    if (typeof window === 'undefined') return
+
+    window.removeEventListener('resize', this.onResize, { passive: true })
   },
   mounted() {
     this.createSearchFields();
+
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
   },
   name: "LandingPage"
 }
@@ -155,77 +164,24 @@ export default {
 .background {
   width: 100%;
   height: 100vh;
-  background: url("assets/newRouteImg.webp") no-repeat top center fixed;
+  background: url("assets/car.jpg") no-repeat top center fixed;
   background-size: cover;
+
 }
 
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
-
-.pillar {
-  width: 30vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
-  padding: 20px;
-}
-
-.landingContainer {
-  background: rgba(0, 0, 0, 0);
-}
-
-.middlecontainer{
-  background: rgba(25, 3, 0, 1);
+#cardArea {
+  padding: 3rem 2rem 3rem ;
+  border-radius: 20px;
+  background: rgb( 0, 0, 0, 0.8);
 }
 
 h4 {
   margin-bottom: 10px;
 }
 
-@media screen and (max-width:801px) {
-  #containerMiddleEmpty {
-    width: 30%;
-  }
-}
-
-
-@media screen and (max-width:801px) {
-
-  h1 {
-    font-size: large;
-    font-weight: initial;
-  }
-  .left {
-    height: 30%;
-    padding: 10rem 0;
-  }
-  #containerMiddleEmpty {
-    height: 0;
-    padding: 0;
-  }
-  .right {
-    height: 70%;
-    padding: 10rem 0;
-  }
-
-  .left, .right {
-    padding: 0 3rem;
-    width: 100%;
-    flex-direction: row;
-  }
-
-  .background {
-    background-attachment: fixed;
-  }
-}
-
-@media screen and (max-width:500px) {
-  .left, .right {
-    padding: 0 1.5rem;
-  }
+#h3_ {
+  font-weight: unset;
+  font-size: x-large;
+  margin-bottom: 2rem;
 }
 </style>

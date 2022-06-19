@@ -189,12 +189,13 @@ h4 {
   margin-bottom: 10px;
 }
 
+/*
 @media screen and (max-width:801px) {
   #containerMiddleEmpty {
     width: 30%;
   }
 }
-
+*/
 
 @media screen and (max-width:801px) {
 
