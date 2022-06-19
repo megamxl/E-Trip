@@ -14,15 +14,35 @@ function chargingPoints(body) {
     '    query: {\n' +
     '      location: { type: Point, coordinates: [' + body.longitudeStart + ', ' + body.latitudeStart + '] }\n' +
     '      distance: ' + body.distance + '\n' +
-    '    }\n' +
-    '  ) \n' +
-    '  {name\n' +
-    '    address\n' +
-    '    postal_code\n' +
-    '    city\n' +
-    '    power\n' +
-    '    speed\n' +
-    '  }\n' +
+    '      power: [50, 22]\n'+
+    '      amenities: ["supermarket"]\n'+
+    '    }\n'+
+    '    size: 10\n'+
+    '    page: 0\n'+
+    '  ) {\n'+
+    '    id\n'+
+    '    external_id\n'+
+    '    name\n'+
+    '    location {\n'+
+    '      type\n'+
+    '      coordinates\n'+
+    '    }\n'+
+    '    elevation\n'+
+    '    physical_address {\n'+
+    '      continent\n'+
+    '      country\n'+
+    '      county\n'+
+    '      city\n'+
+    '      street\n'+
+    '      number\n'+
+    '      postalCode\n'+
+    '      what3Words\n'+
+    '      formattedAddress\n'+
+    '    }\n'+
+    '    amenities\n'+
+    '    power\n'+
+    '    # add more fields here\n'+
+    '  }\n'+
     '}';
 }
 
@@ -66,6 +86,8 @@ app.post('/getChargerNearby', async (req, res) => {
   }
 
 });
+
+//app.patch();
 
 module.exports = app
 
