@@ -17,6 +17,10 @@
                 <p>This page is only for you.</p>
                 <p>Your e-mail is {{ user ? user.email : "" }}</p>
 
+                <v-card-text>
+
+                </v-card-text>
+
               </v-card-text>
               <v-card-text>
                 <p>Your Car Data</p>
@@ -26,6 +30,7 @@
                 <p>Your Car ID: {{carData.carID}} </p>
                 <p>Your Maximum range: {{carData.realrange}} </p>
               </v-card-text>
+
               <v-card-subtitle class="headline"> Edit your Profile</v-card-subtitle>
               <v-card-text>
                 <v-btn @click="addACar">Add a Car</v-btn>
@@ -51,18 +56,20 @@ export default {
   },
   data() {
     return {
-      carData: []
+      carData: [],
+      uID: ""
     }
   },
   async fetch(){
 
     this.message =""
     const docRef = doc(this.$fire.firestore, "users", this.$fire.auth.currentUser.uid);
+
+    console.log("fire.currentUser.", await this.$fire.auth.currentUser.getIdTokenResult())
     try{
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.carData = docSnap.data()
-        console.log("Document data:", docSnap.data());
       }else {
         this.message = "No data connected to your user"
         this.carData ={

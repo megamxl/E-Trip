@@ -41,12 +41,20 @@ export default {
 
     createMap() {
 
+      let focusCoordinates =[]
+
+      if(this.routeData != null){
+        focusCoordinates= [this.routeData.legs[0].origin?.geometry.coordinates[0],this.routeData.legs[0].origin?.geometry.coordinates[1]]
+      }else {
+        focusCoordinates =  [16.3731, 48.2083]
+      }
+
       this.map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/chargetrip/ckgcbf3kz0h8819qki8uwhe0k',
         // style: 'mapbox://styles/thomasmeier/cl44io3hz008614p773hh7h8g',
         zoom: 6,
-        center: [16.3731, 48.2083]
+        center: focusCoordinates
       });
       this.map.addControl(
         new MapboxGeocoder({
