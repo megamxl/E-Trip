@@ -5,7 +5,10 @@
         <BasicNavBarLanding/>
       </v-content>
 
+
+      <v-btn @click ="toNewRoutePage"> New Route</v-btn>
       <v-spacer />
+
       <v-btn id="profile_" @click="toProfile"> Profile
         <v-icon> mdi-account </v-icon> </v-btn>
     </v-app-bar>
@@ -21,6 +24,9 @@ export default {
     },
     toLanding() {
       this.$router.push("/");
+    },
+    toNewRoutePage(){
+      this.$router.push("/newRoute")
     }
   }
 }
