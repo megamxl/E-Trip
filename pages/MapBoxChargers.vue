@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <RouteNavBar />
     <div id="map"></div>
   </v-app>
 </template>
