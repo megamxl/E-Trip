@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <RouteNavBar />
+    <RouteNavBar/>
     <div id="map"></div>
   </v-app>
 </template>
@@ -25,28 +25,34 @@ export default {
   data() {
     return {
       map: {},
-      chargers : {}
+      chargers: {}
     }
   },
   props: {},
+
   mounted() {
     this.createMap();
     this.makeOnLoadEvent()
   },
   methods: {
 
-    async getNearByCharegers(cords){
-        return await fetch("/getChargerNearby", {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            longitudeStart : cords[0],
-            latitudeStart: cords[1],
-            distance : 10000
-          }),
-        }).then(res => res.json());
+    /**
+     * Based on the position given all nearby chargers are searched and returned as an object
+     * @param cords - 2d Array
+     * @returns {Promise<unknown>}
+     */
+    async getNearByCharegers(cords) {
+      return await fetch("/getChargerNearby", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          longitudeStart: cords[0],
+          latitudeStart: cords[1],
+          distance: 10000
+        }),
+      }).then(res => res.json());
 
     },
 
@@ -63,6 +69,10 @@ export default {
       });
     },
 
+    /**
+     * Based on the chargers object markers are placed on the given location with minimal info to each charging point
+     * @param chargers - An object that contains multiple chargers
+     */
     loopThroughChargers(chargers) {
       for (const chargePoint of chargers) {
         console.log("ChargePoint: ", chargePoint)
@@ -90,8 +100,10 @@ export default {
       }
     },
 
-
-     makeOnLoadEvent() {
+    /**
+     * Creates a new GeoCoder and adds a new layer on the map to then display the found charging stations nearby
+     */
+    makeOnLoadEvent() {
       const geocoder = new MapboxGeocoder({
         // Initialize the geocoder
         accessToken: mapboxgl.accessToken, // Set the access token
@@ -113,18 +125,14 @@ export default {
           },
         });
 
-        geocoder.on('result',  async (event) => {
+        geocoder.on('result', async (event) => {
           console.log("event", event.result.center)
-           this.chargers = await this.getNearByCharegers( event.result.center)
+          this.chargers = await this.getNearByCharegers(event.result.center)
           this.loopThroughChargers(this.chargers.data.stationAround);
-          // console.log(this.chargers.data.stationAround)
-
-          //map.getSource('single-point').setData(event.result.geometry);
         });
       });
     },
   },
-
 
 
 }

@@ -1,5 +1,4 @@
 <template>
-
   <v-app-bar>
     <!--E-Trip Button is only shown if !mobile!! -->
     <v-btn v-show="!mobile" @click="toLanding"> E-Trip</v-btn>
@@ -43,6 +42,9 @@
 export default {
   name: "NavBar",
   methods: {
+    /**
+     * Different route pushes
+     */
     toProfile() {
       this.$router.push("/ProfilePage");
     },

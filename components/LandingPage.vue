@@ -1,57 +1,51 @@
 <template>
-
   <v-app :height="height">
+    <!--  Background Div to display Tesla  -->
     <div class="background">
 
-          <div class="left d-inline-flex flex-column justify-space-around pillar">
-            <v-container no-warp>
-              <h1 id="h1Create" class="mb-8
+      <!--  Left Column - Holds the Login/Signup Information  -->
+      <div class="left d-inline-flex flex-column justify-space-around pillar">
+        <v-container no-warp>
+          <h1 id="h1Create" class="mb-8
             text-sm-h6
             text-md-h5
             text-lg-h4
             text-xl-h3"> Create your own profile to get the most out of E-Trip </h1>
-              <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
-            </v-container>
-          </div>
+          <v-btn block x-large to="/auth/login" outlined rounded> Sign Up / Login</v-btn>
+        </v-container>
+      </div>
 
-        <div id="containerMiddleEmpty" class="left d-flex flex-column justify-space-around">
-          <v-container>
-            <!-- Logo -->
-          </v-container>
-        </div>
-
-        <div class="right d-flex flex-column justify-space-around pillar">
-          <v-container class="landingContainer rounded-lg d-flex flex-column">
-            <h1 class="mb-8
+      <!--  Right Column - Holds the Route planning Information  -->
+      <div class="right d-flex flex-column justify-space-around pillar">
+        <v-container class="landingContainer rounded-lg d-flex flex-column">
+          <h1 class="mb-8
             text-sm-h6
             text-md-h5
             text-lg-h4
             text-xl-h3"> Look for an optimal route now </h1>
 
-            <h4 class="
+          <h4 class="
             text-sm-h7
             text-md-h6"> From: </h4>
-            <div id="geocoderFrom" v-model="fromField"></div>
-            <pre id="resultFrom"></pre>
+          <div id="geocoderFrom" v-model="fromField"></div>
+          <pre id="resultFrom"></pre>
 
-            <br>
+          <br>
 
-            <h4 class="
+          <h4 class="
             text-sm-h7
             text-md-h6"> To: </h4>
-            <div id="geocoderTo" v-model="toField"></div>
-            <pre id="resultTo"></pre>
+          <div id="geocoderTo" v-model="toField"></div>
+          <pre id="resultTo"></pre>
 
-            <br>
+          <br>
 
-            <v-btn :disabled="buttonDisable" class="mt-8 d-sm-flex text-sm-body-2 text-xl-body-1"
-                   @click="forwardSearch" block x-large outlined rounded> Plan your route
-              <v-icon right>mdi-magnify</v-icon>
-            </v-btn>
-            <!-- <v-text-field outlined label="From" v-model="fromField" ></v-text-field> -->
-            <!-- <v-text-field outlined label="To" v-model="toField" append-icon="mdi-magnify" @click:append="forwardSearch"></v-text-field> -->
-          </v-container>
-        </div>
+          <v-btn :disabled="buttonDisable" class="mt-8 d-sm-flex text-sm-body-2 text-xl-body-1"
+                 @click="forwardSearch" block x-large outlined rounded> Plan your route
+            <v-icon right>mdi-magnify</v-icon>
+          </v-btn>
+        </v-container>
+      </div>
 
     </div>
   </v-app>
@@ -67,7 +61,14 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNib
 
 export default {
 
+  // Constantly checks on changed data and changes accordingly
   computed: {
+
+    /**
+     * Checks if to and from are set and have coordinates
+     * Enables button if both coords[]s are set
+     * @returns {boolean}
+     */
     buttonDisable() {
       const toCoords = this.toField.coords;
       const fromCoords = this.fromField.coords;
@@ -87,11 +88,18 @@ export default {
     }
   },
   methods: {
+    /**
+     * Forwards the user to the RoutePage and passes the coordinates to the VueStore
+     */
     forwardSearch() {
       this.$store.commit('SET_TO_FROM', {to: this.toField, from: this.fromField});
       this.$router.push("/RoutePage");
     },
 
+    /**
+     * Creates the two search fields which are based on MapBoxGeocoder
+     * With autocomplete the coordinates from the result are then inserted into "toField" and "fromField"
+     */
     createSearchFields() {
       const geocoderTo = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -149,6 +157,10 @@ export default {
       }
     },
   },
+  /**
+   * Mounted is a vue-lifecycle hook and is called after the elements are placed into the DOM
+   * This ensures that all html elements are set before anything inside mounted is executed
+   */
   mounted() {
     this.createSearchFields();
   },

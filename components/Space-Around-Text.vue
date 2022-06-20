@@ -1,3 +1,4 @@
+<!-- Helping component to fill RoutePageTripInfo with pre-formatted text -->
 <template>
   <div class="d-flex justify-space-between align-center ml-4 mr-4 mt-4 mb-4">
     <small> {{textLeft}} </small>

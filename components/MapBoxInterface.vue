@@ -43,20 +43,33 @@ export default {
       windowWidth: null,
     }
   },
+  /**
+   * Props defines values/data that can be passed when calling the component
+   */
   props: {
+    // RouteData represents the information for the Route
     routeData: {
       required: true
     },
+    // CarData represents the information for the Car
     carData: {
       required: true,
     }
   },
+
+  /**
+   * Mounted is a vue-lifecycle hook and is called after the elements are placed into the DOM
+   * This ensures that all html elements are set before anything inside mounted is executed
+   */
   mounted() {
     this.createMap();
     if (this.routeData != null) this.drawRouteFromPolyline(this.routeData);
   },
 
-  //responsive
+  /**
+   * Created is a vue-lifecycle hook and is called after the Options API is initiated but before any DOM Placement is done
+   * This is helpful if you want to check certain properties that are independent of the content itself
+   */
   created() {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
@@ -73,10 +86,11 @@ export default {
       this.mobile = false;
     },
 
+    /**
+     * Creates the MapBox Map
+     */
     createMap() {
-
       let focusCoordinates = []
-
       if (this.routeData != null) {
         focusCoordinates = [this.routeData.legs[0].origin?.geometry.coordinates[0], this.routeData.legs[0].origin?.geometry.coordinates[1]]
       } else {
@@ -92,14 +106,22 @@ export default {
       });
     },
 
+    /**
+     * Calls drawRoute after formatting passed data
+     * @param routeData - The passed data
+     */
     drawRouteFromPolyline(routeData) {
       const decoded = mapboxPolyline.decode(routeData.polyline); // Turns Polyline into thousands of Long, Lat Coords
       const reversed = decoded.map(item => item.reverse()); // Reverses them cause mapbox stoopid
-      // console.log(reversed)
 
       this.drawRoute(reversed, routeData.legs);
     },
 
+    /**
+     * Checks if map is loaded => Calls all functions to draw route in mapbox
+     * @param wayPoints
+     * @param legs
+     */
     drawRoute(wayPoints, legs) {
       if (this.map.loaded()) {
         // this.drawPolyline(wayPoints);
@@ -114,6 +136,10 @@ export default {
       }
     },
 
+    /**
+     * Adds a little chip at each charger on the route to indicate charging times
+     * @param legs - An array of chargers
+     */
     drawChargingTimes(legs) {
       legs.forEach((leg, index) => {
         if (index === legs.length - 1) return;
@@ -127,7 +153,10 @@ export default {
       })
     },
 
-
+    /**
+     * Adds a Layer to the Map based on the passed waypoints to show given points
+     * @param wayPoints - An array of waypoints
+     */
     drawPolyline(wayPoints) {
       const geojson = {
         type: 'FeatureCollection',
@@ -159,6 +188,10 @@ export default {
       });
     },
 
+    /**
+     * Mapbox Magic - Adds another Layer to display route
+     * @param legs
+     */
     showLegs(legs) {
       if (legs.length === 0) return;
 

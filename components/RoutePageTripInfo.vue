@@ -1,3 +1,6 @@
+
+<!-- Displays infos of the calculated route and the given car -->
+
 <template>
   <v-card v-if="carInfoReady" id="tripInfoCard">
     <v-card-title> Duration: {{ formatTime() }}</v-card-title>
@@ -22,7 +25,7 @@
     <hr class="mb-4"/>
 
     <div class="text-center">
-      <v-btn @click="routeToGoogleMaps(tripData.legs)"> Drive with Google Maps</v-btn>
+      <v-btn @click="openURI"> Drive with Google Maps</v-btn>
     </div>
 
 
@@ -41,7 +44,8 @@ export default {
     return {
       testImage: testImage,
       carInfos: {},
-      carInfoReady: false
+      carInfoReady: false,
+      googleURL: ""
     }
   },
   props: {
@@ -54,12 +58,20 @@ export default {
     }
   },
   methods: {
+    /**
+     * Formats time from seconds to minutes and hours
+     * @returns {string} A String formatted to display hrs and min
+     */
     formatTime() {
       const hours = Math.floor(this.tripData.duration / 3600);
       const minutes = Math.floor((this.tripData.duration % 3600) / 60);
       return `${hours} hrs ${minutes} min`;
     },
 
+    /**
+     * Displays Distance of the Trip, How many stops there are and how much kWh are consumed
+     * @returns {string} Formatted string
+     */
     subtitleContext() {
       const distanceInKm = `${this.tripData.distance / 1000} km`;
       const stops = `${this.tripData.charges} stops`;
@@ -69,6 +81,11 @@ export default {
     },
 
     //Stolen From https://github.com/chargetrip/examples/blob/6e61cc22b9da33299bda652bd0a885703fa4e5c6/route/interface.js#L92
+    /**
+     * Turns an array of coordinates on a map into a usable Google Maps link
+     * @param legs
+     * @returns {string}
+     */
     routeToGoogleMaps(legs) {
       //TODO: Make it work more than once => Only reverse once or something
       if (legs.length === 0) return;
@@ -92,10 +109,20 @@ export default {
       }
 
       googleDirURL += `&dir_action=navigate&travelmode=driving`;
-      window.open(googleDirURL, '_blank').focus();
       return encodeURI(googleDirURL);
     },
 
+    /**
+     * Opens the googleURL in a new Tab
+     */
+    openURI() {
+      window.open(this.googleURL, '_blank').focus();
+    },
+
+    /**
+     * Fetches CarInfos based on the carID contained in carData
+     * @returns {Promise<unknown>} An Object with many properties of the car
+     */
     async fetchCarInfo() {
       const header = {
         method : "GET",
@@ -111,9 +138,14 @@ export default {
     }
   },
 
+  /**
+   * On Vue Lifecycle Hook - Fetches CarInfos and turns the routeInfo into a Google Maps url
+   * @returns {Promise<void>}
+   */
   async created() {
     this.carInfos = (await this.fetchCarInfo()).data.car;
     this.carInfoReady = true;
+    this.googleURL = this.routeToGoogleMaps(this.tripData.legs)
   }
 }
 </script>
