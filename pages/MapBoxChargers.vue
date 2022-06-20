@@ -30,7 +30,6 @@ export default {
   props: {},
   mounted() {
     this.createMap();
-    //this.createSearchFields();
     this.makeOnLoadEvent()
   },
   methods: {

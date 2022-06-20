@@ -5,11 +5,8 @@
     <v-col v-if="!dataReady" justify="center">
       <v-row justify="center">
         <v-overlay>
-          <v-progress-circular indeterminate size="128">
-
-          </v-progress-circular>
+          <v-progress-circular indeterminate size="128" />
         </v-overlay>
-<!--    <v-img id="mapLoading" src="https://cdn.dribbble.com/users/629695/screenshots/6650472/wolfspeed_anim5_charge_loop1.gif" />-->
       </v-row>
     </v-col>
   </v-app>

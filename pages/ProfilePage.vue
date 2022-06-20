@@ -10,31 +10,47 @@
 
       <v-container fill-width fluid>
         <v-row justify="center" align="center">
-          <v-col cols="12" sm="10" md="6" lg="6" xl="4">
+          <v-col cols="12" sm="10" md="8" lg="6" xl="5">
             <v-card>
-              <v-card-title class="headline"> Your Profile</v-card-title>
-              <v-img src="/renault-trezor-concept-01_0-removebg.png"></v-img>
-              <v-card-text>
-                <p>Hello {{ name }} </p>
-                <p>Your e-mail is {{ user ? user.email : "" }}</p>
-                <p>Your last login is {{ lastTimeLogedIn }}</p>
-                <p>Your session exporation is {{ sessionExporation }}</p>
+              <v-img height="25vh" src="/tesla.jpg">
+                <div class="d-flex flex-column" id="translucentBackground">
+                  <v-card-title id="font-size-4vw" class="mt-8"> Your Profile</v-card-title>
+                  <v-card-subtitle> Welcome back {{name}} </v-card-subtitle>
+                </div>
+              </v-img>
+              <div class="d-flex flex-column align-self-center">
+              </div>
 
+              <div class="d-flex flex-column">
+                <h1 class="ma-4"> Personal Data </h1>
+                <ProfilePageDataComponent text-left="Your Email:" :text-right="user ? user.email : 'Not set'"/>
+                <ProfilePageDataComponent text-left="Last login:" :text-right="lastTimeLogedIn"/>
+                <ProfilePageDataComponent text-left="Session Expiration:" :text-right="sessionExporation"/>
+              </div>
 
-              </v-card-text>
-              <v-card-text>
-                <p>Your Car Details</p>
-                <p>{{ message }}</p>
-                <p>Car brand: {{ carData.carbrand }}</p>
-                <p>Car model: {{ carData.carmodel }} </p>
-              </v-card-text>
+              <hr>
 
-              <v-card-subtitle class="headline"> Edit your Profile</v-card-subtitle>
+              <div class="d-flex flex-column">
+                <h1 class="ma-4"> Car Details </h1>
+                <ProfilePageDataComponent text-left="Car Brand:" :text-right="carData.carbrand"/>
+                <ProfilePageDataComponent text-left="Car Model:" :text-right="carData.carmodel"/>
+              </div>
+
+              <hr>
+
+              <h1 class="ma-4"> Edit your Profile </h1>
               <v-card-text>
                 <v-btn @click="addACar">Change your Car</v-btn>
               </v-card-text>
               <v-card-text>
-                <p>Your session Token is {{ sessionID }}</p>
+                <v-expansion-panels>
+                  <v-expansion-panel>
+                    <v-expansion-panel-header> Your Session Token</v-expansion-panel-header>
+                    <v-expansion-panel-content> {{ sessionID }}</v-expansion-panel-content>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+              </v-card-text>
+              <v-card-text>
                 <v-btn @click="newToken">Get New Token</v-btn>
               </v-card-text>
 
@@ -62,8 +78,8 @@ export default {
       uID: "",
       sessionID: "",
       name: "",
-      lastTimeLogedIn :"",
-      sessionExporation :""
+      lastTimeLogedIn: "",
+      sessionExporation: ""
     }
   },
   async created() {
@@ -144,5 +160,16 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
+#font-size-4vw {
+  font-size: max(3vw, 24px);
+  margin-bottom: max(1vw, 10px);
+}
+
+#translucentBackground {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: auto;
+}
+
 </style>

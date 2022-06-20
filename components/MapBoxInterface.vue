@@ -1,39 +1,13 @@
 <template>
   <v-app>
-
-    <v-card
-      v-show="mobile"
-      class="mt-0"
-      width="100%"
-      max-height="100%"
-    >
-
-
-      <v-card-title class="ml-7 mr-5 mt-0 mb-0">
-        Click for Details
-        <v-spacer/>
-        <v-card-actions>
-          <v-spacer/>
-          <v-btn
-            icon
-            @click="show = !show"
-          >
-            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-          </v-btn>
-        </v-card-actions>
-      </v-card-title>
-
-      <v-expand-transition fluid>
-        <div v-show="show">
-
-          <v-card-text>
-            Some details are implemented soon
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-header> Click for route details </v-expansion-panel-header>
+          <v-expansion-panel-content class="overflow-auto" id="mobileExpansion">
             <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
-          </v-card-text>
-
-        </div>
-      </v-expand-transition>
-    </v-card>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
 
 
     <div id="map"></div>
@@ -95,12 +69,12 @@ export default {
 
     createMap() {
 
-      let focusCoordinates =[]
+      let focusCoordinates = []
 
-      if(this.routeData != null){
-        focusCoordinates= [this.routeData.legs[0].origin?.geometry.coordinates[0],this.routeData.legs[0].origin?.geometry.coordinates[1]]
-      }else {
-        focusCoordinates =  [16.3731, 48.2083]
+      if (this.routeData != null) {
+        focusCoordinates = [this.routeData.legs[0].origin?.geometry.coordinates[0], this.routeData.legs[0].origin?.geometry.coordinates[1]]
+      } else {
+        focusCoordinates = [16.3731, 48.2083]
       }
 
       this.map = new mapboxgl.Map({
@@ -110,12 +84,6 @@ export default {
         zoom: 6,
         center: focusCoordinates
       });
-      this.map.addControl(
-        new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken,
-          mapboxgl: mapboxgl
-        })
-      )
     },
 
     drawRouteFromPolyline(routeData) {
@@ -281,9 +249,10 @@ export default {
 .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip,
-.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip{
-  display:none !important;
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+  display: none !important;
 }
+
 /* The anchor is now in the forever box <3 */
 
 #errorMsg {
@@ -291,6 +260,10 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#mobileExpansion {
+  height: 100vh
 }
 
 </style>

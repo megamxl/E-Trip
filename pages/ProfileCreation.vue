@@ -27,7 +27,7 @@
 
                 <v-autocomplete label="Car model" :items="brandModels" v-model="carmodel" required outlined></v-autocomplete>
 
-                <v-btn id="submitButton" block x-large class="mr-4" @click="submitData" rounded>Submit</v-btn>
+                <v-btn :disabled="allowSend" id="submitButton" block x-large class="mr-4" @click="submitData" rounded>Submit</v-btn>
 
               </v-form>
             </div>
@@ -62,6 +62,14 @@ export default {
         modelNames.push(`${carModel[0]} ${carModel[1][0]}`);
       }
       return modelNames;
+    }
+  },
+
+  computed: {
+    allowSend() {
+      console.log(`Carbrand: ${this.carbrand} - Carmodel: ${this.carmodel}`);
+      return !((this.carbrand !== '' && this.carbrand !== null)
+        && (this.carmodel !== '' && this.carmodel != null))
     }
   },
 
@@ -196,9 +204,9 @@ form {
 }
 
 #submitButton {
-  background: #398A0B !important;
-  color: #fff !important;
-  width: 10rem !important;
+  background: #398A0B;
+  color: #fff;
+  width: 10rem;
   margin-top: 2rem;
   margin-left: 0.1%;
   margin-bottom: 1rem;

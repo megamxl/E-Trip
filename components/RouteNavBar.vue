@@ -11,14 +11,14 @@
           <v-btn v-bind="attrs"
                  v-on="on"
                  plain
-                 block
                  id="hambugerMenu">
             <v-app-bar-nav-icon></v-app-bar-nav-icon>
           </v-btn>
         </template>
-        <v-list block class="mt-2" full-width>
+        <v-list class="mt-2" style="width: 100vw">
           <v-list-item @click="toLanding">Home</v-list-item>
           <v-list-item @click="toNewRoutePage">New Route</v-list-item>
+          <v-list-item @click="toChargerSearch">Chargers near you</v-list-item>
           <v-list-item @click="toProfile">Profile
             <v-icon> mdi-account</v-icon>
           </v-list-item>
@@ -27,6 +27,8 @@
     </v-container>
 
     <v-btn v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
+    <v-spacer v-show="!mobile"/>
+    <v-btn v-show="!mobile" @click="toChargerSearch">Chargers near you</v-btn>
     <v-spacer v-show="!mobile"/>
 
     <v-btn v-show="!mobile" id="profile_" @click="toProfile"> Profile
@@ -48,6 +50,9 @@ export default {
     },
     toNewRoutePage() {
       this.$router.push("/newRoute")
+    },
+    toChargerSearch() {
+      this.$router.push("/MapBoxChargers")
     },
 
 
