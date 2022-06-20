@@ -69,9 +69,18 @@ import {doc, getDoc} from "firebase/firestore";
 
 
 export default {
+  /**
+   * computed property just reacts of input during runtime
+   * https://vuejs.org/guide/essentials/computed.html#basic-example
+   * gets us the current user state
+   */
   computed: {
     ...mapState(["user"]),
   },
+  /**
+   * local variables
+   * @returns {{uID: string, lastTimeLogedIn: string, name: string, sessionExporation: string, carData: *[], sessionID: string}}
+   */
   data() {
     return {
       carData: [],
@@ -82,9 +91,17 @@ export default {
       sessionExporation: ""
     }
   },
+
+  /**
+   * when creating the website du async things we need on load
+   * @returns {Promise<void>}
+   */
   async created() {
 
     this.message = ""
+
+    // get data from firebase with the current user loged in
+    // retrieving data from firebase to display
     this.name = await this.$fire.auth.currentUser.getIdTokenResult().then(r => r.claims.name)
     const docRef = doc(this.$fire.firestore, "users", this.$fire.auth.currentUser.uid);
 
@@ -112,6 +129,11 @@ export default {
     }
   },
   methods: {
+
+    /**
+     * gives us a new local login  token to firebase
+     * @returns {Promise<void>}
+     */
     async newToken() {
       await this.$fire.auth.currentUser.getIdToken(true)
       this.sessionID = await this.$fire.auth.currentUser.getIdTokenResult().then(r => r.token)

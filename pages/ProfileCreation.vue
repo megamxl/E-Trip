@@ -49,6 +49,14 @@ Vue.use(AsyncComputed)
 export default {
   name: "ProfileCreation",
 
+  async created(){
+    this.allCarBrandsData = await this.allCarBrands();
+  },
+
+  /**
+   * using the benefits of async and the computed, but it is not standard
+   * so we had to intall it
+   */
   asyncComputed: {
     async brandModels() {
       let response = []; let modelNames = [];
@@ -65,6 +73,11 @@ export default {
     }
   },
 
+  /**
+   * computed property just reacts of input during runtime
+   * https://vuejs.org/guide/essentials/computed.html#basic-example
+   * gets us the current user state
+   */
   computed: {
     allowSend() {
       console.log(`Carbrand: ${this.carbrand} - Carmodel: ${this.carmodel}`);
@@ -73,6 +86,19 @@ export default {
     }
   },
 
+  /**
+   * gets called after async created, also just a method which get called during page creation
+   */
+  mounted () {
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
+  /**
+   * just creating local varibles
+   * @returns {{toField: string, fromField: string}}
+   */
   data() {
     return {
       carmodel: '',
@@ -83,6 +109,11 @@ export default {
   },
 
   methods: {
+    /**
+     * makes a new document(js object)
+     * and it inserts it via firebase library to the uid of the user
+     * @returns {Promise<void>}
+     */
     async submitData() {
 
       this.selectedCarModels = this.getCarIdFromModelName();
@@ -103,19 +134,6 @@ export default {
         console.error(e)
       }
     },
-    //responsive - breakpoints
-    height () {
-      switch (this.$vuetify.breakpoint.name) {
-        case 'md': return 500
-        case 'lg': return 600
-        case 'xl': return 800
-      }
-    },
-
-    //responsive
-    onResize () {
-      this.isMobile = window.innerWidth < 600
-    },
 
     async getAllCarData(){
       return await fetch("/getAllCars").then(r => r.json())
@@ -127,11 +145,10 @@ export default {
         headers : {
           'Content-Type': 'application/json'
         },
-        //body: body
 
       }).then(res => res.json())
-      //return brands
     },
+
     async carsViaBrand(carBrand){
       return await fetch('/getCarByBrand', {
         method : "PUT",
@@ -139,27 +156,21 @@ export default {
           brand : carBrand,
           'Content-Type': 'application/json'
         },
-        //body: body
-
       }).then(res => res.json())
-      //return brands
     },
 
+    /**
+     * work with the return from our api and format it for our view
+     * @returns {string}
+     */
     getCarIdFromModelName() {
       for (const car of this.selectedCarModels) {
         if (this.carmodel === `${car[0]} ${car[1][0]}`) {
           return car[1][1]
         }
       }
-
     }
 
-  },
-
-  async created(){
-    //const all= await this.getAllCarData();
-    //console.log("all.data: ", all.data)
-    this.allCarBrandsData = await this.allCarBrands();
   },
 
   //responsive
@@ -169,12 +180,19 @@ export default {
     window.removeEventListener('resize', this.onResize, { passive: true })
   },
 
-  mounted () {
-    this.onResize()
 
-    window.addEventListener('resize', this.onResize, { passive: true })
+  height () {
+    switch (this.$vuetify.breakpoint.name) {
+      case 'md': return 500
+      case 'lg': return 600
+      case 'xl': return 800
+    }
   },
 
+  //responsive
+  onResize () {
+    this.isMobile = window.innerWidth < 600
+  },
 };
 
 

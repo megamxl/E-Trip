@@ -44,7 +44,7 @@ export default {
           body: JSON.stringify({
             longitudeStart : cords[0],
             latitudeStart: cords[1],
-            distance : 5000
+            distance : 10000
           }),
         }).then(res => res.json());
 
@@ -74,6 +74,7 @@ export default {
         }
         availablePower += `</ul>`
 
+
         const marker = new mapboxgl.Marker({
           color: "#32a852",
         })
@@ -83,17 +84,12 @@ export default {
               <h1 class="pa-2"> ${chargePoint.physical_address.formattedAddress[0]} </h1>
               <h3 class="pb-0"> Available Chargers: </h3>
               ${availablePower}
-              <button onclick='this.toMaps(this.chargerCoords)'> To Google Maps </button>
             `
           ))
           .addTo(this.map)
       }
     },
 
-    toMaps(coords) {
-      const googleDirURL = `https://www.google.com/?q=${coords[0]}.${coords[1]}`;
-      window.open(googleDirURL, '_blank').focus();
-    },
 
      makeOnLoadEvent() {
       const geocoder = new MapboxGeocoder({
@@ -113,8 +109,8 @@ export default {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: []
-          }
+            features: [],
+          },
         });
 
         geocoder.on('result',  async (event) => {

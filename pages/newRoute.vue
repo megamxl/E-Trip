@@ -58,7 +58,15 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNib
 
 export default {
 
+  /**
+   * computed property just reacts of input during runtime
+   * https://vuejs.org/guide/essentials/computed.html#basic-example
+   */
   computed: {
+    /**
+     * check if both fields are correctly filled-out, logic happens in mapbox code
+     * @returns {boolean} if the button should be clickable
+     */
     buttonDisable() {
       const toCoords = this.toField.coords;
       const fromCoords = this.fromField.coords;
@@ -71,29 +79,59 @@ export default {
       }
     }
   },
+
+  /**
+   * just creating local varibles
+   * @returns {{toField: string, fromField: string}}
+   */
   data() {
     return {
       toField: '',
       fromField: ''
     }
   },
+
+  /**
+   * gets called after async created, also just a method which get called during page creation
+   */
+  mounted() {
+    this.createSearchFields();
+
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
   methods: {
     toProfile() {
       this.$router.push("/ProfilePage");
     },
+
+    /**
+     * sett the cords in the vue x store that the rout page can access it
+     */
     forwardSearch() {
       this.$store.commit('SET_TO_FROM', {to: this.toField, from: this.fromField});
       this.$router.push("/RoutePage");
     },
 
+    /**
+     * creates the tow search-fields via  mapbox api
+     */
     createSearchFields() {
+      // mapbox initialisation
       const geocoderTo = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         types: 'address'
       });
 
+      // creating geocoder
       geocoderTo.addTo('#geocoderTo');
+
+      // adding it to dom via vue
       const resultsTo = document.getElementById('#resultTo');
+
+      //settings for the appearance of geocodefield
       geocoderTo.on('result', (e) => {
         this.toField = {coords: e.result.center, name: e.result.place_name};
         resultsTo.innerText = JSON.stringify(e.result, null, 2);
@@ -106,13 +144,19 @@ export default {
 
       /* ----------------------------------------------------------------------------------- */
 
+      // mapbox initialisation
       const geocoderFrom = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         types: 'address'
       });
 
+      // creating geocoder
       geocoderFrom.addTo('#geocoderFrom');
+
+      // adding it to dom via vue
       const resultsFrom = document.getElementById('#resultFrom');
+
+      //settings for the appearance of geocodefield
       geocoderFrom.on('result', (e) => {
         this.fromField = {coords: e.result.center, name: e.result.place_name};
         resultsFrom.innerText = JSON.stringify(e.result, null, 2);
@@ -122,7 +166,6 @@ export default {
         this.fromField.coords = null;
         resultsFrom.innerText = '';
       })
-
 
     },
     //responsive - breakpoints
@@ -145,13 +188,7 @@ export default {
 
     window.removeEventListener('resize', this.onResize, { passive: true })
   },
-  mounted() {
-    this.createSearchFields();
 
-    this.onResize()
-
-    window.addEventListener('resize', this.onResize, { passive: true })
-  },
   name: "LandingPage"
 }
 </script>

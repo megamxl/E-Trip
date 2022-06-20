@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import {routeStore} from "@/store";
-
+/**
+ * just loads the landing page component
+ */
 export default {
   name: "App",
-
 }
 </script>
 
