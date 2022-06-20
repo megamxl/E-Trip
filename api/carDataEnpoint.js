@@ -15,6 +15,10 @@ function isEmpty(obj) {
   return Object.keys(obj.data.carList).length === 0
 }
 
+/**
+ * works with a body from a request and returns the graphql query
+ * @type {string} carListAll
+ */
 const carListAll = 'query carListAll {\n' +
   '  carList(size:407) {\n' +
   '    id\n' +
@@ -26,6 +30,10 @@ const carListAll = 'query carListAll {\n' +
   '    }\n' +
   '  }}';
 
+/**
+ * works with a body from a request and returns the graphql query
+ * @type {string} All Car brand
+ */
 const carListAllBrands = 'query carListAll {\n' +
   '  carList(size:407) {\n' +
   '   naming {\n' +
@@ -33,7 +41,10 @@ const carListAllBrands = 'query carListAll {\n' +
   '    }\n' +
   '  }}';
 
-
+/**
+ * detail fro a car with id
+ * @type {string}
+ */
 const carID = 'query car($carId: ID!) {\n'+
   '  car(id: $carId) {\n'+
   '    id\n'+
@@ -136,6 +147,10 @@ const carID = 'query car($carId: ID!) {\n'+
   '}\n'+
   '';
 
+/**
+ * detail fro a car with id
+ * @type {string}
+ */
 function brandquery(brandName) {
   return 'query carListSearch {\n' +
     '  carList(\n' +
@@ -157,6 +172,14 @@ function generateCarID(id) {
   return '{"carId":"' + id + '"}';
 }
 
+
+/**
+ * handwritten graphQlRequest request with provided query
+ * @param ourBody the query
+ * @param xmlHeader info if the output should be xml
+ * @param ourVariables variable if you want to change something in the query
+ * @returns {Promise<string|any>} the response from chargetrip
+ */
 async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
   let answer = await fetch('https://api.chargetrip.io/graphql', {
     method: 'POST',
@@ -189,10 +212,16 @@ Additionally, GET (and HEAD) is idempotent, which means that making multiple ide
 Do not expose unsafe operations via GET—it should never modify any resources on the server.
 */
 
+/**
+ * sends a json of all know cars
+ */
 app.get('/getAllCars', async (req, res) => {
   res.send(await graphQLRequest(carListAll, req.headers.xml))
 });
 
+/**
+ * sends details over one car back if id is valid, else status 400
+ */
 app.get('/getCarById', async (req, res) => {
   if (checkcarid(req.headers.id)) {
     res.send(await graphQLRequest(carID, req.headers.xml, generateCarID(req.headers.id)))
@@ -205,53 +234,83 @@ function checkBrand(brandString) {
   return (typeof brandString === "string")
 }
 
+/*
+PUT is most-often utilized for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource.
+However, PUT can also be used to create a resource in the case where the resource ID is chosen by the client instead of by the server. In other words, if the PUT is to a URI that contains the value of a non-existent resource ID.
+Again, the request body contains a resource representation. Many feel this is convoluted and confusing. Consequently, this method of creation should be used sparingly, if at all.
+Alternatively, use POST to create new resources and provide the client-defined ID in the body representation—presumably to a URI that doesn't include the ID of the resource (see POST below).
+On successful update, return 200 (or 204 if not returning any content in the body) from a PUT. If using PUT for create, return HTTP status 201 on successful creation.
+A body in the response is optional—providing one consumes more bandwidth. It is not necessary to return a link via a Location header in the creation case since the client already set the resource ID.
+PUT is not a safe operation, in that it modifies (or creates) state on the server, but it is idempotent. In other words, if you create or update a resource using PUT and then make that same call again, the resource is still there and still has the same state as it did with the first call.
+If, for instance, calling PUT on a resource increments a counter within the resource, the call is no longer idempotent. Sometimes that happens and it may be enough to document that the call is not idempotent.
+However, it's recommended to keep PUT requests idempotent. It is strongly recommended to use POST for non-idempotent requests.
+*/
 
+
+/**
+ * updates the car models based on brand name
+ */
 app.put('/getCarByBrand', async (req, res) => {
   if (req.headers.xml === "true") {
-    console.log("headers:", req.headers)
     res.send(await graphQLRequest(brandquery(req.headers.brand), req.headers.xml))
+
   } else if (checkBrand(req.headers.brand)) {
     const answer = await graphQLRequest(brandquery(req.headers.brand), req.headers.xml)
+
     if (isEmpty(answer) === true) {
       res.send("Sorry there were no matching results")
+
     } else {
-      let models = [""], count = 1
 
-      //console.log("answer : " , answer.data.carList)
+      let models = [""], version = []
 
-      count = 0;
+      //looping threw the answer
       for (let x in answer.data.carList) {
-        //console.log("models[count] : ", models[count][0])
-        let version = []
 
-
+        // resting current array
         version.length = 0
+        // add version and id to local array
         version.push(answer.data.carList[x].naming.version)
         version.push(answer.data.carList[x].id)
-        let test = [answer.data.carList[x].naming.model, version]
-        models.push(test)
-        count += 1
-
-
+        // add the new entry to the final array
+        models.push( [answer.data.carList[x].naming.model, version])
       }
-      const collection = [models]
+
+      // remove first element because it has to be declared because of my datastructures check
       models.shift()
-      //console.log("answer:", answer.data)
+
       res.send(models)
     }
   }
 })
 
+/*
+DELETE is pretty easy to understand. It is used to **delete** a resource identified by a URI.
+On successful deletion, return HTTP status 200 (OK) along with a response body, perhaps the representation of the deleted item (often demands too much bandwidth), or a wrapped response (see Return Values below). Either that or return HTTP status 204 (NO CONTENT) with no response body.
+In other words, a 204 status with no body, or the JSEND-style response and HTTP status 200 are the recommended responses.
+HTTP-spec-wise, DELETE operations are idempotent. If you DELETE a resource, it's removed. Repeatedly calling DELETE on that resource ends up the same: the resource is gone.
+If calling DELETE say, decrements a counter (within the resource), the DELETE call is no longer idempotent. As mentioned previously, usage statistics and measurements may be updated while still considering the service idempotent as long as no resource data is changed.
+Using POST for non-idempotent resource requests is recommended.
+There is a caveat about DELETE idempotence, however. Calling DELETE on a resource a second time will often return a 404 (NOT FOUND) since it was already removed and therefore is no longer findable.
+This, by some opinions, makes DELETE operations no longer idempotent, however, the end-state of the resource is the same. Returning a 404 is acceptable and communicates accurately the status of the call.
+*/
+
+
+/**
+ * deletes the duplicates in brand-names returned from chargetrip
+ */
 app.delete('/getCarBrands', async (req, res) => {
   const duplicateModels = await graphQLRequest(carListAllBrands, req.headers.xml);
-  //console.log("duplicate Models.data: ", duplicateModels.data)
-  let noDuplicates = ["Aiways"]
+  // set the first element to the first car in response
+  let noDuplicates = [duplicateModels.data.carList[0].naming.make]
+
+  //loop threw data in response
   for (let currentModel in duplicateModels.data.carList) {
+    // if new entry add it to response
     if (noDuplicates[noDuplicates.length - 1] === (duplicateModels.data.carList[currentModel].naming.make) === false) {
       noDuplicates.push(duplicateModels.data.carList[currentModel].naming.make)
     }
   }
-  //console.log(JSON.stringify( noDuplicates))
   await res.send((noDuplicates));
 })
 
