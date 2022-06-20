@@ -4,7 +4,7 @@
       <v-app-bar>
         <BasicNavBarLanding/>
         <v-spacer/>
-          <v-btn @click="logout">Logout</v-btn>
+        <v-btn @click="logout">Logout</v-btn>
       </v-app-bar>
 
 
@@ -13,28 +13,31 @@
           <v-col cols="12" sm="10" md="6" lg="6" xl="4">
             <v-card>
               <v-card-title class="headline"> Your Profile</v-card-title>
+              <v-img src="/renault-trezor-concept-01_0-removebg.png"></v-img>
               <v-card-text>
-                <p>This page is only for you.</p>
+                <p>Hello {{ name }} </p>
                 <p>Your e-mail is {{ user ? user.email : "" }}</p>
+                <p>Your last login is {{ lastTimeLogedIn }}</p>
+                <p>Your session exporation is {{ sessionExporation }}</p>
 
-                <v-card-text>
-
-                </v-card-text>
 
               </v-card-text>
               <v-card-text>
-                <p>Your Car Data</p>
-                <p>{{message}}</p>
-                <p>Your Car brand: {{carData.carbrand}}</p>
-                <p>Your Car model: {{carData.carmodel}} </p>
-                <p>Your Car ID: {{carData.carID}} </p>
-                <p>Your Maximum range: {{carData.realrange}} </p>
+                <p>Your Car Details</p>
+                <p>{{ message }}</p>
+                <p>Car brand: {{ carData.carbrand }}</p>
+                <p>Car model: {{ carData.carmodel }} </p>
               </v-card-text>
 
               <v-card-subtitle class="headline"> Edit your Profile</v-card-subtitle>
               <v-card-text>
-                <v-btn @click="addACar">Add a Car</v-btn>
+                <v-btn @click="addACar">Change your Car</v-btn>
               </v-card-text>
+              <v-card-text>
+                <p>Your session Token is {{ sessionID }}</p>
+                <v-btn @click="newToken">Get New Token</v-btn>
+              </v-card-text>
+
             </v-card>
           </v-col>
         </v-row>
@@ -46,8 +49,7 @@
 
 <script>
 import {mapState} from "vuex";
-import { doc, getDoc } from "firebase/firestore";
-
+import {doc, getDoc} from "firebase/firestore";
 
 
 export default {
@@ -57,32 +59,47 @@ export default {
   data() {
     return {
       carData: [],
-      uID: ""
+      uID: "",
+      sessionID: "",
+      name: "",
+      lastTimeLogedIn :"",
+      sessionExporation :""
     }
   },
-  async fetch(){
+  async created() {
 
-    this.message =""
+    this.message = ""
+    this.name = await this.$fire.auth.currentUser.getIdTokenResult().then(r => r.claims.name)
     const docRef = doc(this.$fire.firestore, "users", this.$fire.auth.currentUser.uid);
 
-    console.log("fire.currentUser.", await this.$fire.auth.currentUser.getIdTokenResult())
-    try{
+    const userData = await this.$fire.auth.currentUser.getIdTokenResult().then(r => r)
+
+    this.sessionID = userData.token
+
+    this.lastTimeLogedIn = userData.authTime
+    this.sessionExporation = userData.expirationTime
+
+    try {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.carData = docSnap.data()
-      }else {
+      } else {
         this.message = "No data connected to your user"
-        this.carData ={
+        this.carData = {
           carcarbrand: "",
-          carmodel:"",
+          carmodel: "",
           realrange: "",
           carid: ""
         }
       }
-    }catch(e){
+    } catch (e) {
     }
   },
   methods: {
+    async newToken() {
+      await this.$fire.auth.currentUser.getIdToken(true)
+      this.sessionID = await this.$fire.auth.currentUser.getIdTokenResult().then(r => r.token)
+    },
     async logout() {
       await this.$fire.auth.signOut();
       this.$router.replace("/");
@@ -91,16 +108,19 @@ export default {
       this.$router.push('ProfileCreation');
     },
     //responsive - breakpoints
-    height () {
+    height() {
       switch (this.$vuetify.breakpoint.name) {
-        case 'md': return 500
-        case 'lg': return 600
-        case 'xl': return 800
+        case 'md':
+          return 500
+        case 'lg':
+          return 600
+        case 'xl':
+          return 800
       }
     },
 
     //responsive
-    onResize () {
+    onResize() {
       this.isMobile = window.innerWidth < 600
     },
 
@@ -108,19 +128,18 @@ export default {
 
 
   //responsive
-  beforeDestroy () {
+  beforeDestroy() {
     if (typeof window === 'undefined') return
 
-    window.removeEventListener('resize', this.onResize, { passive: true })
+    window.removeEventListener('resize', this.onResize, {passive: true})
   },
-  mounted () {
+  mounted() {
     this.onResize()
 
-    window.addEventListener('resize', this.onResize, { passive: true })
+    window.addEventListener('resize', this.onResize, {passive: true})
   },
 
 };
-
 
 
 </script>

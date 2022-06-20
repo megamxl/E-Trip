@@ -27,10 +27,6 @@
 
                 <v-autocomplete label="Car model" :items="brandModels" v-model="carmodel" required outlined></v-autocomplete>
 
-                <v-text-field label="Real range" v-model="realrange" required outlined></v-text-field>
-
-                <v-text-field label="Usable-kwh" v-model="usableKwh" required outlined></v-text-field>
-
                 <v-btn id="submitButton" block x-large class="mr-4" @click="submitData" rounded>Submit</v-btn>
 
               </v-form>
@@ -73,8 +69,6 @@ export default {
     return {
       carmodel: '',
       carbrand: '',
-      realrange: 0,
-      usableKwh: 0,
       selectedCarModels: '',
       allCarBrandsData: []
     }
@@ -89,8 +83,6 @@ export default {
       const document = {
         carbrand: this.carbrand,
         carmodel: this.carmodel,
-        realrange: this.realrange,
-        usableKwh: this.usableKwh,
         carID: this.selectedCarModels
       }
 
