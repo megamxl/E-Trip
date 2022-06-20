@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <v-expansion-panels>
+      <v-expansion-panels v-show="mobile">
         <v-expansion-panel>
           <v-expansion-panel-header> Click for route details </v-expansion-panel-header>
           <v-expansion-panel-content class="overflow-auto" id="mobileExpansion">
