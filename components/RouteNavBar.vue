@@ -1,10 +1,11 @@
 <template>
 
   <v-app-bar>
+    <!--E-Trip Button is only shown if !mobile!! -->
     <v-btn v-show="!mobile" @click="toLanding"> E-Trip</v-btn>
     <v-spacer v-show="!mobile"/>
 
-    <!-- mobile version: -->
+    <!-- mobile version: hamburgerMenu + Dropdown .... only shown if mobile!! -->
     <v-container v-show="mobile" class="justify-start ml-0 pl-0 mr-0 pl-0">
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -26,11 +27,11 @@
       </v-menu>
     </v-container>
 
+    <!--Buttons only shown if !mobile!! -->
     <v-btn v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
     <v-spacer v-show="!mobile"/>
     <v-btn v-show="!mobile" @click="toChargerSearch">Chargers near you</v-btn>
     <v-spacer v-show="!mobile"/>
-
     <v-btn v-show="!mobile" id="profile_" @click="toProfile"> Profile
       <v-icon> mdi-account</v-icon>
     </v-btn>
@@ -56,7 +57,7 @@ export default {
     },
 
 
-    //responsive
+    //responsive - mobile Version starts with windowWidth 600;
     checkScreen() {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth < 600) {
@@ -68,19 +69,17 @@ export default {
   },
   data() {
     return {
+      //responsive
       mobile: true,
       windowWidth: null,
-      collapseOnScroll: true,
-      updateScroll: null
     }
   },
+
+  //responsive
   created() {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
   },
-  mounted() {
-    window.addEventListener('scroll', this.updateScroll)
-  }
 }
 </script>
 
@@ -92,5 +91,4 @@ export default {
 #hambugerMenu {
   text-align: left;
 }
-
 </style>

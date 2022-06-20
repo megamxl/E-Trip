@@ -89,6 +89,7 @@ export default {
   /**
    * gets called after async created, also just a method which get called during page creation
    */
+  //responsive
   mounted () {
     this.onResize()
 
@@ -169,8 +170,20 @@ export default {
           return car[1][1]
         }
       }
-    }
+    },
 
+    height () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'md': return 500
+        case 'lg': return 600
+        case 'xl': return 800
+      }
+    },
+
+    //responsive
+    onResize () {
+      this.isMobile = window.innerWidth < 600
+    },
   },
 
   //responsive
@@ -178,20 +191,6 @@ export default {
     if (typeof window === 'undefined') return
 
     window.removeEventListener('resize', this.onResize, { passive: true })
-  },
-
-
-  height () {
-    switch (this.$vuetify.breakpoint.name) {
-      case 'md': return 500
-      case 'lg': return 600
-      case 'xl': return 800
-    }
-  },
-
-  //responsive
-  onResize () {
-    this.isMobile = window.innerWidth < 600
   },
 };
 
@@ -216,11 +215,6 @@ form {
 
 }
 
-#subtitle_ {
-  font-size: medium;
-  padding-left: 0rem;
-}
-
 #submitButton {
   background: #398A0B;
   color: #fff;
@@ -237,6 +231,4 @@ form {
   margin-top: -8rem;
   padding-left: 1rem;
 }
-
-
 </style>

@@ -131,6 +131,7 @@ export default {
 
 
     },
+
     //responsive - breakpoints
     height() {
       switch (this.$vuetify.breakpoint.name) {
@@ -189,18 +190,20 @@ h4 {
   margin-bottom: 10px;
 }
 
+
+/*z-index here avoids overlapping of "To-Suche-Feld" - z-index can only be used in combination with position*/
 #geocoderTo {
   position: relative;
   z-index: 9;
 }
-
 #geocoderFrom {
   position: relative;
   z-index: 99;
 }
 
-@media screen and (max-width:801px) {
 
+/*responsive media-queries - 3 breakpoints: 801px, 600px, 500py  */
+@media screen and (max-width:801px) {
   h1 {
     font-size: large;
     font-weight: initial;
@@ -217,30 +220,23 @@ h4 {
     height: 70%;
     padding: 10rem 0;
   }
-
   .left, .right {
     padding: 0 3rem;
     width: 100%;
     flex-direction: row;
   }
-
   .background {
     background-attachment: fixed;
   }
 }
-
 @media screen and (max-width:500px) {
-
   .left, .right {
     padding: 0 1.5rem;
   }
 }
-
 @media screen and (max-width:600px) {
   #h1Create {
     font-size: larger;
   }
 }
-
-
 </style>

@@ -156,27 +156,24 @@ export default {
           return 800
       }
     },
-
     //responsive
     onResize() {
       this.isMobile = window.innerWidth < 600
     },
 
   },
-
-
   //responsive
   beforeDestroy() {
     if (typeof window === 'undefined') return
 
     window.removeEventListener('resize', this.onResize, {passive: true})
   },
+  //responsive
   mounted() {
     this.onResize()
 
     window.addEventListener('resize', this.onResize, {passive: true})
   },
-
 };
 
 

@@ -1,5 +1,7 @@
 <template>
   <v-app>
+
+    <!--responsive; v-expansion-panels for mobile version -->
       <v-expansion-panels v-show="mobile">
         <v-expansion-panel>
           <v-expansion-panel-header> Click for route details </v-expansion-panel-header>
@@ -11,6 +13,8 @@
 
 
     <div id="map"></div>
+
+    <!--RouterPageTripInfo is only shown if !mobile!! -->
     <RoutePageTripInfo v-show="!mobile" v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
     <v-card id="errorMsg" v-if="routeData == null">
       <v-card-title> Your route is not reachable with provided configuration</v-card-title>
@@ -33,9 +37,10 @@ export default {
   data() {
     return {
       map: {},
+
+      //responsive
       mobile: null,
       windowWidth: null,
-      show: false
     }
   },
   props: {
@@ -51,6 +56,7 @@ export default {
     if (this.routeData != null) this.drawRouteFromPolyline(this.routeData);
   },
 
+  //responsive
   created() {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
@@ -265,5 +271,4 @@ export default {
 #mobileExpansion {
   height: 100vh
 }
-
 </style>

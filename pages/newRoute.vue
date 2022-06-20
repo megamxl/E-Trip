@@ -5,6 +5,8 @@
       <v-content>
         <BasicNavBarLanding/>
       </v-content>
+
+      <!--add another Button in Nav-bar/App-bar -->
       <v-btn id="profile_" @click="toProfile"> Profile
         <v-icon> mdi-account</v-icon>
       </v-btn>
@@ -87,7 +89,8 @@ export default {
   data() {
     return {
       toField: '',
-      fromField: ''
+      fromField: '',
+      isMobile: null
     }
   },
 
@@ -97,8 +100,9 @@ export default {
   mounted() {
     this.createSearchFields();
 
-    this.onResize()
 
+    //responsive
+    this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
   },
 
@@ -202,7 +206,6 @@ export default {
   height: 100vh;
   background: url("assets/car.jpg") no-repeat top center fixed;
   background-size: cover;
-
 }
 
 #cardArea {
@@ -223,11 +226,11 @@ h4 {
   margin-bottom: 2rem;
 }
 
+/*z-index here avoids overlapping of "To Suche-Feld" - z-index can only be used in combination with position*/
 #geocoderTo {
   position: relative;
   z-index: 9;
 }
-
 #geocoderFrom {
   position: relative;
   z-index: 99;
