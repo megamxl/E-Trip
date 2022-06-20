@@ -5,16 +5,18 @@
     <v-spacer v-show="!mobile"/>
 
     <!-- mobile version: -->
-    <v-container v-show="mobile" class="justify-start">
+    <v-container v-show="mobile" class="justify-start ml-0 pl-0 mr-0 pl-0">
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs"
                  v-on="on"
-                 plain>
+                 plain
+                 block
+                 id="hambugerMenu">
             <v-app-bar-nav-icon></v-app-bar-nav-icon>
           </v-btn>
         </template>
-        <v-list>
+        <v-list block class="mt-2" full-width>
           <v-list-item @click="toLanding">Home</v-list-item>
           <v-list-item @click="toNewRoutePage">New Route</v-list-item>
           <v-list-item @click="toProfile">Profile
@@ -80,6 +82,10 @@ export default {
 <style scoped>
 #profile_ {
   color: #fff;
+}
+
+#hambugerMenu {
+  text-align: left;
 }
 
 </style>

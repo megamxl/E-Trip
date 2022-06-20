@@ -1,10 +1,47 @@
 <template>
   <v-app>
+
+    <v-card
+      v-show="mobile"
+      class="mt-0"
+      width="100%"
+      max-height="100%"
+    >
+
+
+      <v-card-title class="ml-7 mr-5 mt-0 mb-0">
+        Click for Details
+        <v-spacer/>
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn
+            icon
+            @click="show = !show"
+          >
+            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card-title>
+
+      <v-expand-transition fluid>
+        <div v-show="show">
+
+          <v-card-text>
+            Some details are implemented soon
+            <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
+          </v-card-text>
+
+        </div>
+      </v-expand-transition>
+    </v-card>
+
+
     <div id="map"></div>
-    <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
+    <RoutePageTripInfo v-show="!mobile" v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
     <v-card id="errorMsg" v-if="routeData == null">
       <v-card-title> Your route is not reachable with provided configuration</v-card-title>
     </v-card>
+
   </v-app>
 </template>
 
@@ -22,6 +59,9 @@ export default {
   data() {
     return {
       map: {},
+      mobile: null,
+      windowWidth: null,
+      show: false
     }
   },
   props: {
@@ -36,7 +76,22 @@ export default {
     this.createMap();
     if (this.routeData != null) this.drawRouteFromPolyline(this.routeData);
   },
+
+  created() {
+    window.addEventListener('resize', this.checkScreen);
+    this.checkScreen();
+  },
   methods: {
+
+    //responsive
+    checkScreen() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth < 600) {
+        this.mobile = true;
+        return;
+      }
+      this.mobile = false;
+    },
 
     createMap() {
 
@@ -195,6 +250,7 @@ export default {
       const minutes = Math.floor((seconds % 3600) / 60);
       return {hours: hours, minutes: minutes};
     },
+
   },
 }
 </script>
