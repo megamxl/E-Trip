@@ -1,12 +1,20 @@
+// importing all library to handle our request to charge trips.
 const express = require('express');
 const https = require("https");
 import fetch from 'node-fetch';
+
 const options = {compact: true, ignoreComment: true, spaces: 4}
 const xml = require('xml-js');
 
+// creating the first endpoint like in ex 4
 const app = express();
 app.use(express.json());
 
+/**
+ * works with a body from a request and returns the graphql query
+ * @param body response body with  chargeValue, chargeValueType, occupants, longitudeStart, latitudeStart, cityStart, countryStart, longitudeEnd, latitudeEnd, cityEnd, countryEnd ,carID
+ * @returns {string} the query for a new route
+ */
 function routeId(body) {
   return 'mutation newRoute($carId: ID!) {\n' +
     '  newRoute(\n' +
@@ -29,6 +37,12 @@ function routeId(body) {
     '}';
 }
 
+
+/**
+ * gets the route from chargetrip server
+ * @param routeID a created id from chargetrip
+ * @returns {string} query for a route from chargetrip
+ */
 function planRoute(routeID) {
   return 'query getRoute {\n' +
     '  route(id: "' + routeID + '") {\n' +
@@ -135,40 +149,54 @@ function planRoute(routeID) {
 function carId(carID) {
   return '{"carId":"' + carID + '"}';
 }
+
+/**
+ * lets the process sleep
+ * @param ms tiem in ms
+ * @returns {Promise<unknown>} basically nothing but NOP
+ */
 function sleep(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
 
+/**
+ * handwritten graphQlRequest request with provided query
+ * @param ourBody the query
+ * @param xmlHeader info if the output should be xml
+ * @param ourVariables variable if you want to change something in the query
+ * @returns {Promise<string|any>} the response from chargetrip
+ */
 async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
 
-    const answer = await fetch('https://api.chargetrip.io/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-client-id': '629260ebcd5a29ea146908e4',
-      },
-      body: JSON.stringify({
-        query: ourBody,
-        variables: ourVariables,
-      })
-    }).then(r => r.json());
-    // console.log("Answer: ", answer);
-  //  if(answer.data.route.status === 'processing') {
-      if (xmlHeader === "true") {
-        return xml.json2xml(answer, options)
-      } else {
-        return answer
-      }
-  //  }
+   // fetch ( url, options ) option is an object
+  const answer = await fetch('https://api.chargetrip.io/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-client-id': '629260ebcd5a29ea146908e4',
+    },
+    body: JSON.stringify({
+      query: ourBody,
+      variables: ourVariables,
+    })
+  }).then(r => r.json());
 
+  if (xmlHeader === "true") {
+    return xml.json2xml(answer, options)
+  } else {
+    return answer
+  }
 }
 
+/**
+ * returns route if provided id is there
+ */
 app.get('/getRoute', async (req, res) => {
-  // console.log("Passed values: ", await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid)))
   let test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
-  while (test.data.route.status === 'processing'){
+  // because the server takes it time we check if our route is finished if not we do it until we have one
+  while (test.data.route.status === 'processing') {
     await sleep(50);
     test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
   }
@@ -183,44 +211,13 @@ POST is neither safe nor idempotent. It is therefore recommended for non-idempot
 
 */
 
+
+/**
+ * if all provided detail are valid you will get a route id back and if not the false infos will be the response
+ */
 app.post('/createRoute', async (req, res) => {
   res.send(await graphQLRequest(routeId(req.body), req.headers.xml, carId(req.body.carID)))
-
 });
-
-/*
-DELETE is pretty easy to understand. It is used to **delete** a resource identified by a URI.
-On successful deletion, return HTTP status 200 (OK) along with a response body, perhaps the representation of the deleted item (often demands too much bandwidth), or a wrapped response (see Return Values below). Either that or return HTTP status 204 (NO CONTENT) with no response body.
-In other words, a 204 status with no body, or the JSEND-style response and HTTP status 200 are the recommended responses.
-HTTP-spec-wise, DELETE operations are idempotent. If you DELETE a resource, it's removed. Repeatedly calling DELETE on that resource ends up the same: the resource is gone.
-If calling DELETE say, decrements a counter (within the resource), the DELETE call is no longer idempotent. As mentioned previously, usage statistics and measurements may be updated while still considering the service idempotent as long as no resource data is changed.
-Using POST for non-idempotent resource requests is recommended.
-There is a caveat about DELETE idempotence, however. Calling DELETE on a resource a second time will often return a 404 (NOT FOUND) since it was already removed and therefore is no longer findable.
-This, by some opinions, makes DELETE operations no longer idempotent, however, the end-state of the resource is the same. Returning a 404 is acceptable and communicates accurately the status of the call.
-
-*/
-
-app.delete('/removeRoute', async (req, res) => {
-
-});
-
-/*
-PUT is most-often utilized for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource.
-However, PUT can also be used to create a resource in the case where the resource ID is chosen by the client instead of by the server. In other words, if the PUT is to a URI that contains the value of a non-existent resource ID.
-Again, the request body contains a resource representation. Many feel this is convoluted and confusing. Consequently, this method of creation should be used sparingly, if at all.
-Alternatively, use POST to create new resources and provide the client-defined ID in the body representation—presumably to a URI that doesn't include the ID of the resource (see POST below).
-On successful update, return 200 (or 204 if not returning any content in the body) from a PUT. If using PUT for create, return HTTP status 201 on successful creation.
-A body in the response is optional—providing one consumes more bandwidth. It is not necessary to return a link via a Location header in the creation case since the client already set the resource ID.
-PUT is not a safe operation, in that it modifies (or creates) state on the server, but it is idempotent. In other words, if you create or update a resource using PUT and then make that same call again, the resource is still there and still has the same state as it did with the first call.
-If, for instance, calling PUT on a resource increments a counter within the resource, the call is no longer idempotent. Sometimes that happens and it may be enough to document that the call is not idempotent.
-However, it's recommended to keep PUT requests idempotent. It is strongly recommended to use POST for non-idempotent requests.
-*/
-
-app.put('/mutateRoute', async (req, res) => {
-
-
-});
-
 
 module.exports = app
 
