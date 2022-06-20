@@ -56,6 +56,12 @@
 <script>
 export default {
   layout: "plain",
+
+  /**
+   * uses vue's data competent to work with data in html  https://vuejs.org/guide/essentials/component-basics.html#defining-a-component
+   * and with this we use regexes to check if the user input is valid
+   * @returns {{valid: boolean, snackbarSuccess: boolean, errorMessage: string, emailRules: (function(*))[], snackbar: boolean, successMessage: string, email: string}}
+   */
   data: () => ({
     valid: true,
     email: "",
@@ -63,6 +69,7 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
+    //snackbar per default false because no firebase error here before submitting
     snackbar: false,
     errorMessage: "",
     snackbarSuccess: false,
@@ -70,7 +77,11 @@ export default {
   }),
 
   methods: {
+    /**
+     * submits email to firebase and show if call works via snackbar again
+     */
     resetPassword() {
+
       let formValidation = this.$refs.form.validate();
 
       if (formValidation) {
@@ -82,7 +93,6 @@ export default {
               "Reset Password link sent to your email address. Please check your inbox";
           })
           .catch((error) => {
-            console.log("Reset Password error", error);
             this.snackbar = true;
             this.errorMessage = error.message;
           });

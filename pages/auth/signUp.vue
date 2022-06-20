@@ -81,6 +81,11 @@
 <script>
 export default {
   layout: "plain",
+  /**
+   * uses vue's data competent to work with data in html  https://vuejs.org/guide/essentials/component-basics.html#defining-a-component
+   * and with this we use regexes to check if the user input is valid
+   * @returns {{valid: boolean, password: string, name: string, nameRules: (function(*))[], passwordRules: (function(*))[], errorMessage: string, show: boolean, emailRules: (function(*))[], snackbar: boolean, email: string}}
+   */
   data: () => ({
     valid: true,
     name: "",
@@ -104,6 +109,10 @@ export default {
   }),
 
   methods: {
+    /**
+     * login function requires the firebase setup in nuxt config js
+     * local checks for data correctness via regexes
+     */
     createAccount() {
       let formValidation = this.$refs.form.validate();
 
@@ -117,26 +126,15 @@ export default {
                 // Email verification sent!
                 // ...
               })
-              .catch((error) => {
-                console.log(
-                  "Caught error in sending email verification link to user",
-                  error
-                );
-              });
+              .catch((error) => {});
 
             const currentUser = this.$fire.auth.currentUser;
             currentUser
               .updateProfile({
                 displayName: this.name,
-                // photoURL: "https://example.com/jane-q-user/profile.jpg",
               })
-              .then(() => {
-                // Update successful
-                // ...
-              })
-              .catch((error) => {
-                console.log("update user profile error", error);
-              });
+              .then(() => {})
+              .catch((error) => {});
 
             const authUser = {
               uid: userCredential.user.uid,
@@ -149,12 +147,9 @@ export default {
               .then(() => {
                 this.$router.replace("/ProfileCreation");
               })
-              .catch((error) => {
-                console.log("User State error", error);
-              });
+              .catch((error) => {});
           })
           .catch((error) => {
-            console.log("Signup error", error);
             this.snackbar = true;
             this.errorMessage = error.message;
           });

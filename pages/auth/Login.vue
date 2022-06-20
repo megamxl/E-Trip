@@ -66,6 +66,11 @@ export default {
     BasicNavBarLanding,
   },
   layout: "plain",
+  /**
+   * uses vue's data competent to work with data in html  https://vuejs.org/guide/essentials/component-basics.html#defining-a-component
+   * and with this we use regexes to check if the user input is valid
+   * @returns {{valid: boolean, password: string, name: string, nameRules: (function(*))[], passwordRules: (function(*))[], errorMessage: string, show: boolean, emailRules: (function(*))[], snackbar: boolean, email: string}}
+   */
   data: () => ({
     valid: true,
     name: "",
@@ -83,15 +88,21 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
+    //snackbar per default false because no firebase error here before submitting
     snackbar: false,
     errorMessage: "",
 
     show: false,
   }),
   methods: {
+    /**
+     * login function requires the firebase setup in nuxt config js
+     * local checks for data correctness via regexes
+     */
     login() {
       let formValidation = this.$refs.form.validate();
       if (formValidation) {
+        // access firebase instance threw nuxt $
         this.$fire.auth
           .signInWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
@@ -99,6 +110,8 @@ export default {
               uid: userCredential.user.uid,
               email: userCredential.user.email,
             };
+            // make a new mutation ion our store explanation there
+            // if something fails show error in snackbar
             this.$store
               .dispatch("onAuthStateChangedAction", {
                 authUser,
@@ -106,19 +119,15 @@ export default {
               .then(() => {
                 this.$router.replace("/routepage");
               })
-              .catch((error) => {
-                console.log("User State error", error);
-              });
+              .catch((error) => {});
           })
           .catch((error) => {
-            console.log("Login error", error);
             this.snackbar = true;
             this.errorMessage = error.message;
           });
       }
     },
     forgetPassword() {
-      console.log("clicked on forget password");
       this.$router.push("/auth/resetpassword");
     },
     toSignUp() {
