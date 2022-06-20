@@ -42,7 +42,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@nuxtjs/firebase'
+    '@nuxtjs/firebase',
   ],router: {
     middleware: ['auth']
   },
@@ -52,6 +52,8 @@ export default {
     '@nuxtjs/firebase',
     //'@nuxtjs/apollo',
     //'@nuxtjs/html-validator',
+    'nuxt-speedkit',
+    "nuxt-compress"
   ],
 
 
@@ -133,6 +135,66 @@ export default {
         'no-inline-style': 'off',
         'element-permitted-content': 'off'
       }
+    }
+  },
+  speedkit: {
+
+    detection: {
+      performance: true,
+      browserSupport: true
+    },
+
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: { min: 2, max: 48 },
+        deviceMemory: { min: 2 }
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200
+      }
+    },
+
+    fonts: [],
+
+    pictureFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
+
+    componentAutoImport: false,
+    componentPrefix: undefined,
+
+    /**
+     * IntersectionObserver rootMargin for Compoennts and Assets
+     */
+    lazyOffset: {
+      component: '0%',
+      asset: '0%'
+    },
+
+    loader: {
+      dataUri: null,
+      size: '100px',
+      backgroundColor: 'grey'
+    }
+
+  },
+
+  image: {
+    screens: {
+      default: 320,
+      xxs: 480,
+      xs: 576,
+      sm: 768,
+      md: 996,
+      lg: 1200,
+      xl: 1367,
+      xxl: 1600,
+      '4k': 1921
+    },
+
+
+    alias: {
+      youtube: 'https://img.youtube.com',
+      vimeo: 'https://i.vimeocdn.com',
     }
   },
 
