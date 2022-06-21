@@ -83,8 +83,8 @@ export default {
   },
   data() {
     return {
-      toField: '',
-      fromField: ''
+      toField: {coords: []},
+      fromField: {coords: []}
     }
   },
   methods: {
@@ -110,12 +110,14 @@ export default {
       const resultsTo = document.getElementById('#resultTo');
       geocoderTo.on('result', (e) => {
         this.toField = {coords: e.result.center, name: e.result.place_name};
-        resultsTo.innerText = JSON.stringify(e.result, null, 2);
+        try { resultsTo.innerText = JSON.stringify(e.result, null, 2); } catch (e) {}
       });
 
       geocoderTo.on('clear', () => {
-        this.toField.coords = null;
-        resultsTo.innerText = '';
+        try {
+          this.toField.coords = null
+          resultsTo.innerText = '';
+        } catch (e) {}
       })
 
       /* ----------------------------------------------------------------------------------- */
@@ -129,12 +131,15 @@ export default {
       const resultsFrom = document.getElementById('#resultFrom');
       geocoderFrom.on('result', (e) => {
         this.fromField = {coords: e.result.center, name: e.result.place_name};
-        resultsFrom.innerText = JSON.stringify(e.result, null, 2);
+        try { resultsFrom.innerText = JSON.stringify(e.result, null, 2); } catch (e) {}
       });
 
       geocoderFrom.on('clear', () => {
-        this.fromField.coords = null;
-        resultsFrom.innerText = '';
+        try {
+          this.fromField.coords = null
+          resultsFrom.innerText = '';
+        } catch (e) {}
+
       })
 
 
