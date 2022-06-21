@@ -8,6 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest"
+    "heroku-postbuild" : "npm run build"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
