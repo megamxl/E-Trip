@@ -56,7 +56,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 
-mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzbWVpZXIiLCJhIjoiY2wxZXF3Nnl5MGxyZjNibG53dWp5bmFkcCJ9.wGzMNfIT8zp8FcO-YfpzYQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXJvbGxlcm1heGwiLCJhIjoiY2wxZXFxdnhuMGR1djNkcnRtcjh5ZTl0YyJ9.DHWKvonLm0wS5SRvAvPTRA';
 
 export default {
 

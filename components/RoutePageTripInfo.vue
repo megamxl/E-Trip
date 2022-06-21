@@ -96,7 +96,7 @@ export default {
 
       // coordinates are an array with longitude as first value and latitude as the second one
       // we have to reverse it as Google Maps accept latitude first
-      googleDirURL += `&origin=${origin?.reverse()?.join(',')}&destination=${destination?.reverse()?.join(',')}`;
+      //googleDirURL += `&origin=${origin?.reverse()?.join(',')}&destination=${destination?.reverse()?.join(',')}`;
 
       if (legs.length > 2) {
         googleDirURL += `&waypoints=`;
@@ -104,6 +104,7 @@ export default {
           // add charging stations and waypoints
           if (index !== legs.length - 1) {
             googleDirURL += `${leg.destination?.geometry?.coordinates?.reverse()?.join(',')}|`;
+            leg.destination?.geometry?.coordinates?.reverse();
           }
         });
       }
@@ -125,8 +126,8 @@ export default {
      */
     async fetchCarInfo() {
       const header = {
-        method : "GET",
-        headers : {
+        method: "GET",
+        headers: {
           'Content-Type': 'application/json',
           id: this.carData.id
         },
@@ -145,6 +146,7 @@ export default {
   async created() {
     this.carInfos = (await this.fetchCarInfo()).data.car;
     this.carInfoReady = true;
+    let copy = { ... this.tripData.legs}
     this.googleURL = this.routeToGoogleMaps(this.tripData.legs)
   }
 }

@@ -8,6 +8,12 @@ const xml = require('xml-js');
 const app = express();
 app.use(express.json());
 
+
+/**
+ * query for chargers based on cords and distance
+ * @param body cords and radius as object
+ * @returns {string} query
+ */
 function chargingPoints(body) {
   return 'query stationAround {\n' +
     '  stationAround(\n' +
@@ -65,6 +71,11 @@ async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
   }
 }
 
+/**
+ * checks if input is valid
+ * @param body
+ * @returns {boolean}
+ */
 function checkBodyForChargers(body) {
   if (typeof body.longitudeStart === 'number' && !Number.isNaN(body.longitudeStart) && !Number.isInteger(body.longitudeStart)) {
     if (typeof body.latitudeStart === 'number' && !Number.isNaN(body.latitudeStart) && !Number.isInteger(body.latitudeStart)) {
@@ -76,17 +87,6 @@ function checkBodyForChargers(body) {
   return false
 
 }
-
-
-app.post('/getChargerNearby', async (req, res) => {
-  if (checkBodyForChargers(req.body)) {
-    res.send(await graphQLRequest(chargingPoints(req.body), req.headers.xml))
-  } else {
-    res.sendStatus(400)
-  }
-
-
-})
 /*
 PATCH is used for **modify** capabilities. The PATCH request only needs to contain the changes to the resource, not the complete resource.
 This resembles PUT, but the body contains a set of instructions describing how a resource currently residing on the server should be modified to produce a new version.
@@ -97,11 +97,16 @@ Clients using this kind of patch application should use a conditional request su
 For example, the client can use a strong ETag in an If-Match header on the PATCH request.
 */
 
-/*Implement PATCH here*/
-
-;
-
-//app.patch();
+/**
+ *returns the updated list of chargers
+ */
+app.patch('/getChargerNearby', async (req, res) => {
+  if (checkBodyForChargers(req.body)) {
+    res.send(await graphQLRequest(chargingPoints(req.body), req.headers.xml))
+  } else {
+    res.sendStatus(400)
+  }
+});
 
 module.exports = app
 

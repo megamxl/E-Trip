@@ -80,7 +80,6 @@ export default {
    */
   computed: {
     allowSend() {
-      console.log(`Carbrand: ${this.carbrand} - Carmodel: ${this.carmodel}`);
       return !((this.carbrand !== '' && this.carbrand !== null)
         && (this.carmodel !== '' && this.carmodel != null))
     }

@@ -1,6 +1,5 @@
 const actions = {
   async onAuthStateChangedAction(state, { authUser, claims }) {
-    console.log('onAuthStateChangedAction - authUser', authUser);
 
     if (!authUser) {
       state.commit('SET_USER', null)
@@ -16,7 +15,6 @@ const actions = {
   async nuxtServerInit({ dispatch, commit }, { res }) {
     if (res && res.locals && res.locals.user) {
       const { allClaims: claims, idToken: token, ...authUser } = res.locals.user
-      console.log('nuxtServerInit - authUser', authUser);
       const { uid, email } = authUser
 
       await dispatch('onAuthStateChangedAction', {
