@@ -1,11 +1,7 @@
-import * as Console from "console";
 
 const express = require('express');
-const https = require("https");
-const {response} = require("express");
 const xml = require('xml-js');
 import fetch from 'node-fetch';
-import {config} from "@vue/test-utils";
 
 const options = {compact: true, ignoreComment: true, spaces: 4}
 const app = express();
@@ -167,7 +163,6 @@ function brandquery(brandName) {
     '}\n' +
     '';
 }
-
 function generateCarID(id) {
   return '{"carId":"' + id + '"}';
 }
@@ -299,6 +294,9 @@ This, by some opinions, makes DELETE operations no longer idempotent, however, t
  * deletes the duplicates in brand-names returned from chargetrip
  */
 app.delete('/getCarBrands', async (req, res) => {
+  if(req.headers.xml === "true"){
+    res.send(await graphQLRequest(carListAllBrands, req.headers.xml));
+  }
   const duplicateModels = await graphQLRequest(carListAllBrands, req.headers.xml);
   // set the first element to the first car in response
   let noDuplicates = [duplicateModels.data.carList[0].naming.make]
@@ -306,7 +304,7 @@ app.delete('/getCarBrands', async (req, res) => {
   //loop threw data in response
   for (let currentModel in duplicateModels.data.carList) {
     // if new entry add it to response
-    if (noDuplicates[noDuplicates.length - 1] === (duplicateModels.data.carList[currentModel].naming.make) === false) {
+    if (!(noDuplicates[noDuplicates.length - 1] === (duplicateModels.data.carList[currentModel].naming.make))) {
       noDuplicates.push(duplicateModels.data.carList[currentModel].naming.make)
     }
   }
