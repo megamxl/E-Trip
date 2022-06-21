@@ -12,7 +12,7 @@
         <v-row justify="center" align="center">
           <v-col cols="12" sm="10" md="8" lg="6" xl="5">
             <v-card>
-              <v-img height="25vh" src="/tesla.jpg">
+              <v-img height="25vh" src="/tesla.webp">
                 <div class="d-flex flex-column" id="translucentBackground">
                   <v-card-title id="font-size-4vw" class="mt-8"> Your Profile</v-card-title>
                   <v-card-subtitle> Welcome back {{name}} </v-card-subtitle>
