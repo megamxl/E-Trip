@@ -107,7 +107,7 @@ export default {
         accessToken: mapboxgl.accessToken, // Set the access token
         mapboxgl: mapboxgl, // Set the mapbox-gl instance
         marker: false, // Do not use the default marker style
-        placeholder: 'Search for places in Berkeley', // Placeholder text for the search bar
+        placeholder: 'Find chargers near you', // Placeholder text for the search bar
       });
 
       this.map.addControl(
