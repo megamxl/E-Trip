@@ -43,7 +43,7 @@ export default {
      */
     async getNearByCharegers(cords) {
       return await fetch("/getChargerNearby", {
-        method: "POST",
+        method: "PATCH",
         headers: {
           'Content-Type': 'application/json'
         },
@@ -53,7 +53,6 @@ export default {
           distance: 10000
         }),
       }).then(res => res.json());
-
     },
 
     createMap() {
@@ -126,7 +125,6 @@ export default {
         });
 
         geocoder.on('result', async (event) => {
-          console.log("event", event.result.center)
           this.chargers = await this.getNearByCharegers(event.result.center)
           this.loopThroughChargers(this.chargers.data.stationAround);
         });
