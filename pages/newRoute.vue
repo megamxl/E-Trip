@@ -204,7 +204,7 @@ export default {
 .background {
   width: 100%;
   height: 100vh;
-  background: url("assets/car.webp") no-repeat top center fixed;
+  background: url("static/car.webp") no-repeat top center fixed;
   background-size: cover;
 }
 

@@ -35,7 +35,7 @@
 
 <script>
 
-import testImage from "assets/tesla.webp";
+import testImage from "static/tesla.webp";
 
 export default {
   name: "RoutePageTripInfo",
