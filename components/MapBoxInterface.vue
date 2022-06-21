@@ -3,22 +3,29 @@
 
     <!--responsive; v-expansion-panels for mobile version -->
       <v-expansion-panels v-show="mobile">
-        <v-expansion-panel>
+        <v-expansion-panel v-if="routeData != null">
           <v-expansion-panel-header> Click for route details </v-expansion-panel-header>
           <v-expansion-panel-content class="overflow-auto" id="mobileExpansion">
-            <RoutePageTripInfo v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
+            <RoutePageTripInfo :trip-data="routeData" :carData="carData"/>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
 
 
     <div id="map"></div>
-
     <!--RouterPageTripInfo is only shown if !mobile!! -->
     <RoutePageTripInfo v-show="!mobile" v-if="routeData != null" :trip-data="routeData" :carData="carData"/>
-    <v-card id="errorMsg" v-if="routeData == null">
-      <v-card-title> Your route is not reachable with provided configuration</v-card-title>
-    </v-card>
+
+    <v-snackbar v-model="showSnackBar" > Powered by Chargetrip
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="showSnackBar = false"> Close </v-btn>
+      </template>
+    </v-snackbar>
+
+    <!-- Error Message Display -->
+    <v-alert dense type="error" id="errorMsg" v-if="routeData == null">
+      <strong> Your route is not reachable with provided configuration</strong>
+    </v-alert>
 
   </v-app>
 </template>
@@ -41,6 +48,7 @@ export default {
       //responsive
       mobile: null,
       windowWidth: null,
+      showSnackBar: true
     }
   },
   /**
@@ -148,7 +156,7 @@ export default {
 
         new mapboxgl.Popup({closeButton: false, offset: [23, -23], closeOnClick: false})
           .setLngLat(leg.destination.geometry.coordinates)
-          .setHTML(`<small>${chargeTime.hours}:${chargeTime.minutes} </small>`)
+          .setHTML(`<small>${chargeTime.hours}:${chargeTime.minutes.toString().padStart(2, '0')} </small>`)
           .addTo(this.map);
       })
     },
