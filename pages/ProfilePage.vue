@@ -2,9 +2,31 @@
   <v-app>
     <v-content>
       <v-app-bar>
-        <BasicNavBarLanding/>
-        <v-spacer/>
-        <v-btn outlined @click="logout">Logout</v-btn>
+        <!-- mobile version: hamburgerMenu + Dropdown .... only shown if mobile!! -->
+        <v-container v-show="mobile" class="justify-start ml-0 pl-0 mr-0 pl-0">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs"
+                     v-on="on"
+                     plain
+                     id="hambugerMenu">
+                <v-app-bar-nav-icon></v-app-bar-nav-icon>
+              </v-btn>
+            </template>
+            <v-list class="mt-2" style="width: 100vw">
+              <v-list-item @click="toLanding">Home</v-list-item>
+              <v-list-item @click="toNewRoutePage">New Route</v-list-item>
+              <v-list-item @click="logout">Logout</v-list-item>
+            </v-list>
+          </v-menu>
+        </v-container>
+
+        <!--Buttons only shown if !mobile!! -->
+        <v-btn outlined v-show="!mobile" @click="toLanding"> E-Trip</v-btn>
+        <v-spacer v-show="!mobile"/>
+        <v-btn outlined v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
+        <v-spacer v-show="!mobile"/>
+        <v-btn outlined v-show="!mobile" @click="logout"> Logout</v-btn>
       </v-app-bar>
 
 
@@ -15,7 +37,7 @@
               <v-img height="25vh" src="/tesla.webp">
                 <div class="d-flex flex-column" id="translucentBackground">
                   <v-card-title id="font-size-4vw" class="mt-8"> Your Profile</v-card-title>
-                  <v-card-subtitle> Welcome back {{name}} </v-card-subtitle>
+                  <v-card-subtitle> Welcome back {{ name }}</v-card-subtitle>
                 </div>
               </v-img>
               <div class="d-flex flex-column align-self-center">
@@ -88,7 +110,11 @@ export default {
       sessionID: "",
       name: "",
       lastTimeLogedIn: "",
-      sessionExporation: ""
+      sessionExporation: "",
+
+      //responsive
+      mobile: null,
+      windowWidth: null,
     }
   },
 
@@ -127,8 +153,20 @@ export default {
       }
     } catch (e) {
     }
+
+
+    //responsive
+    window.addEventListener('resize', this.checkScreen);
+    this.checkScreen();
+
   },
   methods: {
+    toLanding() {
+      this.$router.push("/");
+    },
+    toNewRoutePage() {
+      this.$router.push("/newRoute")
+    },
 
     /**
      * gives us a new local login  token to firebase
@@ -156,23 +194,16 @@ export default {
           return 800
       }
     },
-    //responsive
-    onResize() {
-      this.isMobile = window.innerWidth < 600
+
+    //responsive - mobile Version starts with windowWidth 600;
+    checkScreen() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth < 600) {
+        this.mobile = true;
+        return;
+      }
+      this.mobile = false;
     },
-
-  },
-  //responsive
-  beforeDestroy() {
-    if (typeof window === 'undefined') return
-
-    window.removeEventListener('resize', this.onResize, {passive: true})
-  },
-  //responsive
-  mounted() {
-    this.onResize()
-
-    window.addEventListener('resize', this.onResize, {passive: true})
   },
 };
 
