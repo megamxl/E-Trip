@@ -80,7 +80,7 @@ export default {
         let availablePower = `<ul>`;
 
         for (const chargeSpeed in chargePoint.power) {
-          availablePower += `<li class="pt-0 pb-0" style="list-style: circle ">${chargeSpeed} kWh</li>`
+          availablePower += `<li class="pt-0 pb-0" style="list-style: circle ">${chargeSpeed} kW</li>`
         }
         availablePower += `</ul>`
 

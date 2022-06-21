@@ -96,7 +96,8 @@ export default {
 
       // coordinates are an array with longitude as first value and latitude as the second one
       // we have to reverse it as Google Maps accept latitude first
-      //googleDirURL += `&origin=${origin?.reverse()?.join(',')}&destination=${destination?.reverse()?.join(',')}`;
+      googleDirURL += `&origin=${origin?.reverse()?.join(',')}&destination=${destination?.reverse()?.join(',')}`;
+      origin.reverse(); destination.reverse();
 
       if (legs.length > 2) {
         googleDirURL += `&waypoints=`;
