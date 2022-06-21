@@ -180,7 +180,7 @@ export default {
 .background {
   width: 100%;
   height: 100vh;
-  background: url("assets/tesla.jpg") no-repeat top center fixed;
+  background: url("assets/tesla.webp") no-repeat top center fixed;
   background-size: cover;
 }
 
