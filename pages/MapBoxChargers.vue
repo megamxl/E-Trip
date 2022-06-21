@@ -74,7 +74,6 @@ export default {
      */
     loopThroughChargers(chargers) {
       for (const chargePoint of chargers) {
-        console.log("ChargePoint: ", chargePoint)
         const coords = chargePoint.location.coordinates;
         let availablePower = `<ul>`;
 

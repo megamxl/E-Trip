@@ -134,7 +134,6 @@ export default {
       }
 
       const response = await fetch("/getCarById", header).then(r => r.json());
-      console.log("Response: ", response);
       return response;
     }
   },
