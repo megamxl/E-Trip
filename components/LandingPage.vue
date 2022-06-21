@@ -83,8 +83,8 @@ export default {
   },
   data() {
     return {
-      toField: {coords: []},
-      fromField: {coords: []}
+      toField: '',
+      fromField: ''
     }
   },
   methods: {
