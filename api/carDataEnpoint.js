@@ -265,10 +265,12 @@ app.put('/getCarByBrand', async (req, res) => {
       let models = [""], version = []
 
       //looping threw the answer
+      //console.log("answer data, ", answer.data.carList)
+
       for (let x in answer.data.carList) {
 
         // resting current array
-        version.length = 0
+        version = []
         // add version and id to local array
         version.push(answer.data.carList[x].naming.version)
         version.push(answer.data.carList[x].id)
@@ -276,6 +278,7 @@ app.put('/getCarByBrand', async (req, res) => {
         models.push( [answer.data.carList[x].naming.model, version])
       }
 
+      console.log("models", models)
       // remove first element because it has to be declared because of my datastructures check
       models.shift()
 
