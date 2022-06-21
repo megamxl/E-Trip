@@ -4,7 +4,7 @@
   <!--Basic Navbar consists of only back to LandingPage Button + toLanding mehtod() -->
   <v-card class="overflow-hidden">
     <v-app-bar>
-      <v-btn @click="toLanding"> E-Trip </v-btn> <!-- Calls to landing -->
+      <v-btn outlined @click="toLanding"> E-Trip </v-btn> <!-- Calls to landing -->
       <v-spacer />
     </v-app-bar>
   </v-card>

@@ -1,7 +1,7 @@
 <template>
   <v-app-bar>
     <!--E-Trip Button is only shown if !mobile!! -->
-    <v-btn v-show="!mobile" @click="toLanding"> E-Trip</v-btn>
+    <v-btn outlined v-show="!mobile" @click="toLanding"> E-Trip</v-btn>
     <v-spacer v-show="!mobile"/>
 
     <!-- mobile version: hamburgerMenu + Dropdown .... only shown if mobile!! -->
@@ -27,11 +27,11 @@
     </v-container>
 
     <!--Buttons only shown if !mobile!! -->
-    <v-btn v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
+    <v-btn outlined v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
     <v-spacer v-show="!mobile"/>
-    <v-btn v-show="!mobile" @click="toChargerSearch">Chargers near you</v-btn>
+    <v-btn outlined v-show="!mobile" @click="toChargerSearch">Chargers near you</v-btn>
     <v-spacer v-show="!mobile"/>
-    <v-btn v-show="!mobile" id="profile_" @click="toProfile"> Profile
+    <v-btn outlined v-show="!mobile" id="profile_" @click="toProfile"> Profile
       <v-icon> mdi-account</v-icon>
     </v-btn>
   </v-app-bar>
@@ -86,6 +86,7 @@ export default {
 </script>
 
 <style scoped>
+
 #profile_ {
   color: #fff;
 }

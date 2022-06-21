@@ -99,18 +99,6 @@ export default {
     },
   },
 
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: 'https://api.chargetrip.io/graphql',
-        httpLinkOptions: {
-          headers: {
-            'x-client-id': process.env.VUE_APP_WS_API_KEY || '62335e76c351300738296e30',
-          },
-        },
-      },
-    },
-  },
   htmlValidator: {
     usePrettier: false,
     failOnError: true,
