@@ -87,7 +87,6 @@ export default {
      * @returns {string}
      */
     routeToGoogleMaps(legs) {
-      //TODO: Make it work more than once => Only reverse once or something
       if (legs.length === 0) return;
 
       let googleDirURL = `https://www.google.com/maps/dir/?api=1`;
