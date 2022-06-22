@@ -48,6 +48,22 @@
       </div>
 
     </div>
+
+    <v-footer padless>
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        <v-btn outlined
+               href="https://www.termsofservicegenerator.net/live.php?token=7gaxtkzpdffGqmeXZ9ui8dIPJy85uOja"
+               target="_blank"
+               class="mt-2 mb-2"
+        >Terms of Service
+        </v-btn>
+      </v-col>
+    </v-footer>
+
+
   </v-app>
 </template>
 
