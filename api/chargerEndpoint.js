@@ -1,5 +1,4 @@
 const express = require('express');
-const https = require("https");
 import fetch from 'node-fetch';
 
 const options = {compact: true, ignoreComment: true, spaces: 4}
