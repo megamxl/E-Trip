@@ -7,7 +7,7 @@
       </v-content>
 
       <!--add another Button in Nav-bar/App-bar -->
-      <v-btn id="profile_" @click="toProfile"> Profile
+      <v-btn id="profile_" outlined @click="toProfile"> Profile
         <v-icon> mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
