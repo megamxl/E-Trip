@@ -58,7 +58,7 @@
                href="https://www.termsofservicegenerator.net/live.php?token=7gaxtkzpdffGqmeXZ9ui8dIPJy85uOja"
                target="_blank"
                class="mt-2 mb-2"
-        >Terms of Service
+        >Website Terms and Conditions of Use
         </v-btn>
       </v-col>
     </v-footer>
