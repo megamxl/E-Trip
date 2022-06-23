@@ -24,8 +24,7 @@
         <!--Buttons only shown if !mobile!! -->
         <v-btn outlined v-show="!mobile" @click="toLanding"> E-Trip</v-btn>
         <v-spacer v-show="!mobile"/>
-        <v-btn outlined v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
-        <v-spacer v-show="!mobile"/>
+        <v-btn outlined v-show="!mobile" class="mr-lg-16 mr-md-12 mr-sm-6" @click="toNewRoutePage"> New Route</v-btn>
         <v-btn outlined v-show="!mobile" @click="logout"> Logout</v-btn>
       </v-app-bar>
 
