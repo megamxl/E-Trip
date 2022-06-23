@@ -193,6 +193,7 @@ async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
  * returns route if provided id is there
  */
 app.get('/getRoute', async (req, res) => {
+  if(req.headers.xml=="true"){res.send(await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid)))}
   let test = await graphQLRequest(planRoute(req.headers.routeid), req.headers.xml, carId(req.headers.carid))
   // because the server takes it time we check if our route is finished if not we do it until we have one
   while (test.data.route.status === 'processing') {
