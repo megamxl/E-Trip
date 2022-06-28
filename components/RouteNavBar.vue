@@ -28,10 +28,9 @@
       </v-container>
 
       <!--Buttons only shown if !mobile!! -->
-      <v-btn outlined v-show="!mobile" @click="toNewRoutePage"> New Route</v-btn>
       <v-spacer v-show="!mobile"/>
-      <v-btn outlined v-show="!mobile" @click="toChargerSearch">Chargers near you</v-btn>
-      <v-spacer v-show="!mobile"/>
+      <v-btn outlined v-show="!mobile" class="mr-xl-16 mr-lg-12 mr-md-8 mr-sm-2" @click="toNewRoutePage"> New Route</v-btn>
+      <v-btn outlined v-show="!mobile" class="mr-xl-16 mr-lg-12 mr-md-8 mr-sm-2" @click="toChargerSearch">Chargers near you</v-btn>
       <v-btn outlined v-show="!mobile" id="profile_" @click="toProfile"> Profile
         <v-icon> mdi-account</v-icon>
       </v-btn>
