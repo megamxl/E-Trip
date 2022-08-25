@@ -175,6 +175,7 @@ async function graphQLRequest(ourBody, xmlHeader, ourVariables) {
     headers: {
       'Content-Type': 'application/json',
       'x-client-id': '62335e76c351300738296e30',
+      'x-app-id' : '62335e76c351300738296e32',
     },
     body: JSON.stringify({
       query: ourBody,
